@@ -1,0 +1,23 @@
+<h1>Websites Home</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>URL</th>
+      <th>API Key</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @websites.each do |website| %>
+      <tr>
+        <td><%= website.id %></td>
+        <td><%= website.name %></td>
+        <td><%= website.url %></td>
+        <td><%= website.api_key %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
