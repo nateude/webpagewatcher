@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  load_time: 1
+  first_byte: 1
+  start_render: 1
+  speed_index: 1
+  dom_elements: 1
+  complete_time: 1
+  complete_requests: 1
+  complete_bytes_in: 1
+  loaded_time: 1
+  loaded_requests: 1
+  loaded_bytes_in: 1
+  loaded_certificates: 1
+
+two:
+  load_time: 1
+  first_byte: 1
+  start_render: 1
+  speed_index: 1
+  dom_elements: 1
+  complete_time: 1
+  complete_requests: 1
+  complete_bytes_in: 1
+  loaded_time: 1
+  loaded_requests: 1
+  loaded_bytes_in: 1
+  loaded_certificates: 1
