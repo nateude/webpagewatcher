@@ -1,0 +1,29 @@
+<h1>Profiles Home</h1>
+
+<table>
+  <thead>
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>website_id</td>
+        <td>wpt_settings</td>
+        <td>wpt_code</td>
+        <td>interval</td>
+        <td>api_key</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.id %></td>
+        <td><%= profile.name %></td>
+        <td><%= profile.website_id %></td>
+        <td><%= profile.wpt_settings %></td>
+        <td><%= profile.wpt_code %></td>
+        <td><%= profile.interval %></td>
+        <td><%= profile.api_key %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
