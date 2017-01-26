@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'profiles/new'
-
-  get 'websites/new'
-
   # Static Page Routes
   root 'static_pages#home'
 
