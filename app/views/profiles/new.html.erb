@@ -9,7 +9,7 @@
       <%= f.text_field :name %>
 
       <%= f.label :website_id %>
-      <%= f.text_field :website_id %>
+      <%= f.collection_select(:website_id, Website.all, :id, :name) %>
 
       <%= f.label :wpt_settings %>
       <%= f.text_field :wpt_settings %>
