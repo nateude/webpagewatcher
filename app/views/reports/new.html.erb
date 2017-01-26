@@ -1,0 +1,23 @@
+<h1>Add a New Report</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for(@report) do |f| %>
+
+        <%= f.label :website_id %>
+        <%= f.text_field :website_id %>
+        <%= f.label :profile_id %>
+        <%= f.text_field :profile_id %>
+        <%= f.label :wpt_id %>
+        <%= f.text_field :wpt_id %>
+        <%= f.label :status %>
+        <%= f.text_field :status %>
+        <%= f.label :data %>
+        <%= f.text_area :data %>
+
+      <%= f.submit "Save Report Data", class: "btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>

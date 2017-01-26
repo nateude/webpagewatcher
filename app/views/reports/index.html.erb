@@ -1,0 +1,25 @@
+<h1>Reports Home</h1>
+
+<table>
+  <thead>
+    <tr>
+        <th>id</th>
+        <th>website_id</th>
+        <th>profile_id</th>
+        <th>wpt_id</th>
+        <th>status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.id %></td>
+        <td><%= report.website_id %></td>
+        <td><%= report.profile_id %></td>
+        <td><%= report.wpt_id %></td>
+        <td><%= report.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

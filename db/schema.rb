@@ -10,7 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125193513) do
+ActiveRecord::Schema.define(version: 20170126205111) do
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "website_id"
+    t.string   "wpt_settings"
+    t.string   "wpt_code"
+    t.integer  "interval"
+    t.string   "api_key"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "website_id"
+    t.integer  "profile_id"
+    t.string   "wpt_id"
+    t.string   "status"
+    t.string   "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.integer  "load_time"
+    t.integer  "first_byte"
+    t.integer  "start_render"
+    t.integer  "speed_index"
+    t.integer  "dom_elements"
+    t.integer  "complete_time"
+    t.integer  "complete_requests"
+    t.integer  "complete_bytes_in"
+    t.integer  "loaded_time"
+    t.integer  "loaded_requests"
+    t.integer  "loaded_bytes_in"
+    t.integer  "loaded_certificates"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "status"
+    t.string   "wpt_id"
+    t.string   "url"
+  end
 
   create_table "websites", force: :cascade do |t|
     t.string   "url"
