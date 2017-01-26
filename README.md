@@ -1,9 +1,39 @@
 # webpagewatcher
 Uses the [WebPageTest](http://www.webpagetest.org) API to run web speed tests and stores the data locally
 
-## TODO
 
-write this readme file
+## App Arhitecture
+
+Websites
+
+name | type | description
+------------ | -------------
+id | integer | Database identiy number
+name | string | Name for website
+url | string | Full website url http://www.website.com
+api_key | string | Default [WebPageTest](http://www.webpagetest.org) api_key for website
+
+Profiles
+
+name | type | description
+------------ | ------------- | description
+id | integer | Database identiy number
+name | string | Name for profile
+website_id | integer | Identiy number from website table
+wpt_settings | string | [WebPageTest](http://www.webpagetest.org) string defining settings for test
+wpt_code | string | [WebPageTest](http://www.webpagetest.org) test code
+interval | integer | Time interval to run test
+api_key | string | Override Website [WebPageTest](http://www.webpagetest.org) api_key for test
+
+Report
+
+name | type | description
+------------ | ------------- | description
+id | integer | Database identiy number
+wpt_id | string | [WebPageTest](http://www.webpagetest.org) identiy number
+status | string | Current test status (running, compelted)
+data | string | JSON test results
+
 
 ## Setup
 
@@ -13,28 +43,3 @@ write this readme file
   * powder link
   * powder open
 
-
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
