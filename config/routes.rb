@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'tests/new'
+
   get 'websites/new'
 
   # Static Page Routes
