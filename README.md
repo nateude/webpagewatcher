@@ -4,7 +4,7 @@ Uses the [WebPageTest](http://www.webpagetest.org) API to run web speed tests an
 
 ## App Architecture
 
-Websites
+###Websites
 define a website to run tests on.
 
 Name | Type | Description
@@ -14,7 +14,7 @@ name | string | Name for website
 url | string | Full website url http://www.website.com
 api_key | string | Default [WebPageTest](http://www.webpagetest.org) api_key for website
 
-Profiles
+###Profiles
 Defines settings for running specific tests.
 
 Name | Type | Description
@@ -27,7 +27,7 @@ wpt_code | string | [WebPageTest](http://www.webpagetest.org) test code
 interval | integer | Time interval to run test
 api_key | string | Overrides [WebPageTest](http://www.webpagetest.org) api_key for test
 
-Reports
+###Reports
 defines data storage for tests.
 
 Name | Type | Description
