@@ -16,8 +16,8 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     if @profile.save
-      flash[:success] = "Profile Saved"
-      redirect_to @profile
+      flash[:success] = "New profile created: " + @profile.name
+      redirect_to profiles_path
     else
       render 'new'
     end

@@ -16,8 +16,8 @@ class WebsitesController < ApplicationController
   def create
     @website = Website.new(website_params)
     if @website.save
-      flash[:success] = "Website Saved"
-      redirect_to @website
+      flash[:success] = "Website Created: " + @website.name
+      redirect_to websites_path
     else
       render 'new'
     end

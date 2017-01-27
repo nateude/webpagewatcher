@@ -6,11 +6,12 @@
 <table class="table table-hover">
   <thead>
     <tr>
-        <th>id</th>
-        <th>website_id</th>
-        <th>profile_id</th>
-        <th>wpt_id</th>
-        <th>status</th>
+        <th>Status</th>
+        <th>ID</th>
+        <th>Website</th>
+        <th>Profile</th>
+        <th>WPT ID</th>
+        <th>JSON Data</th>
     </tr>
   </thead>
 
@@ -19,11 +20,13 @@
         <% website = Website.find(report.website_id) %>
         <% profile = Website.find(report.profile_id) %>
       <tr>
-        <td><%= report.id %></td>
-        <td><%= website.name %></td>
-        <td><%= profile.name %></td>
-        <td><%= report.wpt_id %></td>
         <td><%= report.status %></td>
+        <td><%= status_name(report.status) %></td>
+        <td><%= report.id %></td>
+        <td><%= link_to website.name, website_path(website.id) %></td>
+        <td><%= link_to profile.name, profile_path(profile.id) %></td>
+        <td><%= link_to report.wpt_id, "http://www.webpagetest.org/results.php?test="+report.wpt_id, :target => "_blank" %></td>
+        <td><%= report.data %></td>
       </tr>
     <% end %>
   </tbody>
