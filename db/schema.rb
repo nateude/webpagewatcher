@@ -33,26 +33,6 @@ ActiveRecord::Schema.define(version: 20170126205111) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tests", force: :cascade do |t|
-    t.integer  "load_time"
-    t.integer  "first_byte"
-    t.integer  "start_render"
-    t.integer  "speed_index"
-    t.integer  "dom_elements"
-    t.integer  "complete_time"
-    t.integer  "complete_requests"
-    t.integer  "complete_bytes_in"
-    t.integer  "loaded_time"
-    t.integer  "loaded_requests"
-    t.integer  "loaded_bytes_in"
-    t.integer  "loaded_certificates"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "status"
-    t.string   "wpt_id"
-    t.string   "url"
-  end
-
   create_table "websites", force: :cascade do |t|
     t.string   "url"
     t.string   "name"
