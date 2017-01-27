@@ -1,8 +1,32 @@
-<h1>Website: <%= @website.name %></h1>
+<div class="row">
+  <div class="col-md-10"><h1>Website: <%= @website.name %></h1></div>
+  <div class="col-md-2 text-right"><%= link_to "Add New Website", new_website_path, class: "btn btn-default" %></div>
+</div>
 
-<ul>
-  <li><%= @website.id %></li>
-  <li><%= @website.name %></li>
-  <li><%= @website.url %></li>
-  <li><%= @website.api_key %></li>
-</ul>
+<table class="table table-hover">
+  <thead>
+    <tr>
+        <th>Key</th>
+        <th>Value</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td>ID</td>
+        <td><%= @website.id %></td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><%= @website.name %></td>
+      </tr>
+      <tr>
+        <td>URL</td>
+        <td><%= @website.url %></td>
+      </tr>
+      <tr>
+        <td>API Key</td>
+        <td><%= @website.api_key %></td>
+      </tr>
+  </tbody>
+</table>
