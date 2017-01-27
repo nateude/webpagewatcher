@@ -13,12 +13,12 @@
 
   <tbody>
     <tr>
-      <td>Status</td>
-      <td><%= status_name(@report.status) %></td>
-    </tr>
-    <tr>
       <td>ID</td>
       <td><%= @report.id %></td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td><%= status_name(@report.status) %></td>
     </tr>
     <tr>
       <td>Website</td>
@@ -27,7 +27,7 @@
     </tr>
     <tr>
       <td>Profile</td>
-        <% profile = Website.find(@report.profile_id) %>
+        <% profile = Profile.find(@report.profile_id) %>
       <td><%= link_to profile.name, profile_path(profile.id) %></td>
     </tr>
     <tr>

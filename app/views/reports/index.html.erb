@@ -6,12 +6,11 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Status</th>
       <th>ID</th>
+      <th>Status</th>
       <th>Website</th>
       <th>Profile</th>
       <th>WPT ID</th>
-      <th>JSON Data</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -19,14 +18,13 @@
   <tbody>
     <% @reports.each do |report| %>
         <% website = Website.find(report.website_id) %>
-        <% profile = Website.find(report.profile_id) %>
+        <% profile = Profile.find(report.profile_id) %>
       <tr>
-        <td><%= status_name(report.status) %></td>
         <td><%= report.id %></td>
+        <td><%= status_name(report.status) %></td>
         <td><%= link_to website.name, website_path(website.id) %></td>
         <td><%= link_to profile.name, profile_path(profile.id) %></td>
         <td><%= link_to report.wpt_id, "http://www.webpagetest.org/results.php?test="+report.wpt_id, :target => "_blank" %></td>
-        <td><%= report.data %></td>
         <td><%= link_to "view", report_path(report.id) %></td>
       </tr>
     <% end %>

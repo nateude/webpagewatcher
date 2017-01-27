@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
+    @reports = Report.where(profile_id: params[:id])
   end
 
   def new

@@ -2,7 +2,7 @@
   <div class="col-md-10"><h1>Website: <%= @profile.name %></h1></div>
   <div class="col-md-2 text-right"><%= link_to "Add New Profile", new_profile_path, class: "btn btn-default" %></div>
 </div>
-
+<div class="row">
 <table class="table table-hover">
   <thead>
     <tr>
@@ -36,3 +36,30 @@
       <td><%= @profile.api_key %></td>
   </tbody>
 </table>
+
+</div>
+
+<div class="row">
+<h2>Associated Reports</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Status</th>
+      <th>WPT ID</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.id %></td>
+        <td><%= status_name(report.status) %></td>
+        <td><%= link_to report.wpt_id, "http://www.webpagetest.org/results.php?test="+report.wpt_id, :target => "_blank" %></td>
+        <td><%= link_to "view", report_path(report.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
