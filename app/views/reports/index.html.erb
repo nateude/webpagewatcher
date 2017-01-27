@@ -1,0 +1,27 @@
+<h1>Reports Home</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+        <th>id</th>
+        <th>website_id</th>
+        <th>profile_id</th>
+        <th>wpt_id</th>
+        <th>status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reports.each do |report| %>
+        <% website = Website.find(report.website_id) %>
+        <% profile = Website.find(report.profile_id) %>
+      <tr>
+        <td><%= report.id %></td>
+        <td><%= website.name %></td>
+        <td><%= profile.name %></td>
+        <td><%= report.wpt_id %></td>
+        <td><%= report.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
