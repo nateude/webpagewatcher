@@ -1,6 +1,6 @@
 <h1>Reports Home</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
         <th>id</th>
@@ -13,10 +13,12 @@
 
   <tbody>
     <% @reports.each do |report| %>
+        <% website = Website.find(report.website_id) %>
+        <% profile = Website.find(report.profile_id) %>
       <tr>
         <td><%= report.id %></td>
-        <td><%= report.website_id %></td>
-        <td><%= report.profile_id %></td>
+        <td><%= website.name %></td>
+        <td><%= profile.name %></td>
         <td><%= report.wpt_id %></td>
         <td><%= report.status %></td>
       </tr>
