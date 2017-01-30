@@ -6,6 +6,8 @@ class WebsitesController < ApplicationController
 
   def show
     @website = Website.find(params[:id])
+    @profiles = Profile.where(website_id: params[:id])
+    @reports = Report.where(website_id: params[:id]).take(5)
   end
 
   def new
@@ -16,8 +18,8 @@ class WebsitesController < ApplicationController
   def create
     @website = Website.new(website_params)
     if @website.save
-      flash[:success] = "Website Saved"
-      redirect_to @website
+      flash[:success] = "Website Created: " + @website.name
+      redirect_to websites_path
     else
       render 'new'
     end

@@ -1,11 +1,65 @@
-<h1>Website: <%= @profile.name %></h1>
+<div class="row">
+  <div class="col-md-10"><h1>Website: <%= @profile.name %></h1></div>
+  <div class="col-md-2 text-right"><%= link_to "Add New Profile", new_profile_path, class: "btn btn-default" %></div>
+</div>
+<div class="row">
+<table class="table table-hover">
+  <thead>
+    <tr>
+        <th>Key</th>
+        <th>Value</th>
+    </tr>
+  </thead>
 
-<ul>
-  <li><%= @profile.id %></li>
-  <li><%= @profile.name %></li>
-  <li><%= @profile.website_id %></li>
-  <li><%= @profile.wpt_settings %></li>
-  <li><%= @profile.wpt_code %></li>
-  <li><%= @profile.interval %></li>
-  <li><%= @profile.api_key %></li>
-</ul>
+  <tbody>
+    <tr>
+      <td>ID</td>
+      <td><%= @profile.id %></td>
+    <tr>
+      <td>Name</td>
+      <td><%= @profile.name %></td>
+    <tr>
+      <td>Website</td>
+      <% website = Website.find(@profile.website_id) %>
+      <td><%= link_to website.name, website_path(website.id) %></td>
+    <tr>
+      <td>WPT Settings</td>
+      <td><%= @profile.wpt_settings %></td>
+    <tr>
+      <td>WPT Code</td>
+      <td><%= @profile.wpt_code %></td>
+    <tr>
+      <td>Time Interval</td>
+      <td><%= @profile.interval %></td>
+    <tr>
+      <td>API Key</td>
+      <td><%= @profile.api_key %></td>
+  </tbody>
+</table>
+
+</div>
+
+<div class="row">
+<h2>Associated Reports</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Status</th>
+      <th>WPT ID</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.id %></td>
+        <td><%= status_name(report.status) %></td>
+        <td><%= link_to report.wpt_id, "http://www.webpagetest.org/results.php?test="+report.wpt_id, :target => "_blank" %></td>
+        <td><%= link_to "view", report_path(report.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

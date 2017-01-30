@@ -1,30 +1,42 @@
-<h1>Add a New Profile</h1>
+
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+    <h1>Add a New Profile</h1>
 
     <%= form_for(@profile) do |f| %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name , class: "form-control" %>
+      </div>
 
-      <%= f.label :website_id %>
-      <%= f.collection_select(:website_id, Website.all, :id, :name) %>
+      <div class="form-group">
+        <%= f.label :website_id %>
+        <%= f.collection_select(:website_id, Website.all, :id, :name, {}, {:class=>'form-control'})  %>
 
-      <%= f.label :wpt_settings %>
-      <%= f.text_field :wpt_settings %>
+      <div class="form-group">
+        <%= f.label :wpt_settings %>
+        <%= f.text_field :wpt_settings , class: "form-control" %>
+      </div>
 
-      <%= f.label :wpt_code %>
-      <%= f.text_field :wpt_code %>
+      <div class="form-group">
+        <%= f.label :wpt_code %>
+        <%= f.text_field :wpt_code , class: "form-control" %>
+      </div>
 
-      <%= f.label :interval %>
-      <%= f.text_field :interval %>
+      <div class="form-group">
+        <%= f.label :interval %>
+        <%= f.text_field :interval , class: "form-control" %>
+      </div>
 
-      <%= f.label :api_key %>
-      <%= f.text_field :api_key %>
+      <div class="form-group">
+        <%= f.label :api_key %>
+        <%= f.text_field :api_key , class: "form-control" %>
+      </div>
 
-      <%= f.submit "Add New Profile", class: "btn btn-primary" %>
+      <div class="form-group">
+        <%= f.submit "Add New Profile", class: "btn btn-primary" %>
+      </div>
 
     <% end %>
-  </div>
 </div>

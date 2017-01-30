@@ -8,11 +8,15 @@ class ReportsController < ApplicationController
     @report = Report.new
   end
 
+  def show
+    @report = Report.find(params[:id])
+  end
+
 
   def create
     @report = Report.new(report_params)
     if @report.save
-      flash[:success] = "Report Saved"
+      flash[:success] = "Report data saved"
       redirect_to reports_path
     else
       render 'new'
