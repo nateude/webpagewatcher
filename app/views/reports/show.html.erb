@@ -38,16 +38,75 @@
   </tbody>
 </table>
 </div>
+<% if !@report.data.nil? %>
+  <% json_data = JSON.parse(@report.data) %>
+  <div class="row">
+    <h2> Results Overview</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+            <th>View</th>
+            <th>loadTime</th>
+            <th>TTFB</th>
+            <th>bytesOut</th>
+            <th>bytesOutDoc</th>
+            <th>bytesIn</th>
+            <th>bytesInDoc</th>
+            <th>connections</th>
+            <th>requestsFull</th>
+            <th>requestsDoc</th>
+            <th>render</th>
+            <th>fullyLoaded</th>
+            <th>domElements</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>firstView</td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['loadTime'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['TTFB'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['bytesOut'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['bytesOutDoc'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['bytesIn'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['bytesInDoc'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['connections'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['requestsFull'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['requestsDoc'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['render'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['fullyLoaded'] %></td>
+          <td><%= json_data['data']['runs']["1"]['firstView']['domElements'] %></td>
+        </tr>
+        <tr>
+          <td>repeatView</td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['loadTime'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['TTFB'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['bytesOut'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['bytesOutDoc'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['bytesIn'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['bytesInDoc'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['connections'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['requestsFull'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['requestsDoc'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['render'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['fullyLoaded'] %></td>
+          <td><%= json_data['data']['runs']["1"]['repeatView']['domElements'] %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>
 <div class="row">
   <h2>INIT Pramas</h2>
-  <code><%= wpt_params(@report) %></code>
+  <pre><%= wpt_params(@report) %></pre>
 </div>
 <div class="row">
   <h2>INIT Request Results</h2>
-  <code><%= wpt_init_request(@report) %></code>
+  <pre><%= wpt_init_request(@report) %></pre>
 </div>
 
 <div class="row">
   <h2>JSON Data</h2>
-  <code><%= @report.data %></code>
+  <p><a href="http://www.webpagetest.org/results.php?f=json&amp;test=<%= @report.wpt_id %>" target="_blank">http://www.webpagetest.org/results.php?f=json&amp;test=<%= @report.wpt_id %></a></p>
+  <pre><%= @report.data %></pre>
 </div>
