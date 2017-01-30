@@ -83,7 +83,7 @@
         <% profile = Profile.find(report.profile_id) %>
       <tr>
         <td><%= report.id %></td>
-        <td><%= status_name(report.status) %></td>
+        <td><%= report.status %></td>
         <td><%= link_to profile.name, profile_path(profile.id) %></td>
         <td><%= link_to report.wpt_id, "http://www.webpagetest.org/results.php?test="+report.wpt_id, :target => "_blank" %></td>
         <td><%= link_to "view", report_path(report.id) %></td>

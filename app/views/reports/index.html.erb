@@ -21,7 +21,7 @@
         <% profile = Profile.find(report.profile_id) %>
       <tr>
         <td><%= report.id %></td>
-        <td><%= @report.status %></td>
+        <td><%= report.status %></td>
         <td><%= link_to website.name, website_path(website.id) %></td>
         <td><%= link_to profile.name, profile_path(profile.id) %></td>
         <td><%= link_to report.wpt_id, wpt_test_url(report), :target => "_blank" %></td>
