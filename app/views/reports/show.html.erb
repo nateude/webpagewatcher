@@ -18,7 +18,7 @@
     </tr>
     <tr>
       <td>Status</td>
-      <td><%= status_name(@report.status) %></td>
+      <td><%= @report.status %></td>
     </tr>
     <tr>
       <td>Website</td>
@@ -32,12 +32,21 @@
     </tr>
     <tr>
       <td>WPT ID</td>
-      <td><%= link_to @report.wpt_id, "http://www.webpagetest.org/results.php?test="+@report.wpt_id, :target => "_blank" %></td>
+      <td><%= @report.wpt_id %></td>
     </tr>
 
   </tbody>
 </table>
 </div>
+<div class="row">
+  <h2>INIT Pramas</h2>
+  <code><%= wpt_params(@report) %></code>
+</div>
+<div class="row">
+  <h2>INIT Request Results</h2>
+  <code><%= wpt_init_request(@report) %></code>
+</div>
+
 <div class="row">
   <h2>JSON Data</h2>
   <code><%= @report.data %></code>

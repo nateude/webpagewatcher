@@ -22,13 +22,15 @@
     <% website = Website.find(profile.website_id) %>
       <tr>
         <td><%= profile.id %></td>
-        <td><%= profile.name %></td>
+        <td><%= link_to profile.name, profile_path(profile.id) %></td>
         <td><%= link_to website.name, website_path(website.id) %></td>
         <td><%= profile.wpt_settings %></td>
         <td><%= profile.wpt_code %></td>
         <td><%= profile.interval %></td>
-        <td><%= profile.api_key %></td>
-        <td><%= link_to "view", profile_path(profile.id) %></td>
+        <td><%= getApi(profile) %></td>
+        <td>
+          <%= button_to 'New Report', reports_path(:params => generate_report(profile)) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

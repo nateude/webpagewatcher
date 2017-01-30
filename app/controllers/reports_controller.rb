@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  include ReportsHelper
 
   def index
     @reports = Report.all
@@ -12,12 +13,15 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
   end
 
-
   def create
-    @report = Report.new(report_params)
+
+    new_report = report_params
+    wpt = wpt_init_request(new_report)
+
+    @report = Report.new(new_report.merge(wpt))
     if @report.save
-      flash[:success] = "Report data saved"
-      redirect_to reports_path
+      flash[:success] = "Report Created"
+      redirect_to @report
     else
       render 'new'
     end
@@ -25,7 +29,7 @@ class ReportsController < ApplicationController
   private
 
     def report_params
-      params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status, :data)
+      params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status)
     end
 end
 
