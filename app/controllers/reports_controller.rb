@@ -1,6 +1,5 @@
 class ReportsController < ApplicationController
   include ReportsHelper
-  layout 'json', :only => :json
 
   def index
     @reports = Report.all
@@ -16,13 +15,18 @@ class ReportsController < ApplicationController
 
   def update
     @report = Report.find(params[:id])
-    wpt = wpt_check_status(@report.wpt_id)
-    @report.update_attribute(:status, wpt)
-    if(wpt = "Test Complete")
+    if(@report.status_code != 200)
+      wpt = wpt_check_status(@report.wpt_id)
+      @report.update_attributes(
+        status: wpt['statusText'],
+        status_code: wpt['statusCode']
+      )
       wpt_data = wpt_get_data(@report.wpt_id)
       @report.update_attribute(:data, wpt_data)
+      flash[:success] = "Report "+@report.wpt_id+" Updated"
+    else
+      flash[:success] = "No Updates for report"
     end
-    flash[:success] = "Report Updated"
     redirect_to reports_path
   end
 
@@ -33,12 +37,17 @@ class ReportsController < ApplicationController
   end
 
   def create
-
     new_report = report_params
     wpt = wpt_init_request(new_report)
-
     @report = Report.new(new_report.merge(wpt))
     if @report.save
+      if(@report.status_code == 200)
+        wpt = wpt_check_status(@report.wpt_id)
+        @report.update_attributes(
+          status: wpt['statusText'],
+          status_code: wpt['statusCode']
+        )
+      end
       flash[:success] = "Report Created"
       redirect_to @report
     else
@@ -54,7 +63,7 @@ class ReportsController < ApplicationController
 
   private
     def report_params
-      params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status)
+      params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status, :status_code)
     end
 end
 

@@ -30,7 +30,7 @@ module ReportsHelper
       }
       response = wpt_api_call('runtest',params)
       results = {
-        :status => response['statusText'],
+        :status_code => response['statusCode'],
         :wpt_id => response['data']['testId']
       }
   end
@@ -41,7 +41,6 @@ module ReportsHelper
         :test => report_id
       }
       response = wpt_api_call('testStatus',params)
-      results = response['statusText']
   end
 
   def wpt_get_data(report_id)

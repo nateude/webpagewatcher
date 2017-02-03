@@ -21,6 +21,10 @@
       <td><%= @report.status %></td>
     </tr>
     <tr>
+      <td>Status_code</td>
+      <td><%= @report.status_code %></td>
+    </tr>
+    <tr>
       <td>Website</td>
         <% website = Website.find(@report.website_id) %>
       <td><%= link_to website.name, website_path(website.id) %></td>
@@ -33,6 +37,15 @@
     <tr>
       <td>WPT ID</td>
       <td><%= @report.wpt_id %></td>
+    </tr>
+    <tr>
+      <td>WPT Test Init</td>
+      <% website = Website.find(@report.website_id) %>
+      <td><a href="http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= website.url %>&amp;test=<%= website.api_key %>" target="_blank">http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= website.url %>&amp;test=<%= website.api_key %></a></td>
+    </tr>
+    <tr>
+      <td>WPT Test Status</td>
+      <td><a href="http://www.webpagetest.org/testStatus.php?f=json&amp;test=<%= @report.wpt_id %>" target="_blank">http://www.webpagetest.org/testStatus.php?f=json&amp;test=<%= @report.wpt_id %></a></td>
     </tr>
     <tr>
       <td>WPT JSON Respose</td>

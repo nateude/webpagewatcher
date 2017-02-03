@@ -8,6 +8,7 @@
     <tr>
       <th>ID</th>
       <th>Status</th>
+      <th>Status Code</th>
       <th>Website</th>
       <th>Profile</th>
       <th>WPT ID</th>
@@ -21,6 +22,7 @@
         <% profile = Profile.find(report.profile_id) %>
       <tr>
         <td><%= report.id %></td>
+        <td><%= report.status_code %></td>
         <td><%= report.status %></td>
         <td><%= link_to website.name, website_path(website.id) %></td>
         <td><%= link_to profile.name, profile_path(profile.id) %></td>
