@@ -3,6 +3,7 @@ class ReportsController < ApplicationController
 
   def index
     @reports = Report.all
+    update_all(@reports)
   end
 
   def new
@@ -11,29 +12,23 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
+    if @report.status_code < 200
+      update = report_update(@report)
+      flash[:success] = "Report Updated"
+    end
   end
 
   def update
     @report = Report.find(params[:id])
-    if(@report.status_code != 200)
-      wpt = wpt_check_status(@report.wpt_id)
-      @report.update_attributes(
-        status: wpt['statusText'],
-        status_code: wpt['statusCode']
-      )
-      wpt_data = wpt_get_data(@report.wpt_id)
-      @report.update_attribute(:data, wpt_data)
-      flash[:success] = "Report "+@report.wpt_id+" Updated"
-    else
-      flash[:success] = "No Updates for report"
-    end
-    redirect_to reports_path
+    update = report_update(@report)
+    flash[:success] = "Report "+@report.wpt_id+" Updated: "
+    redirect_to(:back)
   end
 
   def destroy
     Report.find(params[:id]).destroy
     flash[:success] = "Report deleted"
-    redirect_to reports_path
+    redirect_to(:back)
   end
 
   def create

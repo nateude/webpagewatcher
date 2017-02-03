@@ -11,12 +11,12 @@ module ReportsHelper
   end
 
   def wpt_api_call(page,params)
-      require 'net/http'
-      require 'json'
-      url = 'http://www.webpagetest.org/'+page+'.php?'+params.to_query
-      uri = URI(url)
-      response = Net::HTTP.get(uri)
-      wpt = JSON.parse(response)
+    require 'net/http'
+    require 'json'
+    url = 'http://www.webpagetest.org/'+page+'.php?'+params.to_query
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    wpt = JSON.parse(response)
   end
 
   def wpt_init_request(report)
@@ -49,5 +49,30 @@ module ReportsHelper
         :test => report_id
       }
       response = wpt_api_call('results',params)
+  end
+
+  def update_all(reports)
+    msgs = "";
+    reports.each do |report|
+      if report.status_code < 200
+        update = report_update(report)
+        msgs += " "+report.wpt_id+","
+      end
+    end
+    if msgs != ""
+      flash[:success] = "Report Updated: "+msgs
+    end
+  end
+
+  def report_update(report)
+      wpt = wpt_check_status(report.wpt_id)
+      pramas = {
+        :status => wpt['statusText'],
+        :status_code => wpt['statusCode']
+      }
+      if wpt['statusCode'] == 200
+        pramas[:data] = wpt_get_data(report.wpt_id).to_json
+      end
+      report.update_attributes(pramas)
   end
 end
