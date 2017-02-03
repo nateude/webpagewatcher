@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
   include ReportsHelper
+  layout 'json', :only => :json
 
   def index
     @reports = Report.all
@@ -44,8 +45,14 @@ class ReportsController < ApplicationController
       render 'new'
     end
   end
-  private
 
+  def json
+    report = Report.find(params[:id])
+
+    render json: report.data
+  end
+
+  private
     def report_params
       params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status)
     end
