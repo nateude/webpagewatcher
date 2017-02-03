@@ -10,15 +10,13 @@ module ReportsHelper
     end
   end
 
-  def wpt_api_call(page,params,type)
-      require 'net/http'
-      require 'json'
-      url = 'http://www.webpagetest.org/'+page+'.php?'+params.to_query
-      uri = URI(url)
-      response = Net::HTTP.get(uri)
-      if (type == 'json')
-        wpt = JSON.parse(response)
-      end
+  def wpt_api_call(page,params)
+    require 'net/http'
+    require 'json'
+    url = 'http://www.webpagetest.org/'+page+'.php?'+params.to_query
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    wpt = JSON.parse(response)
   end
 
   def wpt_init_request(report)
@@ -30,7 +28,7 @@ module ReportsHelper
         :url => website.url,
         :k   => website.api_key
       }
-      response = wpt_api_call('runtest',params,'json')
+      response = wpt_api_call('runtest',params)
       results = {
         :status_code => response['statusCode'],
         :wpt_id => response['data']['testId']
@@ -42,7 +40,7 @@ module ReportsHelper
         :f    => 'json',
         :test => report_id
       }
-      response = wpt_api_call('testStatus',params,'json')
+      response = wpt_api_call('testStatus',params)
   end
 
   def wpt_get_data(report_id)
@@ -50,19 +48,31 @@ module ReportsHelper
         :f    => 'json',
         :test => report_id
       }
-      response = wpt_api_call('results',params,false)
+      response = wpt_api_call('results',params)
+  end
+
+  def update_all(reports)
+    msgs = "";
+    reports.each do |report|
+      if report.status_code < 200
+        update = report_update(report)
+        msgs += " "+report.wpt_id+","
+      end
+    end
+    if msgs != ""
+      flash[:success] = "Report Updated: "+msgs
+    end
   end
 
   def report_update(report)
       wpt = wpt_check_status(report.wpt_id)
+      pramas = {
+        :status => wpt['statusText'],
+        :status_code => wpt['statusCode']
+      }
       if wpt['statusCode'] == 200
-        wpt_data = wpt_get_data(report.wpt_id)
-        report.update_attributes(status: wpt['statusText'],status_code: wpt['statusCode'], data: wpt_data)
-        mssg = "data updated: "+wpt_data
-      else
-        report.update_attributes(status: wpt['statusText'],status_code: wpt['statusCode'])
-        mssg = "data not updated"
+        pramas[:data] = wpt_get_data(report.wpt_id).to_json
       end
-      mssg
+      report.update_attributes(pramas)
   end
 end

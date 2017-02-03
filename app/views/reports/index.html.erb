@@ -27,11 +27,7 @@
         <td><%= link_to website.name, website_path(website.id) %></td>
         <td><%= link_to profile.name, profile_path(profile.id) %></td>
         <td><%= link_to report.wpt_id, wpt_test_url(report), :target => "_blank" %></td>
-        <td>
-          <%= link_to "View", report_path(report.id) %> |
-          <%= link_to " Update", report, method: :patch %> |
-          <%= link_to "Delete", report, method: :delete, data: { confirm: "You sure?" } %>
-        </td>
+        <td><%= link_to "View", report_path(report.id) %></td>
       </tr>
     <% end %>
   </tbody>

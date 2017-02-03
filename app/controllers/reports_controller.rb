@@ -3,6 +3,7 @@ class ReportsController < ApplicationController
 
   def index
     @reports = Report.all
+    update_all(@reports)
   end
 
   def new
@@ -11,12 +12,16 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
+    if @report.status_code < 200
+      update = report_update(@report)
+      flash[:success] = "Report Updated"
+    end
   end
 
   def update
     @report = Report.find(params[:id])
     update = report_update(@report)
-    flash[:success] = "Report "+@report.wpt_id+" Updated: "+update
+    flash[:success] = "Report "+@report.wpt_id+" Updated: "
     redirect_to(:back)
   end
 

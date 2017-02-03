@@ -2,7 +2,6 @@
   <div class="col-md-10"><h1>Report: <%= @report.wpt_id %></h1></div>
   <div class="col-md-2 text-right">
     <%= link_to "Add New Report", new_report_path, class: "btn btn-default" %>
-    <%= link_to "Update", @report, class: "btn btn-default", method: :patch %>
   </div>
 </div>
 <div class="row">
@@ -116,7 +115,4 @@
       </tbody>
     </table>
   </div>
-<% else %>
-<p>No data found</p>
-<pre><%=@report.data %></pre>
 <% end %>
