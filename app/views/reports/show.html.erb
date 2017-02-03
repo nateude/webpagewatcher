@@ -18,7 +18,11 @@
     </tr>
     <tr>
       <td>Status</td>
-      <td><%= status_name(@report.status) %></td>
+      <td><%= @report.status %></td>
+    </tr>
+    <tr>
+      <td>Status_code</td>
+      <td><%= @report.status_code %></td>
     </tr>
     <tr>
       <td>Website</td>
@@ -32,13 +36,81 @@
     </tr>
     <tr>
       <td>WPT ID</td>
-      <td><%= link_to @report.wpt_id, "http://www.webpagetest.org/results.php?test="+@report.wpt_id, :target => "_blank" %></td>
+      <td><%= @report.wpt_id %></td>
+    </tr>
+    <tr>
+      <td>WPT Test Init</td>
+      <% website = Website.find(@report.website_id) %>
+      <td><a href="http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= website.url %>&amp;test=<%= website.api_key %>" target="_blank">http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= website.url %>&amp;test=<%= website.api_key %></a></td>
+    </tr>
+    <tr>
+      <td>WPT Test Status</td>
+      <td><a href="http://www.webpagetest.org/testStatus.php?f=json&amp;test=<%= @report.wpt_id %>" target="_blank">http://www.webpagetest.org/testStatus.php?f=json&amp;test=<%= @report.wpt_id %></a></td>
+    </tr>
+    <tr>
+      <td>WPT JSON Respose</td>
+      <td><a href="http://www.webpagetest.org/results.php?f=json&amp;test=<%= @report.wpt_id %>" target="_blank">http://www.webpagetest.org/results.php?f=json&amp;test=<%= @report.wpt_id %></a></td>
+    </tr>
+    <tr>
+      <td>Stored JSON Respose</td>
+      <td><%= link_to 'View Raw JSON Data', report_json_path %></td>
     </tr>
 
   </tbody>
 </table>
 </div>
 <div class="row">
-  <h2>JSON Data</h2>
-  <code><%= @report.data %></code>
+  <h2>Test Code</h2>
 </div>
+<% if !@report.data.nil? %>
+  <div class="row">
+    <h2> Results Overview</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+            <th>View</th>
+            <th>loadTime</th>
+            <th>TTFB</th>
+            <th>bytesOut</th>
+            <th>bytesOutDoc</th>
+            <th>bytesIn</th>
+            <th>bytesInDoc</th>
+            <th>connections</th>
+            <th>requestsFull</th>
+            <th>requestsDoc</th>
+            <th>render</th>
+            <th>fullyLoaded</th>
+            <th>domElements</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%json_data = JSON.parse(@report.data)%>
+        <%runs = json_data['data']['runs']%>
+
+        <% runs.each do |run| %>
+
+          <%views = json_data['data']['runs'][run[0]]%>
+          <% views.each do |view| %>
+            <tr>
+              <td><%= run[0] %></td>
+              <td><%= view[0] %></td>
+              <td><%= view[1]['loadTime'] %></td>
+              <td><%= view[1]['TTFB'] %></td>
+              <td><%= view[1]['bytesOut'] %></td>
+              <td><%= view[1]['bytesOutDoc'] %></td>
+              <td><%= view[1]['bytesIn'] %></td>
+              <td><%= view[1]['bytesInDoc'] %></td>
+              <td><%= view[1]['connections'] %></td>
+              <td><%= view[1]['requestsFull'] %></td>
+              <td><%= view[1]['requestsDoc'] %></td>
+              <td><%= view[1]['render'] %></td>
+              <td><%= view[1]['fullyLoaded'] %></td>
+              <td><%= view[1]['domElements'] %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

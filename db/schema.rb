@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126205111) do
+ActiveRecord::Schema.define(version: 20170203183127) do
 
   create_table "profiles", force: :cascade do |t|
     t.string   "name"
@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(version: 20170126205111) do
     t.string   "wpt_id"
     t.string   "status"
     t.string   "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "status_code"
   end
 
   create_table "websites", force: :cascade do |t|

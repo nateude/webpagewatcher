@@ -21,7 +21,9 @@
         <td><%= website.name %></td>
         <td><%= website.url %></td>
         <td><%= website.api_key %></td>
-        <td><%= link_to "view", website_path(website.id) %></td>
+        <td>
+          <%= link_to "view", website_path(website.id) %>
+        </td>
       </tr>
     <% end %>
   </tbody>
