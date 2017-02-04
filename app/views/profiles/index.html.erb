@@ -9,6 +9,7 @@
       <th>ID</th>
       <th>Name</th>
       <th>Website</th>
+      <th>URL</th>
       <th>WPT Settings</th>
       <th>WPT Code</th>
       <th>Time Interval (HRS)</th>
@@ -24,6 +25,7 @@
         <td><%= profile.id %></td>
         <td><%= link_to profile.name, profile_path(profile.id) %></td>
         <td><%= link_to website.name, website_path(website.id) %></td>
+        <td><%= profile.url %></td>
         <td><%= profile.wpt_settings %></td>
         <td><%= profile.wpt_code %></td>
         <td><%= profile.interval %></td>
