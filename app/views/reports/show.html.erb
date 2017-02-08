@@ -42,16 +42,15 @@
     </tr>
     <tr>
       <td>WPT Test Init</td>
-      <% website = Website.find(@report.website_id) %>
-      <td><a href="http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= website.url %>&amp;test=<%= website.api_key %>" target="_blank">http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= website.url %>&amp;test=<%= website.api_key %></a></td>
+      <td>http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= profile.url %>&amp;test=<%=Rails.application.secrets.webpagetest_key%></td>
     </tr>
     <tr>
       <td>WPT Test Status</td>
-      <td><a href="http://www.webpagetest.org/testStatus.php?f=json&amp;test=<%= @report.wpt_id %>" target="_blank">http://www.webpagetest.org/testStatus.php?f=json&amp;test=<%= @report.wpt_id %></a></td>
+      <td>http://www.webpagetest.org/testStatus.php?f=json&amp;test=<%= @report.wpt_id %></td>
     </tr>
     <tr>
       <td>WPT JSON Respose</td>
-      <td><a href="http://www.webpagetest.org/results.php?f=json&amp;test=<%= @report.wpt_id %>" target="_blank">http://www.webpagetest.org/results.php?f=json&amp;test=<%= @report.wpt_id %></a></td>
+      <td>http://www.webpagetest.org/results.php?f=json&amp;test=<%= @report.wpt_id %></td>
     </tr>
     <tr>
       <td>Stored JSON Respose</td>

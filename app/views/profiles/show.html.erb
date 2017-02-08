@@ -15,25 +15,28 @@
     <tr>
       <td>ID</td>
       <td><%= @profile.id %></td>
+    </tr>
     <tr>
       <td>Name</td>
       <td><%= @profile.name %></td>
+    </tr>
     <tr>
       <td>Website</td>
       <% website = Website.find(@profile.website_id) %>
       <td><%= link_to website.name, website_path(website.id) %></td>
+    </tr>
     <tr>
       <td>WPT Settings</td>
       <td><%= @profile.wpt_settings %></td>
+    </tr>
     <tr>
       <td>WPT Code</td>
       <td><%= @profile.wpt_code %></td>
+    </tr>
     <tr>
       <td>Time Interval</td>
       <td><%= @profile.interval %></td>
-    <tr>
-      <td>API Key</td>
-      <td><%= @profile.api_key %></td>
+    </tr>
   </tbody>
 </table>
 
@@ -55,7 +58,7 @@
     <% @reports.each do |report| %>
       <tr>
         <td><%= report.id %></td>
-        <td><%= status_name(report.status) %></td>
+        <td><%= report.status %></td>
         <td><%= link_to report.wpt_id, "http://www.webpagetest.org/results.php?test="+report.wpt_id, :target => "_blank" %></td>
         <td><%= link_to "view", report_path(report.id) %></td>
       </tr>

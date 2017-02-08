@@ -12,7 +12,6 @@
       <th>WPT Settings</th>
       <th>WPT Code</th>
       <th>Time Interval (HRS)</th>
-      <th>API Key</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -27,7 +26,6 @@
         <td><%= profile.wpt_settings %></td>
         <td><%= profile.wpt_code %></td>
         <td><%= profile.interval %></td>
-        <td><%= getApi(profile) %></td>
         <td>
           <%= button_to 'New Report', reports_path(:params => generate_report(profile)) %>
         </td>
