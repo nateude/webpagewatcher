@@ -28,13 +28,11 @@
     </tr>
     <tr>
       <td>Website</td>
-        <% website = Website.find(@report.website_id) %>
-      <td><%= link_to website.name, website_path(website.id) %></td>
+      <td><%= link_to @report.website.name, website_path(@report.website.id) %></td>
     </tr>
     <tr>
       <td>Profile</td>
-        <% profile = Profile.find(@report.profile_id) %>
-      <td><%= link_to profile.name, profile_path(profile.id) %></td>
+      <td><%= link_to @report.profile.name, profile_path(@report.profile.id) %></td>
     </tr>
     <tr>
       <td>WPT ID</td>
@@ -42,7 +40,7 @@
     </tr>
     <tr>
       <td>WPT Test Init</td>
-      <td>http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= profile.url %>&amp;test=<%=Rails.application.secrets.webpagetest_key%></td>
+      <td>http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= @report.profile.url %>&amp;test=<%=Rails.application.secrets.webpagetest_key%></td>
     </tr>
     <tr>
       <td>WPT Test Status</td>
