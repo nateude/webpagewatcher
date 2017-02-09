@@ -24,7 +24,7 @@ module ReportsHelper
       website = Website.find(report['website_id'])
       params = {
         :f    => 'json',
-        :url => website.url,
+        :url => profile.url,
         :k   => Rails.application.secrets.webpagetest_key
       }
       response = wpt_api_call('runtest',params)
