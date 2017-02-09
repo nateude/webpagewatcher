@@ -26,6 +26,6 @@ class ProfilesController < ApplicationController
   private
 
     def profile_params
-      params.require(:profile).permit(:name, :website_id, :wpt_settings, :wpt_code, :interval, :api_key, :url)
+      params.require(:profile).permit(:name, :website_id, :wpt_settings, :wpt_code, :interval , :url)
     end
 end

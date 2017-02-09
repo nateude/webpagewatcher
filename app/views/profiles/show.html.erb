@@ -15,25 +15,28 @@
     <tr>
       <td>ID</td>
       <td><%= @profile.id %></td>
+    </tr>
     <tr>
       <td>Name</td>
       <td><%= @profile.name %></td>
+    </tr>
     <tr>
       <td>Website</td>
       <% website = Website.find(@profile.website_id) %>
       <td><%= link_to website.name, website_path(website.id) %></td>
+    </tr>
     <tr>
       <td>WPT Settings</td>
       <td><%= @profile.wpt_settings %></td>
+    </tr>
     <tr>
       <td>WPT Code</td>
       <td><%= @profile.wpt_code %></td>
+    </tr>
     <tr>
       <td>Time Interval</td>
       <td><%= @profile.interval %></td>
-    <tr>
-      <td>API Key</td>
-      <td><%= @profile.api_key %></td>
+    </tr>
   </tbody>
 </table>
 
