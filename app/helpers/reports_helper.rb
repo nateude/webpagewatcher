@@ -25,7 +25,7 @@ module ReportsHelper
       profile = Profile.find(report['profile_id'])
       params = {
         :f    => 'json',
-        :url => website.url,
+        :url => profile.url,
         :k   => website.api_key
       }
       response = wpt_api_call('runtest',params)
