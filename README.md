@@ -1,6 +1,7 @@
 # webpagewatcher
 Uses the [WebPageTest](http://www.webpagetest.org) API to run web speed tests and stores the data locally
 
+Version: 0.5.5.2
 
 ## Setup
   1. API KEY

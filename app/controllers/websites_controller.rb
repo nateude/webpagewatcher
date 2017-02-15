@@ -6,8 +6,6 @@ class WebsitesController < ApplicationController
 
   def show
     @website = Website.find(params[:id])
-    @profiles = Profile.where(website_id: params[:id])
-    @reports = Report.where(website_id: params[:id]).take(5)
   end
 
   def new
