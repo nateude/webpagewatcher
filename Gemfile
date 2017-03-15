@@ -14,6 +14,7 @@ group :development, :test do
   gem 'sqlite3',                    '1.3.12'
   gem 'byebug',                     '9.0.0',      platform: :mri
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
 group :development do
@@ -21,11 +22,13 @@ group :development do
   gem 'listen',                     '3.0.8'
   gem 'spring',                     '1.7.2'
   gem 'spring-watcher-listen',      '2.0.0'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'pry'
 end
 
 group :test do
   gem 'rails-controller-testing',   '0.1.1'
-  gem 'guard',                      '2.13.0'
 
 end
 group :production do

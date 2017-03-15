@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 describe Profile do
 
   it "is valid with name, website id, settings, code, interval and url" do

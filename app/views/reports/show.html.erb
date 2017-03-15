@@ -61,7 +61,7 @@
 <div class="row">
   <h2>Test Code</h2>
 </div>
-<% if !@report.data.nil? %>
+<% if !report_json_data.nil? %>
   <div class="row">
     <h2> Results Overview</h2>
     <table class="table table-hover">
@@ -84,12 +84,11 @@
       </thead>
 
       <tbody>
-        <% json_data = JSON.parse(@report.data)%>
-        <% runs = json_data['data']['runs']%>
+        <% runs = report_json_data['data']['runs']%>
 
         <% runs.each do |run| %>
 
-          <%views = json_data['data']['runs'][run[0]]%>
+          <%views = report_json_data['data']['runs'][run[0]]%>
           <% views.each do |view| %>
             <tr>
               <td><%= run[0] %></td>
