@@ -35,7 +35,6 @@ class ReportsController < ApplicationController
     new_report = report_params
     wpt = wpt_init_request(new_report)
     @report = Report.new(new_report.merge(wpt))
-    binding.pry
     if @report.save
       if(@report.status_code == 200)
         wpt = wpt_check_status(@report.wpt_id)
