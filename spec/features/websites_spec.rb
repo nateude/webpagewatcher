@@ -76,3 +76,31 @@ feature 'Websites' do
     end
   end
 end
+
+
+feature 'Websites New' do
+  describe "new form" do
+    before :each do
+      visit '/websites/new'
+    end
+
+    it "has forms" do
+      expect(page).to have_selector('input#website_name')
+      expect(page).to have_selector('input#website_url')
+    end
+    it "can not submit form without required" do
+      click_on('Add New Site')
+      expect(page.current_path).to eql new_website_path
+    end
+
+    it "has error responses"
+
+    it "can submit form" do
+      fill_in('Name', :with => 'Sample Site')
+      fill_in('Url', :with => 'http://www.sample.com')
+      click_on('Add New Site')
+      expect(page.current_path).to eql websites_path
+      expect(page).to have_content("Sample Site")
+    end
+  end
+end

@@ -74,3 +74,36 @@ feature 'Profiles' do
     end
   end
 end
+
+
+feature 'Websites New' do
+  describe "Form" do
+    before :each do
+      Website.create(
+        name: 'Sample Website',
+        url: 'http://www.sample.com/'
+      )
+      visit '/profiles/new'
+    end
+
+    it "has forms" do
+      expect(page).to have_selector('input#profile_name')
+      expect(page).to have_selector('select#profile_website_id')
+      expect(page).to have_selector('input#profile_url')
+    end
+    it "can not submit form without required fields" do
+      click_on('Add New Profile')
+      expect(page.current_path).to eql new_profile_path
+    end
+    it "has error responses"
+    it "can submit form" do
+      fill_in('Name', :with => 'Sample Profile')
+      select('Sample Website', :from => 'Website')
+      fill_in('Url', :with => 'http://www.sample.com')
+      click_on('Add New Profile')
+      expect(page.current_path).to eql profiles_path
+      expect(page).to have_content("Sample Profile")
+    end
+
+  end
+end
