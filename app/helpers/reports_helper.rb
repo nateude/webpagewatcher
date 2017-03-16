@@ -74,4 +74,10 @@ module ReportsHelper
       end
       report.update_attributes(pramas)
   end
+
+  def report_json_data
+    if @report.data  && JSON.is_json?(@report.data)
+      JSON.parse(@report.data)
+    end
+  end
 end
