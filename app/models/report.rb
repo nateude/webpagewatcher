@@ -5,6 +5,5 @@ class Report < ApplicationRecord
   validates :website_id, presence: true
   validates :profile_id, presence: true
   validates :wpt_id, presence: true
-  validates :status, presence: true
   validates :status_code, presence: true
 end

@@ -20,8 +20,8 @@ module ReportsHelper
   end
 
   def wpt_init_request(report)
-
       website = Website.find(report['website_id'])
+      profile = Profile.find(report['profile_id'])
       params = {
         :f    => 'json',
         :url => profile.url,
