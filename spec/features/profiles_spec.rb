@@ -63,8 +63,5 @@ feature 'New Profile' do
       click_on 'Add New Profile'
       expect(Profile.count).to eq(0)
     end
-
-    it "has error responses"
-
   end
 end
