@@ -2,42 +2,7 @@ require 'rails_helper'
 
 feature 'Profiles' do
     before :each do
-      Website.create(
-        name: 'sample',
-        url: 'http://www.sample.com/'
-      )
-      Profile.create(
-        name: 'profile test first',
-        website_id: '1',
-        wpt_settings: 'empty',
-        wpt_code: 'empty',
-        interval: '100',
-        url: 'http://www.sample.com'
-      )
-      Profile.create(
-        name: 'profile test second',
-        website_id: '1',
-        wpt_settings: 'empty',
-        wpt_code: 'empty',
-        interval: '100',
-        url: 'http://www.sample.com'
-      )
-      Report.create(
-        website_id:'1',
-        profile_id: '1',
-        wpt_id: '12345',
-        status: '100',
-        data: 'null',
-        status_code: '1'
-      )
-      Report.create(
-        website_id:'1',
-        profile_id: '1',
-        wpt_id: '2',
-        status: '100',
-        data: 'null',
-        status_code: '1'
-      )
+      generateSampleData
     end
 
   describe "index" do
@@ -48,14 +13,14 @@ feature 'Profiles' do
       page_should_exist
     end
     it "has profile data" do
-      should_see "profile test first"
+      should_see "EW - Homepage"
     end
     it "can display multipule profiles" do
-      should_see "profile test second"
+      should_see "EW - Subpage"
     end
     it "can navigate to single profile" do
-      click_on 'profile test first'
-      should_see "profile test first"
+      click_on 'EW - Homepage'
+      page_should_be(profile_path(1))
     end
   end
 
@@ -65,11 +30,11 @@ feature 'Profiles' do
     end
     it "has profile settings" do
       should_see "ID 1"
-      should_see "Name profile test first"
-      should_see "Website sample"
+      should_see "Name EW - Homepage"
+      should_see "Website Example Website"
     end
     it "has report" do
-      should_see "1 100 12345"
+      should_see "12345"
     end
     it "has link to report" do
       click_on "view", match: :first
@@ -82,17 +47,14 @@ end
 feature 'New Profile' do
   describe "Form" do
     before :each do
-      Website.create(
-        name: 'Sample Website',
-        url: 'http://www.sample.com/'
-      )
+      websiteData
       visit new_profile_path
     end
 
     it "can submit form with data" do
       fill_in 'Name', with: 'New Sample Profile'
-      select 'Sample Website', from: 'Website'
-      fill_in 'Url', with: 'http://www.sample.com'
+      select 'Example Website', from: 'Website'
+      fill_in 'Url', with: 'http://www.examplewebsite.com/'
       click_on 'Add New Profile'
       should_see "New Sample Profile"
     end

@@ -2,42 +2,7 @@ require 'rails_helper'
 
 feature 'Reports' do
     before :each do
-      Website.create(
-        name: 'sample',
-        url: 'http://www.sample.com/'
-      )
-      Profile.create(
-        name: 'profile test first',
-        website_id: '1',
-        wpt_settings: 'empty',
-        wpt_code: 'empty',
-        interval: '100',
-        url: 'http://www.sample.com'
-      )
-      Profile.create(
-        name: 'profile test second',
-        website_id: '1',
-        wpt_settings: 'empty',
-        wpt_code: 'empty',
-        interval: '100',
-        url: 'http://www.sample.com'
-      )
-      Report.create(
-        website_id:'1',
-        profile_id: '1',
-        wpt_id: '12345',
-        status: 'Test Complete',
-        data: 'null',
-        status_code: '200'
-      )
-      Report.create(
-        website_id:'1',
-        profile_id: '1',
-        wpt_id: '23456',
-        status: 'Test Complete',
-        data: 'null',
-        status_code: '200'
-      )
+      generateSampleData
     end
 
   describe "index" do
@@ -66,8 +31,8 @@ feature 'Reports' do
     it "has settings" do
       should_see "ID 1"
       should_see "Status_code 200"
-      should_see "Website sample"
-      should_see "Profile profile test first"
+      should_see "Website Example Website"
+      should_see "Profile EW - Homepage"
       should_see "WPT ID 12345"
     end
   end
