@@ -25,42 +25,50 @@ feature 'Reports' do
       Report.create(
         website_id:'1',
         profile_id: '1',
-        wpt_id: '1',
-        status: '100',
+        wpt_id: '12345',
+        status: 'Test Complete',
         data: 'null',
-        status_code: '1'
+        status_code: '200'
       )
       Report.create(
         website_id:'1',
         profile_id: '1',
-        wpt_id: '2',
-        status: '100',
+        wpt_id: '23456',
+        status: 'Test Complete',
         data: 'null',
-        status_code: '1'
+        status_code: '200'
       )
     end
 
   describe "index" do
     before :each do
-      visit '/reports'
+      visit reports_path
     end
-    it "index page renders" do
-      expect(page.status_code).to eq(200)
+    it "has accessible page" do
+      page_should_exist
     end
-    it "has multipule report data" do
-      expect(find('table')).to have_selector 'tr', count: 3
+    it "has report data" do
+      should_see "12345"
     end
-    it "can navigate to report" do
-      click_link("View", :match => :first)
-      expect(page.status_code).to eq(200)
+    it "can display multipule reports" do
+      should_see "23456"
+    end
+    it "can navigate to single report" do
+      click_on 'view', match: :first
+      page_should_be(report_path(1))
     end
   end
+
   describe "subpage" do
     before :each do
-      visit '/reports/1'
+      visit report_path(1)
     end
     it "has settings" do
-      expect(find('table')).to have_selector 'tr', count: 11
+      should_see "ID 1"
+      should_see "Status_code 200"
+      should_see "Website sample"
+      should_see "Profile profile test first"
+      should_see "WPT ID 12345"
     end
   end
 end

@@ -25,7 +25,7 @@ feature 'Profiles' do
       Report.create(
         website_id:'1',
         profile_id: '1',
-        wpt_id: '1',
+        wpt_id: '12345',
         status: '100',
         data: 'null',
         status_code: '1'
@@ -42,68 +42,67 @@ feature 'Profiles' do
 
   describe "index" do
     before :each do
-      visit '/profiles'
+      visit profiles_path
     end
-    it "has index with template and data" do
-      expect(find('h1')).to have_content("Profiles")
+    it "has accessible page" do
+      page_should_exist
     end
     it "has profile data" do
-      expect(page).to have_content("profile test first")
-      expect(page).to have_link(href: "/profiles/1")
+      should_see "profile test first"
     end
-    it "has multipule profile data" do
-      expect(page).to have_content("profile test second")
-      expect(page).to have_link(href: "/profiles/2")
+    it "can display multipule profiles" do
+      should_see "profile test second"
     end
-    it "can navigate to profile" do
+    it "can navigate to single profile" do
       click_on 'profile test first'
-      expect(find('h1')).to have_content("profile test first")
+      should_see "profile test first"
     end
   end
+
   describe "subpage" do
     before :each do
-      visit '/profiles/1'
+      visit profile_path(1)
     end
-    it "has settings and asscoiated reports" do
-      expect(find('h1')).to have_content("profile test first")
-      expect(find('table.associated-reports')).to have_link 'view', count: 2
+    it "has profile settings" do
+      should_see "ID 1"
+      should_see "Name profile test first"
+      should_see "Website sample"
+    end
+    it "has report" do
+      should_see "1 100 12345"
     end
     it "has link to report" do
-      click_link("view", :match => :first)
-      expect(page.status_code).to eq(200)
+      click_on "view", match: :first
+      page_should_be(report_path(1))
     end
   end
+
 end
 
-
-feature 'Websites New' do
+feature 'New Profile' do
   describe "Form" do
     before :each do
       Website.create(
         name: 'Sample Website',
         url: 'http://www.sample.com/'
       )
-      visit '/profiles/new'
+      visit new_profile_path
     end
 
-    it "has forms" do
-      expect(page).to have_selector('input#profile_name')
-      expect(page).to have_selector('select#profile_website_id')
-      expect(page).to have_selector('input#profile_url')
+    it "can submit form with data" do
+      fill_in 'Name', with: 'New Sample Profile'
+      select 'Sample Website', from: 'Website'
+      fill_in 'Url', with: 'http://www.sample.com'
+      click_on 'Add New Profile'
+      should_see "New Sample Profile"
     end
-    it "can not submit form without required fields" do
-      click_on('Add New Profile')
-      expect(page.current_path).to eql new_profile_path
+
+    it "can not submit form without data" do
+      click_on 'Add New Profile'
+      expect(Profile.count).to eq(0)
     end
+
     it "has error responses"
-    it "can submit form" do
-      fill_in('Name', :with => 'Sample Profile')
-      select('Sample Website', :from => 'Website')
-      fill_in('Url', :with => 'http://www.sample.com')
-      click_on('Add New Profile')
-      expect(page.current_path).to eql profiles_path
-      expect(page).to have_content("Sample Profile")
-    end
 
   end
 end

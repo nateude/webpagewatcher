@@ -25,82 +25,64 @@ feature 'Websites' do
       Report.create(
         website_id:'1',
         profile_id: '1',
-        wpt_id: '1',
-        status: '100',
+        wpt_id: '12345',
+        status: '200',
         data: 'null',
         status_code: '1'
       )
       Report.create(
         website_id:'1',
         profile_id: '1',
-        wpt_id: '2',
-        status: '100',
+        wpt_id: '23456',
+        status: '200',
         data: 'null',
         status_code: '1'
       )
     end
 
   describe "index" do
-    it "has index with template and data" do
-      visit '/websites'
-      expect(page.status_code).to eq(200)
-    end
-    it "has subpages and can navigate" do
-      visit '/websites'
-      click_link("view", :match => :first)
-      expect(page.status_code).to eq(200)
-    end
-  end
-  describe "subpage" do
     before :each do
-      visit '/websites/1'
+      visit websites_path
+    end
+    it "has accessible page" do
+      page_should_exist
     end
     it "has website data" do
-      expect(find('h1')).to have_content("sample")
-      expect(find('table.website-data')).to have_selector 'tr', count: 4
+      should_see "1 sample http://www.sample.com/ 2 view"
     end
-    it "has report data" do
-      expect(find('table.associated-reports')).to have_selector 'tr', count: 3
-    end
-    it "has profile data" do
-      expect(find('h1')).to have_content("sample")
-      expect(find('table.associated-profiles')).to have_selector 'tr', count: 3
-    end
-    it "can navigate to profile" do
-      page.find('.associated-profiles').click_link('view', :match => :first)
-      expect(page.status_code).to eq(200)
-    end
-    it "can navigate to report" do
-      page.find('.associated-reports').click_link('view', :match => :first)
-      expect(page.status_code).to eq(200)
+    it "can navigate to single website" do
+      click_on "view", match: :first
+      page_should_exist
     end
   end
-end
 
-
-feature 'Websites New' do
-  describe "new form" do
+  describe "subpage" do
     before :each do
-      visit '/websites/new'
+      visit website_path(1)
     end
-
-    it "has forms" do
-      expect(page).to have_selector('input#website_name')
-      expect(page).to have_selector('input#website_url')
+    it "has website settings" do
+      should_see "ID 1"
+      should_see "Name sample"
+      should_see "URL http://www.sample.com/"
     end
-    it "can not submit form without required" do
-      click_on('Add New Site')
-      expect(page.current_path).to eql new_website_path
+    it "has profiles" do
+      should_see "profile test first"
+      should_see "profile test second"
     end
-
-    it "has error responses"
-
-    it "can submit form" do
-      fill_in('Name', :with => 'Sample Site')
-      fill_in('Url', :with => 'http://www.sample.com')
-      click_on('Add New Site')
-      expect(page.current_path).to eql websites_path
-      expect(page).to have_content("Sample Site")
+    it "can navigate to profile" do
+      click_on "view", match: :first
+      page_should_be(profile_path(1))
+    end
+    it "has reports" do
+      should_see "1 200 profile test first 12345 view"
+      should_see "2 200 profile test first 23456 view"
+    end
+    it "can navigate to report" do
+      # TODO I don't like this syntax, find a better way
+      within_table_row(8) do
+        click_on "view"
+      end
+      page_should_be(report_path(1))
     end
   end
 end
