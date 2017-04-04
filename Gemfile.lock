@@ -116,6 +116,8 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    nyan-cat-formatter (0.11)
+      rspec (>= 2.99, >= 2.14.2, < 4)
     pg (0.18.4)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -232,6 +234,7 @@ DEPENDENCIES
   jbuilder (= 2.4.1)
   jquery-rails (= 4.1.1)
   listen (= 3.0.8)
+  nyan-cat-formatter
   pg (= 0.18.4)
   pry
   puma (= 3.4.0)
