@@ -69,24 +69,18 @@ feature 'New Website' do
       page_should_be(websites_path)
     end
 
-    it 'has errors for no data' do
-      click_on 'Add New Site'
-      page_should_be(new_website_path)
-      should_count 'required field', 2
-    end
-
     it 'has errors empty name' do
+      fill_in 'Name', with: nil
       fill_in 'Url', with: 'http://www.examplewebsite.com'
       click_on 'Add New Site'
-      page_should_be(new_website_path)
-      should_count 'required field', 1
+      should_see "Name can't be blank"
     end
 
     it 'has errors empty url' do
       fill_in 'Name', with: 'Example Website'
+      fill_in 'Url', with: nil
       click_on 'Add New Site'
-      page_should_be(new_website_path)
-      should_count 'required field', 1
+      should_see "Url can't be blank"
     end
   end
 
