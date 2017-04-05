@@ -2,75 +2,66 @@ require 'rails_helper'
 
 feature 'Profiles' do
     before :each do
-      Website.create(
-        name: 'sample',
-        url: 'http://www.sample.com/'
-      )
-      Profile.create(
-        name: 'profile test first',
-        website_id: '1',
-        wpt_settings: 'empty',
-        wpt_code: 'empty',
-        interval: '100',
-        url: 'http://www.sample.com'
-      )
-      Profile.create(
-        name: 'profile test second',
-        website_id: '1',
-        wpt_settings: 'empty',
-        wpt_code: 'empty',
-        interval: '100',
-        url: 'http://www.sample.com'
-      )
-      Report.create(
-        website_id:'1',
-        profile_id: '1',
-        wpt_id: '1',
-        status: '100',
-        data: 'null',
-        status_code: '1'
-      )
-      Report.create(
-        website_id:'1',
-        profile_id: '1',
-        wpt_id: '2',
-        status: '100',
-        data: 'null',
-        status_code: '1'
-      )
+      generateSampleData
     end
 
   describe "index" do
     before :each do
-      visit '/profiles'
+      visit profiles_path
     end
-    it "has index with template and data" do
-      expect(find('h1')).to have_content("Profiles")
+    it "has accessible page" do
+      page_should_exist
     end
     it "has profile data" do
-      expect(page).to have_content("profile test first")
-      expect(page).to have_link(href: "/profiles/1")
+      should_see "EW - Homepage"
     end
-    it "has multipule profile data" do
-      expect(page).to have_content("profile test second")
-      expect(page).to have_link(href: "/profiles/2")
+    it "can display multipule profiles" do
+      should_see "EW - Subpage"
     end
-    it "can navigate to profile" do
-      click_on 'profile test first'
-      expect(find('h1')).to have_content("profile test first")
+    it "can navigate to single profile" do
+      click_on 'EW - Homepage'
+      page_should_be(profile_path(1))
     end
   end
+
   describe "subpage" do
     before :each do
-      visit '/profiles/1'
+      visit profile_path(1)
     end
-    it "has settings and asscoiated reports" do
-      expect(find('h1')).to have_content("profile test first")
-      expect(find('table.associated-reports')).to have_link 'view', count: 2
+    it "has profile settings" do
+      should_see "ID 1"
+      should_see "Name EW - Homepage"
+      should_see "Website Example Website"
+    end
+    it "has report" do
+      should_see "12345"
     end
     it "has link to report" do
-      click_link("view", :match => :first)
-      expect(page.status_code).to eq(200)
+      click_on "view", match: :first
+      page_should_be(report_path(1))
+    end
+  end
+
+end
+
+feature 'New Profile' do
+  describe "Form" do
+    before :each do
+      websiteData
+      visit new_profile_path
+    end
+
+    it "can submit form with data" do
+      fill_in 'Name', with: 'New Sample Profile'
+      select 'Example Website', from: 'Website'
+      fill_in 'Url', with: 'http://www.examplewebsite.com/'
+      click_on 'Add New Profile'
+      should_see "New Sample Profile"
+    end
+
+    it "can not submit form without data" do
+      click_on 'Add New Profile'
+      expect(Profile.count).to eq(0)
     end
   end
 end

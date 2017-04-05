@@ -33,11 +33,6 @@ describe Report do
     report.valid?
     expect(report.errors[:wpt_id]).to include("can't be blank")
   end
-  it "is invalid without status" do
-    report = Report.new(status: nil)
-    report.valid?
-    expect(report.errors[:status]).to include("can't be blank")
-  end
   it "is invalid without status_code" do
     report = Report.new(status_code: nil)
     report.valid?

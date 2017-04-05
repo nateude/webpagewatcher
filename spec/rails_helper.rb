@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+require 'generate-sample'
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -55,4 +56,28 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  #custom language helpers
+  def should_see(text)
+    expect(page).to have_content(text)
+  end
+
+  def should_not_see(text)
+    expect(page).to have_no_content(text)
+  end
+
+  def page_should_exist
+      expect(page.status_code).to eq(200)
+  end
+
+  def page_should_be(path)
+      expect(page.current_path).to eql path
+  end
+  def within_table_row(position)
+    row = find_all("table tr")[position]
+    within(row) do
+      yield
+    end
+  end
+
 end
