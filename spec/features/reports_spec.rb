@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Reports' do
   before :each do
-    generateSampleData
+    generate_sample_data
   end
 
   describe 'index' do

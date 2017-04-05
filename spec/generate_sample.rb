@@ -1,19 +1,19 @@
 # TODO: replace with factories & factory girl
-def generateSampleData
-  websiteData
-  profileData
-  reportData(1)
-  reportData(2)
+def generate_sample_data
+  website_data
+  profile_data
+  report_data(1)
+  report_data(2)
 end
 
-def websiteData
+def website_data
   Website.create(
     name: 'Example Website',
     url: 'http://www.examplewebsite.com/'
   )
 end
 
-def profileData
+def profile_data
   Profile.create(
     name: 'EW - Homepage',
     website_id: '1',
@@ -32,7 +32,7 @@ def profileData
   )
 end
 
-def reportData(profile_id)
+def report_data(profile_id)
   Report.create(
     website_id: '1',
     profile_id: profile_id,

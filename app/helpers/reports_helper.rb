@@ -13,11 +13,11 @@ module ReportsHelper
     url = 'http://www.webpagetest.org/' + page + '.php?' + params.to_query
     uri = URI(url)
     response = Net::HTTP.get(uri)
-    wpt = JSON.parse(response)
+    JSON.parse(response)
   end
 
   def wpt_init_request(report)
-    website = Website.find(report['website_id'])
+    # website = Website.find(report['website_id'])
     profile = Profile.find(report['profile_id'])
     params = {
       f: 'json',
@@ -25,7 +25,7 @@ module ReportsHelper
       k: Rails.application.secrets.webpagetest_key
     }
     response = wpt_api_call('runtest', params)
-    results = {
+    {
       status_code: response['statusCode'],
       wpt_id: response['data']['testId']
     }
@@ -36,7 +36,7 @@ module ReportsHelper
       f: 'json',
       test: report_id
     }
-    response = wpt_api_call('testStatus', params)
+    wpt_api_call('testStatus', params)
   end
 
   def wpt_get_data(report_id)
@@ -44,14 +44,14 @@ module ReportsHelper
       f: 'json',
       test: report_id
     }
-    response = wpt_api_call('results', params)
+    wpt_api_call('results', params)
   end
 
   def update_all(reports)
     msgs = ''
     reports.each do |report|
       if report.status_code < 200
-        update = report_update(report)
+        report_update(report)
         msgs += ' ' + report.wpt_id + ','
       end
     end
@@ -71,6 +71,6 @@ module ReportsHelper
   end
 
   def report_json_data
-    JSON.parse(@report.data) if @report.data && JSON.is_json?(@report.data)
+    JSON.parse(@report.data) if @report.data && JSON.json?(@report.data)
   end
 end

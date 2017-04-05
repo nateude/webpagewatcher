@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Profiles' do
   before :each do
-    generateSampleData
+    generate_sample_data
   end
 
   describe 'index' do
@@ -46,7 +46,7 @@ end
 feature 'New Profile' do
   describe 'Form' do
     before :each do
-      websiteData
+      website_data
       visit new_profile_path
     end
 

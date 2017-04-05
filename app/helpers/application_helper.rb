@@ -5,6 +5,6 @@ module ApplicationHelper
     unless page_title.empty? # Boolean test
       base_title = page_title + ' | ' + base_title # String concatenation
     end
-    base_title = Rails.env + ' | ' + base_title unless Rails.env.production?
+    Rails.env + ' | ' + base_title unless Rails.env.production?
   end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Websites' do
   before :each do
-    generateSampleData
+    generate_sample_data
   end
 
   describe 'index' do
