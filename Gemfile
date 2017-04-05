@@ -18,6 +18,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rubocop', '~> 0.45.0'
   gem 'web-console',                '3.1.1'
   gem 'listen',                     '3.0.8'
   gem 'spring',                     '1.7.2'
