@@ -1,4 +1,4 @@
-#TODO replace with factories & factory girl
+# TODO: replace with factories & factory girl
 def generateSampleData
   websiteData
   profileData
@@ -34,7 +34,7 @@ end
 
 def reportData(profile_id)
   Report.create(
-    website_id:'1',
+    website_id: '1',
     profile_id: profile_id,
     wpt_id: '12345',
     status: 'Test Complete',
@@ -42,7 +42,7 @@ def reportData(profile_id)
     status_code: '200'
   )
   Report.create(
-    website_id:'1',
+    website_id: '1',
     profile_id: profile_id,
     wpt_id: '23456',
     status: 'Test Complete',

@@ -10,35 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208191008) do
-
-  create_table "profiles", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "website_id"
-    t.string   "wpt_settings"
-    t.string   "wpt_code"
-    t.integer  "interval"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "url"
+ActiveRecord::Schema.define(version: 20_170_208_191_008) do
+  create_table 'profiles', force: :cascade do |t|
+    t.string   'name'
+    t.integer  'website_id'
+    t.string   'wpt_settings'
+    t.string   'wpt_code'
+    t.integer  'interval'
+    t.datetime 'created_at',   null: false
+    t.datetime 'updated_at',   null: false
+    t.string   'url'
   end
 
-  create_table "reports", force: :cascade do |t|
-    t.integer  "website_id"
-    t.integer  "profile_id"
-    t.string   "wpt_id"
-    t.string   "status"
-    t.string   "data"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "status_code"
+  create_table 'reports', force: :cascade do |t|
+    t.integer  'website_id'
+    t.integer  'profile_id'
+    t.string   'wpt_id'
+    t.string   'status'
+    t.string   'data'
+    t.datetime 'created_at',  null: false
+    t.datetime 'updated_at',  null: false
+    t.integer  'status_code'
   end
 
-  create_table "websites", force: :cascade do |t|
-    t.string   "url"
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'websites', force: :cascade do |t|
+    t.string   'url'
+    t.string   'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
-
 end

@@ -12,7 +12,7 @@ gem 'jbuilder',                     '2.4.1'
 
 group :development, :test do
   gem 'sqlite3',                    '1.3.12'
-  gem 'byebug',                     '9.0.0',      platform: :mri
+  gem 'byebug',                     '9.0.0', platform: :mri
   gem 'rspec-rails'
   gem 'capybara'
 end
@@ -26,15 +26,14 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'pry'
-  gem "nyan-cat-formatter"
+  gem 'nyan-cat-formatter'
 end
 
 group :test do
-  gem 'rails-controller-testing',   '0.1.1'
-
+  gem 'rails-controller-testing', '0.1.1'
 end
 group :production do
-  gem 'pg',                          '0.18.4'
+  gem 'pg', '0.18.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
