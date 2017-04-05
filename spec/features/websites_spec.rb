@@ -62,11 +62,11 @@ feature 'New Website' do
       should_see 'Add a New Website'
     end
 
-    it 'has a submitable form' do
+    it 'has a submittable form' do
       fill_in 'Name', with: 'Example Website'
       fill_in 'Url', with: 'http://www.examplewebsite.com'
       click_on 'Add New Site'
-      page_should_be(websites_path)
+      should_see 'Example Website http://www.examplewebsite.com'
     end
 
     it 'has errors empty name' do
