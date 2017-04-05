@@ -11,17 +11,14 @@ module Webpagewatcher
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    
   end
 end
 
 module JSON
-  def self.is_json?(foo)
-    begin
-      return false unless foo.is_a?(String)
-      JSON.parse(foo).all?
-    rescue JSON::ParserError
-      false
-    end 
+  def self.json?(foo)
+    return false unless foo.is_a?(String)
+    JSON.parse(foo).all?
+  rescue JSON::ParserError
+    false
   end
 end

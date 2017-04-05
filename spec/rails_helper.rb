@@ -2,13 +2,13 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
-require 'generate-sample'
+require 'generate_sample'
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -57,7 +57,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  #custom language helpers
+  # custom language helpers
   def should_see(text)
     expect(page).to have_content(text)
   end
@@ -67,17 +67,17 @@ RSpec.configure do |config|
   end
 
   def page_should_exist
-      expect(page.status_code).to eq(200)
+    expect(page.status_code).to eq(200)
   end
 
   def page_should_be(path)
-      expect(page.current_path).to eql path
+    expect(page.current_path).to eql path
   end
+
   def within_table_row(position)
-    row = find_all("table tr")[position]
+    row = find_all('table tr')[position]
     within(row) do
       yield
     end
   end
-
 end

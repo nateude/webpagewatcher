@@ -1,0 +1,68 @@
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'db/seeds/*'
+
+Rails:
+  Enabled: true
+
+Documentation:
+  Enabled: false
+
+LineLength:
+  Enabled: false
+
+Lint/PercentStringArray:
+  Exclude:
+    - 'config/initializers/secure_headers.rb'
+
+Metrics/BlockLength:
+  Max: 372
+
+Metrics/AbcSize:
+  Max: 400
+
+Metrics/ClassLength:
+  Max: 500
+
+Metrics/CyclomaticComplexity:
+  Max: 100
+
+Metrics/MethodLength:
+  Max: 300
+
+Metrics/PerceivedComplexity:
+  Max: 100
+
+Metrics/ModuleLength:
+  Max: 600
+
+Performance/Casecmp:
+  Enabled: false
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/MultilineArrayBraceLayout:
+  Enabled: false
+
+Style/MultilineHashBraceLayout:
+  Enabled: false
+
+Style/MultilineMethodCallBraceLayout:
+  Enabled: false
+
+Style/MultilineMethodDefinitionBraceLayout:
+  Enabled: false
+
+Style/NumericLiteralPrefix:
+  Enabled: false
+
+Style/VariableNumber:
+  Enabled: false
+
+inherit_from: .rubocop_todo.yml

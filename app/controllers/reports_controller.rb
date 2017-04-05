@@ -13,21 +13,21 @@ class ReportsController < ApplicationController
   def show
     @report = Report.find(params[:id])
     if @report.status_code < 200
-      update = report_update(@report)
-      flash[:success] = "Report Updated"
+      report_update(@report)
+      flash[:success] = 'Report Updated'
     end
   end
 
   def update
     @report = Report.find(params[:id])
-    update = report_update(@report)
-    flash[:success] = "Report "+@report.wpt_id+" Updated: "
+    report_update(@report)
+    flash[:success] = 'Report ' + @report.wpt_id + ' Updated: '
     redirect_to(:back)
   end
 
   def destroy
     Report.find(params[:id]).destroy
-    flash[:success] = "Report deleted"
+    flash[:success] = 'Report deleted'
     redirect_to(:back)
   end
 
@@ -36,14 +36,14 @@ class ReportsController < ApplicationController
     wpt = wpt_init_request(new_report)
     @report = Report.new(new_report.merge(wpt))
     if @report.save
-      if(@report.status_code == 200)
+      if @report.status_code == 200
         wpt = wpt_check_status(@report.wpt_id)
         @report.update_attributes(
           status: wpt['statusText'],
           status_code: wpt['statusCode']
         )
       end
-      flash[:success] = "Report Created"
+      flash[:success] = 'Report Created'
       redirect_to @report
     else
       render 'new'
@@ -57,8 +57,8 @@ class ReportsController < ApplicationController
   end
 
   private
-    def report_params
-      params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status, :status_code)
-    end
-end
 
+  def report_params
+    params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status, :status_code)
+  end
+end

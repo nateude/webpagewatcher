@@ -1,39 +1,38 @@
 source 'https://rubygems.org'
 
-gem 'rails',                        '5.0.1'
-gem 'bootstrap-sass',               '3.3.6'
-gem 'puma',                         '3.4.0'
-gem 'sass-rails',                   '5.0.6'
-gem 'uglifier',                     '3.0.0'
-gem 'coffee-rails',                 '4.2.1'
-gem 'jquery-rails',                 '4.1.1'
-gem 'turbolinks',                   '5.0.1'
-gem 'jbuilder',                     '2.4.1'
+gem 'bootstrap-sass', '3.3.6'
+gem 'jbuilder', '2.4.1'
+gem 'jquery-rails', '4.1.1'
+gem 'puma', '3.4.0'
+gem 'rails', '5.0.1'
+gem 'sass-rails', '5.0.6'
+gem 'turbolinks', '5.0.1'
+gem 'uglifier', '3.0.0'
 
 group :development, :test do
-  gem 'sqlite3',                    '1.3.12'
-  gem 'byebug',                     '9.0.0',      platform: :mri
-  gem 'rspec-rails'
+  gem 'byebug', '9.0.0', platform: :mri
   gem 'capybara'
+  gem 'rspec-rails'
+  gem 'sqlite3', '1.3.12'
 end
 
 group :development do
-  gem 'web-console',                '3.1.1'
-  gem 'listen',                     '3.0.8'
-  gem 'spring',                     '1.7.2'
-  gem 'spring-watcher-listen',      '2.0.0'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'listen', '3.0.8'
+  gem 'nyan-cat-formatter'
   gem 'pry'
-  gem "nyan-cat-formatter"
+  gem 'rubocop', '~> 0.45.0'
+  gem 'spring', '1.7.2'
+  gem 'spring-watcher-listen', '2.0.0'
+  gem 'web-console', '3.1.1'
 end
 
 group :test do
-  gem 'rails-controller-testing',   '0.1.1'
-
+  gem 'rails-controller-testing', '0.1.1'
 end
 group :production do
-  gem 'pg',                          '0.18.4'
+  gem 'pg', '0.18.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
