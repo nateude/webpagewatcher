@@ -30,7 +30,7 @@
         <td><%= profile.interval %></td>
         <td><%= profile.report.count %></td>
         <td>
-          <%= button_to 'New Report', reports_path(:params => generate_report(profile)) %>
+          <%= button_to 'New Report', reports_path(params: generate_report(profile)) %>
         </td>
       </tr>
     <% end %>
