@@ -51,3 +51,46 @@ feature 'Websites' do
     end
   end
 end
+
+feature 'New Website' do
+    before :each do
+      visit new_website_path
+    end
+
+  describe 'Page' do
+    it 'has a header' do
+      should_see 'Add a New Website'
+    end
+
+    it 'has a submitable form' do
+      fill_in 'Name', with: 'Example Website'
+      fill_in 'Url', with: 'http://www.examplewebsite.com'
+      click_on 'Add New Site'
+      page_should_be(websites_path)
+    end
+
+    it 'has errors for no data' do
+      click_on 'Add New Site'
+      page_should_be(new_website_path)
+      should_count 'required field', 2
+    end
+
+    it 'has errors empty name' do
+      fill_in 'Url', with: 'http://www.examplewebsite.com'
+      click_on 'Add New Site'
+      page_should_be(new_website_path)
+      should_count 'required field', 1
+    end
+
+    it 'has errors empty url' do
+      fill_in 'Name', with: 'Example Website'
+      click_on 'Add New Site'
+      page_should_be(new_website_path)
+      should_count 'required field', 1
+    end
+  end
+
+  describe 'form' do
+  end
+
+end

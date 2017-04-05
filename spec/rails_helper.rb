@@ -66,6 +66,10 @@ RSpec.configure do |config|
     expect(page).to have_no_content(text)
   end
 
+  def should_count(text,instance)
+      expect(page).to have_content(text, count:instance)
+  end
+
   def page_should_exist
     expect(page.status_code).to eq(200)
   end
