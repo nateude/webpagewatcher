@@ -17,7 +17,7 @@ class WebsitesController < ApplicationController
       flash[:success] = 'Website Created: ' + @website.name
       redirect_to websites_path
     else
-      render action: 'new'
+      render 'new'
     end
   end
 
