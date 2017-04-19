@@ -32,17 +32,10 @@ class ReportsController < ApplicationController
   end
 
   def create
-    new_report = report_params
-    wpt = wpt_init_request(new_report)
-    @report = Report.new(new_report.merge(wpt))
-    if @report.save
-      if @report.status_code == 200
-        wpt = wpt_check_status(@report.wpt_id)
-        @report.update_attributes(
-          status: wpt['statusText'],
-          status_code: wpt['statusCode']
-        )
-      end
+    @report = Report.new(report_params)
+    if @report.valid?
+      update_report_attr(@report)
+      @report.save
       flash[:success] = 'Report Created'
       redirect_to @report
     else
@@ -56,6 +49,14 @@ class ReportsController < ApplicationController
   end
 
   private
+
+  def update_report_attr(report)
+    wpt = wpt_init_request(report)
+    report.update_attributes(
+      wpt_id: wpt[:wpt_id],
+      status_code: wpt[:status_code]
+    )
+  end
 
   def report_params
     params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status, :status_code)

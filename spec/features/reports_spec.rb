@@ -37,3 +37,34 @@ feature 'Reports' do
     end
   end
 end
+
+feature 'New Report' do
+  describe 'Form' do
+    before :each do
+      website_data
+      profile_data
+      visit new_report_path
+    end
+
+    scenario 'has a header' do
+      should_see 'Add a New Report'
+    end
+    scenario 'has a submittable form' do
+      select 'Example Website', from: 'Website'
+      select 'EW - Homepage', from: 'Profile'
+      click_on 'Start Report'
+      should_see 'Website Example Website'
+      should_see 'Profile EW - Homepage'
+    end
+    scenario 'form has errors when website is empty' do
+      select 'EW - Homepage', from: 'Profile'
+      click_on 'Start Report'
+      should_see "Website can't be blank"
+    end
+    scenario 'form has errors when profile is empty' do
+      select 'Example Website', from: 'Website'
+      click_on 'Start Report'
+      should_see "Profile can't be blank"
+    end
+  end
+end

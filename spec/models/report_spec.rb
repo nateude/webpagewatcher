@@ -27,14 +27,4 @@ describe Report do
     report.valid?
     expect(report.errors[:website]).to include('must exist')
   end
-  it 'is invalid without wpt_id' do
-    report = Report.new(wpt_id: nil)
-    report.valid?
-    expect(report.errors[:wpt_id]).to include("can't be blank")
-  end
-  it 'is invalid without status_code' do
-    report = Report.new(status_code: nil)
-    report.valid?
-    expect(report.errors[:status_code]).to include("can't be blank")
-  end
 end

@@ -1,19 +1,19 @@
-
 <div class="row">
-    <h1>Add a New Report</h1>
+  <h1>Add a New Report</h1>
 
-    <%= form_for(@report) do |f| %>
+  <%= form_for(@report) do |f| %>
+    <%= render 'shared/form_errors', {form_data: @report} %>
 
     <div class="form-group">
-        <%= f.label :website_id %>
-        <%= f.collection_select(:website_id, Website.all, :id, :name, {}, {:class=>'form-control'}) %>
+      <%= f.label :website_id %>
+      <%= f.collection_select(:website_id, Website.all, :id, :name, {:prompt => ' -- Select a Website -- '}, {:class=>'form-control'}) %>
     </div>
     <div class="form-group">
-        <%= f.label :profile_id %>
-        <%= f.collection_select(:profile_id, Profile.all, :id, :name, {}, {:class=>'form-control'}) %>
+      <%= f.label :profile_id %>
+      <%= f.collection_select(:profile_id, Profile.all, :id, :name, {:prompt => ' -- Select a Profile -- '}, {:class=>'form-control'}) %>
     </div>
 
-      <%= f.submit "Create Report", class: "btn btn-primary" %>
+    <%= f.submit "Start Report", class: "btn btn-primary" %>
 
-    <% end %>
+  <% end %>
 </div>

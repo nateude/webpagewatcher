@@ -50,17 +50,33 @@ feature 'New Profile' do
       visit new_profile_path
     end
 
-    it 'can submit form with data' do
-      fill_in 'Name', with: 'New Sample Profile'
-      select 'Example Website', from: 'Website'
-      fill_in 'Url', with: 'http://www.examplewebsite.com/'
-      click_on 'Add New Profile'
-      should_see 'New Sample Profile'
+    scenario 'has a header' do
+      should_see 'Add a New Profile'
     end
-
-    it 'can not submit form without data' do
+    scenario 'has a submittable form' do
+      fill_in 'Name', with: 'Example Profile'
+      select 'Example Website', from: 'Website'
+      fill_in 'Url', with: 'http://www.examplewebsite.com'
       click_on 'Add New Profile'
-      expect(Profile.count).to eq(0)
+      should_see 'Example Profile Example Website http://www.examplewebsite.com'
+    end
+    scenario 'form has errors when name is empty' do
+      select 'Example Website', from: 'Website'
+      fill_in 'Url', with: 'http://www.examplewebsite.com'
+      click_on 'Add New Profile'
+      should_see "Name can't be blank"
+    end
+    scenario 'form has errors when url is empty' do
+      fill_in 'Name', with: 'Example Profile'
+      fill_in 'Url', with: 'http://www.examplewebsite.com'
+      click_on 'Add New Profile'
+      should_see "Website can't be blank"
+    end
+    scenario 'form has errors when url is empty' do
+      fill_in 'Name', with: 'Example Profile'
+      select 'Example Website', from: 'Website'
+      click_on 'Add New Profile'
+      should_see "Url can't be blank"
     end
   end
 end

@@ -4,6 +4,7 @@
     <h1>Add a New Profile</h1>
 
     <%= form_for(@profile) do |f| %>
+      <%= render 'shared/form_errors', {form_data: @profile} %>
 
       <div class="form-group">
         <%= f.label :name %>
@@ -12,27 +13,12 @@
 
       <div class="form-group">
         <%= f.label :website_id %>
-        <%= f.collection_select(:website_id, Website.all, :id, :name, {}, {:class=>'form-control'})  %>
+        <%= f.collection_select(:website_id, Website.all, :id, :name, {:prompt => ' -- Select a Website -- '}, {:class=>'form-control'})  %>
       </div>
 
       <div class="form-group">
         <%= f.label :url %>
         <%= f.text_field :url , class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :wpt_settings %>
-        <%= f.text_field :wpt_settings , class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :wpt_code %>
-        <%= f.text_field :wpt_code , class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :interval %>
-        <%= f.text_field :interval , class: "form-control" %>
       </div>
 
       <div class="form-group">
