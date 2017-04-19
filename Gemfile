@@ -13,6 +13,7 @@ group :development, :test do
   gem 'byebug', '9.0.0', platform: :mri
   gem 'capybara'
   gem 'rspec-rails'
+  gem 'simplecov',          require: false
   gem 'sqlite3', '1.3.12'
 end
 
