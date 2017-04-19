@@ -48,7 +48,7 @@ feature 'Website subpage' do
   end
 end
 
-feature 'New webiste' do
+feature 'New website' do
   before do
     visit new_website_path
   end
