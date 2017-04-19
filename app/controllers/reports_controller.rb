@@ -34,11 +34,7 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     if @report.valid?
-      wpt = wpt_init_request(@report)
-      @report.update_attributes(
-        wpt_id: wpt[:wpt_id],
-        status_code: wpt[:status_code]
-      )
+      update_report_attr(@report)
       @report.save
       flash[:success] = 'Report Created'
       redirect_to @report
@@ -54,6 +50,14 @@ class ReportsController < ApplicationController
   end
 
   private
+
+  def update_report_attr(report)
+    wpt = wpt_init_request(report)
+    report.update_attributes(
+      wpt_id: wpt[:wpt_id],
+      status_code: wpt[:status_code]
+    )
+  end
 
   def report_params
     params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status, :status_code)

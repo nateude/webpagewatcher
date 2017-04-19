@@ -58,13 +58,13 @@ feature 'New Report' do
     end
     scenario 'form has errors when website is empty' do
       select 'EW - Homepage', from: 'Profile'
-      click_on 'Add New Profile'
-      should_see "Name can't be blank"
+      click_on 'Start Report'
+      should_see "Website can't be blank"
     end
     scenario 'form has errors when profile is empty' do
       select 'Example Website', from: 'Website'
-      click_on 'Add New Profile'
-      should_see "Website can't be blank"
+      click_on 'Start Report'
+      should_see "Profile can't be blank"
     end
   end
 end
