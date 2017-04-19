@@ -52,7 +52,6 @@ class ReportsController < ApplicationController
 
   def json
     report = Report.find(params[:id])
-
     render json: report.data
   end
 
