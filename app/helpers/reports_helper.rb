@@ -67,7 +67,7 @@ module ReportsHelper
     if wpt['statusCode'] == 200
       pramas[:data] = wpt_get_data(report.wpt_id).to_json
     end
-    report.update_attributes(pramas)
+    report.update(pramas)
   end
 
   def report_json_data

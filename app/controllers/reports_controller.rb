@@ -52,7 +52,7 @@ class ReportsController < ApplicationController
 
   def update_report_attr(report)
     wpt = wpt_init_request(report)
-    report.update_attributes(
+    report.update(
       wpt_id: wpt[:wpt_id],
       status_code: wpt[:status_code]
     )
