@@ -1,39 +1,39 @@
 source 'https://rubygems.org'
 
-gem 'bootstrap-sass', '3.3.6'
-gem 'jbuilder', '2.4.1'
-gem 'jquery-rails', '4.1.1'
-gem 'puma', '3.4.0'
-gem 'rails', '5.0.1'
-gem 'sass-rails', '5.0.6'
-gem 'turbolinks', '5.0.1'
-gem 'uglifier', '3.0.0'
+gem 'bootstrap-sass'
+gem 'jbuilder'
+gem 'jquery-rails'
+gem 'puma'
+gem 'rails', '5.2'
+gem 'sass-rails'
+gem 'turbolinks'
+gem 'uglifier'
 
 group :development, :test do
-  gem 'byebug', '9.0.0', platform: :mri
+  gem 'byebug'
   gem 'capybara'
   gem 'rspec-rails'
-  gem 'simplecov', require: false
-  gem 'sqlite3', '1.3.12'
+  gem 'simplecov'
+  gem 'sqlite3'
 end
 
 group :development do
   gem 'guard'
   gem 'guard-rspec'
-  gem 'listen', '3.0.8'
+  gem 'listen'
   gem 'nyan-cat-formatter'
   gem 'pry'
-  gem 'rubocop', '~> 0.45.0'
-  gem 'spring', '1.7.2'
-  gem 'spring-watcher-listen', '2.0.0'
-  gem 'web-console', '3.1.1'
+  gem 'rubocop'
+  gem 'spring'
+  gem 'spring-watcher-listen'
+  gem 'web-console'
 end
 
 group :test do
-  gem 'rails-controller-testing', '0.1.1'
+  gem 'rails-controller-testing'
 end
 group :production do
-  gem 'pg', '0.18.4'
+  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

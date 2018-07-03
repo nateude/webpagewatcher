@@ -8,17 +8,12 @@ Bundler.require(*Rails.groups)
 
 module Webpagewatcher
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-  end
-end
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.0
 
-module JSON
-  def self.json?(foo)
-    return false unless foo.is_a?(String)
-    JSON.parse(foo).all?
-  rescue JSON::ParserError
-    false
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
   end
 end
