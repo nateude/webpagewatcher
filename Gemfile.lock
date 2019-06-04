@@ -281,9 +281,8 @@ DEPENDENCIES
   spring-watcher-listen
   sqlite3
   turbolinks
-  tzinfo-data
   uglifier
   web-console
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
