@@ -1,5 +1,4 @@
 defaults: &defaults
-  resource_class: small
   working_directory: ~/webpagewatcher
   docker:
     - image: circleci/ruby:2.6.2
