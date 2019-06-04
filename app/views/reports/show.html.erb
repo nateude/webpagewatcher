@@ -40,7 +40,7 @@
     </tr>
     <tr>
       <td>WPT Test Init</td>
-      <td>http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= @report.profile.url %>&amp;test=<%=Rails.application.secrets.webpagetest_key%></td>
+      <td>http://www.webpagetest.org/runtest.php?f=json&amp;test=<%= @report.profile.url %>&amp;test=<%=WebPageTestConfig.api_key%></td>
     </tr>
     <tr>
       <td>WPT Test Status</td>

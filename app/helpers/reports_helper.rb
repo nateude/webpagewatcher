@@ -22,7 +22,7 @@ module ReportsHelper
     params = {
       f: 'json',
       url: profile.url,
-      k: Rails.application.secrets.webpagetest_key
+      k: WebPageTestConfig.api_key
     }
     response = wpt_api_call('runtest', params)
     {
