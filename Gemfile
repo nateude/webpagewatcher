@@ -12,7 +12,9 @@ gem 'uglifier'
 group :development, :test do
   gem 'byebug'
   gem 'capybara'
+  gem 'rspec_junit_formatter'
   gem 'rspec-rails'
+  gem 'rubocop-junit-formatter'
   gem 'simplecov'
   gem 'sqlite3'
 end
