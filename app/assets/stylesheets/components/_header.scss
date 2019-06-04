@@ -1,0 +1,11 @@
+header {
+  background: $graydk-dk;
+  color: $gray-lt;
+
+  a {
+    color: $gray;
+    &:hover {
+      color:$link-hover;
+    }
+  }
+}
