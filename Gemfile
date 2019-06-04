@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass'
+gem 'hierarchical_config'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'pg'
