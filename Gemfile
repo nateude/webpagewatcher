@@ -15,7 +15,7 @@ group :development, :test do
   gem 'rspec_junit_formatter'
   gem 'rspec-rails'
   gem 'rubocop-junit-formatter'
-  # gem 'rubocop-rails'
+  gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'rubocop'
   gem 'simplecov'
