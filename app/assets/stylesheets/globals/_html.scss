@@ -1,0 +1,166 @@
+
+body {
+  background-size: cover;
+  background-position: center;
+  background-color: $graydk-lt;
+  background-attachment: fixed;
+  color: $graydk;
+  font-family: $body;
+  font-size: $base-size;
+  font-weight: $normal;
+  line-height: 1.6em;
+  // padding-top: $header-height;
+}
+
+.heading {
+  font-family: $heading;
+  font-size: 1em;
+  line-height: 1.2em;
+  margin: 0 0 $base-spacing;
+  font-weight: $bold;
+
+  a, a & {
+    color: $primary-heading-color;
+
+    &:hover {
+      color: $primary-heading-hover-color;
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend .heading;
+
+  &.heading-1 {
+    font-size: 2em;
+  }
+  &.heading-2 {
+    font-size: 1.7em;
+  }
+  &.heading-3 {
+    font-size: 1.4em;
+  }
+  &.heading-4 {
+    font-size: 1.1em;
+  }
+}
+
+p, ul, ol {
+  & + .heading-1,
+  & + .heading-2 {
+    margin-top: $base-spacing * 2;
+  }
+}
+
+p {
+  margin-bottom: $base-spacing;
+
+  & + .btn {
+    margin: 0;
+  }
+}
+
+strong, .strong {
+  font-weight: $bold;
+}
+
+ em, i {
+   font-style: italic;
+ }
+
+hr {
+  border: none;
+  border-top: 1px solid $gray;
+  margin: $base-spacing 0 $base-spacing;
+  &.double {
+    margin-bottom: $base-spacing * 4;
+  }
+}
+
+a, .link-like {
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.1s ease-in-out;
+  text-decoration: none;
+  color: $primary;
+  &:hover{
+    text-decoration: none;
+    color: $primary-dk;
+  }
+
+  &.table-action {
+    color: rgba($graydk, 0.3);
+  }
+
+  &.action-success:hover {
+    color: $brand-success;
+  }
+
+  &.action-warning:hover {
+    color: $brand-warning;
+  }
+}
+
+
+ol,ul {
+  margin: $base-spacing 0 $base-spacing $base-spacing;
+  list-style-type: disc;
+
+  &.bulletless {
+    margin-left: 0;
+    list-style-type: none;
+  }
+
+  &.spaced {
+    li {
+      margin-bottom: $base-spacing;
+    }
+  }
+
+  &.half-spaced {
+    li {
+      margin-bottom: $base-spacing * 0.5;
+    }
+  }
+
+  &.inline {
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+code {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 3px 5px;
+    background: rgba($gray-dk, 0.2);
+    border: 1px solid $gray-dk;
+    border-radius: 2px;
+    font-family: monospace;
+}
+
+blockquote {
+  border-left: 4px solid $graydk-lt;
+  padding-left: $base-spacing;
+}
+
+.body-content {
+  position: relative;
+  z-index: 100;
+}
+
+.text-large {
+  font-size: 1.2em;
+}
+.text-larger {
+  font-size: 1.4em;
+}
+
+.text-small {
+  font-size: 0.9em;
+}
+.text-smaller {
+  font-size: 0.8em;
+}

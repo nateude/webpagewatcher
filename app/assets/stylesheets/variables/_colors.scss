@@ -1,0 +1,174 @@
+// https://coolors.co/667761-5a352a-197bbd-125e8a-8c1c13
+// ----
+
+$red:       #D0021B;
+$black:     #292929;
+$blue:      #154890;
+$bluelt:    #6699FF;
+$tan:       #CDBFAC;
+$tanlt:     #E1D4C0;
+$tanltr:    #F5EDE3;
+$orange:    #FF6600;
+
+$gray:      #FCFCFC;
+$graydk:    #4A4A4A;
+
+$white: #fff;
+$black: #292929;
+
+$red-lt:        rgba($red, 0.10);
+$red-dk:        darken($red, 10%);
+
+$blue-lt:       rgba($blue, 0.10);
+$blue-dk:       darken($blue, 10%);
+
+$black-lt:      rgba($black, 0.10);
+$black-dk:      darken($black, 10%);
+
+$blue-lt:       rgba($blue, 0.10);
+$blue-dk:       darken($blue, 10%);
+
+$gray-ltr:       rgba($gray, 0.01);
+$gray-lt:       rgba($gray, 0.02);
+$gray-dk:       darken($gray, 10%);
+
+$graydk-ltr:     rgba($graydk, 0.02);
+$graydk-lt:     rgba($graydk, 0.05);
+$graydk-dk:     darken($graydk, 10%);
+
+$primary:       $blue;
+$secondary:     $orange;
+
+$primary-lt:    rgba($primary, 0.10);
+$primary-dk:    darken($primary, 10%);
+
+$secondary-lt:  rgba($secondary, 0.10);
+$secondary-dk:  darken($secondary, 10%);
+
+$primary-heading-color: $black;
+$primary-heading-hover-color: $blue;
+
+// ----
+
+$brand-primary:         $blue !default; // #337ab7
+$brand-success:         $blue !default;
+$brand-info:            $blue !default;
+$brand-warning:         $red !default;
+$brand-danger:          $red !default;
+
+.error { color: $red; }
+
+.red { color: $red; }
+.red-bg { background-color: $red; }
+.black { color: $black; }
+.black-bg { background-color: $black; }
+.blue { color: $blue; }
+.blue-bg { background-color: $blue; }
+.bluelt { color: $bluelt; }
+.bluelt-bg { background-color: $bluelt; }
+.gray { color: $gray; }
+.gray-bg { background-color: $gray; }
+
+.white {
+  color: $white;
+}
+.bg-white {
+  background-color: $white;
+}
+.black {
+  color: $black;
+}
+.bg-black {
+  background-color: $black;
+}
+.primary {
+  color: $primary;
+}
+.bg-primary {
+  background-color: $primary;
+}
+.secondary {
+  color: $secondary;
+}
+.bg-secondary {
+  background-color: $secondary;
+}
+.primary-lt {
+  color: $primary-lt;
+}
+.bg-primary-lt {
+  background-color: $primary-lt;
+}
+.primary-dk {
+  color: $primary-dk;
+}
+.bg-primary-dk {
+  background-color: $primary-dk;
+}
+.secondary-lt {
+  color: $secondary-lt;
+}
+.bg-secondary-lt {
+  background-color: $secondary-lt;
+}
+.secondary-dk {
+  color: $secondary-dk;
+}
+.bg-secondary-dk {
+  background-color: $secondary-dk;
+}
+.brand-primary {
+  color: $brand-primary;
+}
+.bg-brand-primary {
+  background-color: $brand-primary;
+}
+.brand-success {
+  color: $brand-success;
+}
+.bg-brand-success {
+  background-color: $brand-success;
+}
+.brand-info {
+  color: $brand-info;
+}
+.bg-brand-info {
+  background-color: $brand-info;
+}
+.brand-warning {
+  color: $brand-warning;
+}
+.bg-brand-warning {
+  background-color: $brand-warning;
+}
+.brand-danger {
+  color: $brand-danger;
+}
+.bg-brand-danger {
+  background-color: $brand-danger;
+}
+
+.gray {
+  color: $gray;
+}
+.gray-lt {
+  color: $gray-lt;
+}
+.gray-ltr {
+  color: $gray-ltr;
+}
+.gray-dk {
+  color: $gray-dk;
+}
+.graydk {
+  color: $graydk;
+}
+.graydk-lt {
+  color: $graydk-lt;
+}
+.graydk-ltr {
+  color: $graydk-ltr;
+}
+.graydk-dk {
+  color: $graydk-dk;
+}

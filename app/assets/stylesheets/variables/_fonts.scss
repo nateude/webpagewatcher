@@ -1,0 +1,33 @@
+// Fonts
+$sans:        'Open Sans', Arial, sans-serif;
+$montserrat:  'Montserrat', sans-serif;
+$monaco:      'Monaco', monospace;
+$caveat:      'Caveat', cursive;
+
+$body: $montserrat;
+$heading: $montserrat;
+$button: $montserrat;
+$mono: $monaco;
+
+$font-family-sans-serif:  $montserrat;
+$font-family-serif:       $heading;
+$font-family-base:        $font-family-sans-serif !default;
+
+$bold: 700;
+$medium: 500;
+$normal: 400;
+$thin: 100;
+
+.heading {
+  font-family: $heading;
+}
+.body {
+  font-family: $body;
+}
+.mono {
+  font-family: $mono;
+}
+
+.caveat {
+  font-family: $caveat;
+}
