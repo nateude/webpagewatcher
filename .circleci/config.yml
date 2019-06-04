@@ -104,6 +104,67 @@ jobs:
       - *store_test_results
       - *persist_to_workspace
 
+  rspec:
+    working_directory: ~/webpagewatcher
+    docker:
+      - image: circleci/ruby:2.6.2-node-browsers
+        environment:
+          DISPLAY: ":99"
+          CHROME_BIN: "/usr/bin/google-chrome"
+      - image: redis:3.2.5
+      - image: circleci/postgres:9.6
+    environment:
+      # SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
+      CI: true
+      CIRCLECI: true
+      RAILS_ENV: test
+      RESULT_PATH: ~/webpagewatcher/tmp/test-results
+      RSPEC_RESULT_PATH: ~/webpagewatcher/tmp/test-results/rspec
+      WAIT_TIME: 3
+      PGUSER: postgres
+      PGHOST: 127.0.0.1
+    parallelism: 3
+    steps:
+      - *attach_workspace
+      - *restore_checkout_cache
+      - *restore_bundle_cache
+      - *bundle_path
+      - run: sudo apt install -y postgresql-client || true
+      - run: bundle exec rails db:reset --trace
+      - run: mkdir -p ~/webpagewatcher/tmp/test-results/rspec
+      - run: mkdir -p ~/webpagewatcher/tmp/capybara
+      - run: mkdir -p ~/webpagewatcher/coverage
+      # - run:
+      #     name: Set chromedriver version
+      #     command: |
+      #       SYSTEM_CHROMEDRIVER_VERSION=$(/usr/local/bin/chromedriver --version | sed 's|.*ChromeDriver \([0-9]*\.[0-9]*\).*|\1|')
+      #       chromedriver-update $SYSTEM_CHROMEDRIVER_VERSION
+      - run:
+          name: Run rspec in parallel
+          command: |
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings --timings-type=classname)
+            bundle exec rspec --format progress \
+                              --no-color \
+                              --format RspecJunitFormatter \
+                              --out ~/webpagewatcher/tmp/test-results/rspec/rspec.xml \
+                              ${TESTFILES}
+            echo $?
+      - run:
+          name: Run specs that failed
+          command: |
+            bundle exec rspec --only-failures \
+                              --format progress \
+                              --format RspecJunitFormatter \
+                              --out ~/frontend/tmp/test-results/rspec/rspec.xml
+          when: always
+      - store_test_results:
+          path: ~/webpagewatcher/tmp/test-results/rspec
+      - store_artifacts:
+          path: ~/webpagewatcher/tmp/capybara
+      - store_artifacts:
+          path: ~/webpagewatcher/coverage
+      - *persist_to_workspace
+
 workflows:
   version: 2
 
@@ -113,9 +174,9 @@ workflows:
       - bundle-install:
           requires:
             - git-checkout
-      # - rspec:
-      #     requires:
-      #       - bundle-install
+      - rspec:
+          requires:
+            - bundle-install
       - rubocop:
           requires:
             - bundle-install
