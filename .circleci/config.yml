@@ -3,178 +3,27 @@ defaults: &defaults
   docker:
     - image: circleci/ruby:2.6.2
 
-shared_job_steps:
-  # - &restore_checkout_cache
-  #   restore_cache:
-  #     key: webpagewatcher-repo-v1-{{ .Environment.CIRCLE_SHA1 }}
-  - &save_checkout_cache
-    save_cache:
-      key: webpagewatcher-repo-v1-{{ .Environment.CIRCLE_SHA1 }}
-      paths:
-        - ~/webpagewatcher
-        - ~/.ssh
-  # - &restore_bundle_cache
-  #   restore_cache:
-  #     key: webpagewatcher-bundle-v1-{{ checksum "Gemfile.lock" }}
-  - &save_bundle_cache
-    save_cache:
-      key: webpagewatcher-bundle-v1-{{ checksum "Gemfile.lock" }}
-      paths:
-        - ~/webpagewatcher/vendor/bundle
-  - &bundle_path
-    run: bundle --path vendor/bundle
-  - &store_test_results
-    store_test_results:
-      path: ~/webpagewatcher/tmp/test-results
-  # - &restore_rubocop_cache
-  #   restore_cache:
-  #     key: webpagewatcher-rubocop-v1-{{ checksum "Gemfile.lock" }}
-  # - &save_rubocop_cache
-  #   save_cache:
-  #     key: webpagewatcher-rubocop-v1-{{ checksum "Gemfile.lock" }}
-  #     paths:
-  #       - ~/webpagewatcher/tmp/rubocop_cache
-  - &attach_workspace
-    attach_workspace:
-      at: ~/webpagewatcher
-  - &persist_to_workspace
-    persist_to_workspace:
-      root: ~/webpagewatcher
-      paths:
-        - vendor/bundle
-        - tmp/test-results
-        - tmp/capybara
-        - coverage
-
 version: 2
 jobs:
   git-checkout:
     <<: *defaults
     steps:
-      - *attach_workspace
-      # - *restore_checkout_cache
       - checkout
       - run: mkdir -p ~/webpagewatcher/tmp/test-results
-      - *save_checkout_cache
-      - *persist_to_workspace
 
   bundle-install:
     <<: *defaults
-    steps:
-      - *attach_workspace
-      # - *restore_checkout_cache
-      # - *restore_bundle_cache
-      - *bundle_path
-      - *save_bundle_cache
-      - *persist_to_workspace
-
-  rspec:
-    working_directory: ~/webpagewatcher
-    docker:
-      - image: circleci/ruby:2.6.2
-        environment:
-          DISPLAY: ":99"
-          CHROME_BIN: "/usr/bin/google-chrome"
-      - image: redis:3.2.5
-      - image: circleci/postgres:9.6
-    environment:
-      SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
-      CI: true
-      CIRCLECI: true
-      RAILS_ENV: test
-      RESULT_PATH: ~/webpagewatcher/tmp/test-results
-      RSPEC_RESULT_PATH: ~/webpagewatcher/tmp/test-results/rspec
-      WAIT_TIME: 3
-      PGUSER: postgres
-      PGHOST: 127.0.0.1
-    parallelism: 3
-    steps:
-      - *attach_workspace
-      # - *restore_checkout_cache
-      # - *restore_bundle_cache
-      - *bundle_path
-      - run: sudo apt install -y postgresql-client || true
-      - run: bundle exec rails db:reset --trace
-      - run: mkdir -p ~/webpagewatcher/tmp/test-results/rspec
-      - run: mkdir -p ~/webpagewatcher/tmp/capybara
-      - run: mkdir -p ~/webpagewatcher/coverage
-      - run:
-          name: Set chromedriver version
-          command: |
-            SYSTEM_CHROMEDRIVER_VERSION=$(/usr/local/bin/chromedriver --version | sed 's|.*ChromeDriver \([0-9]*\.[0-9]*\).*|\1|')
-            chromedriver-update $SYSTEM_CHROMEDRIVER_VERSION
-      - run:
-          name: Run rspec in parallel
-          command: |
-            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings --timings-type=classname)
-            bundle exec rspec --format progress \
-                              --no-color \
-                              --format RspecJunitFormatter \
-                              --out ~/webpagewatcher/tmp/test-results/rspec/rspec.xml \
-                              ${TESTFILES}
-            echo $?
-      - run:
-          name: Run specs that failed
-          command: |
-            bundle exec rspec --only-failures \
-                              --format progress \
-                              --format RspecJunitFormatter \
-                              --out ~/frontend/tmp/test-results/rspec/rspec.xml
-          when: always
-      - store_test_results:
-          path: ~/webpagewatcher/tmp/test-results/rspec
-      - store_artifacts:
-          path: ~/webpagewatcher/tmp/capybara
-      - store_artifacts:
-          path: ~/webpagewatcher/coverage
-      - *persist_to_workspace
-
-  # slim-lint:
-  #   <<: *defaults
-  #   steps:
-  #     - *attach_workspace
-  #     - *restore_checkout_cache
-  #     - *restore_bundle_cache
-  #     - *bundle_path
-  #     - run: bundle exec rails slim_lint
-  #     - *store_test_results
-  #     - *persist_to_workspace
-  #
-  # brakeman:
-  #   <<: *defaults
-  #   steps:
-  #     - *attach_workspace
-  #     - *restore_checkout_cache
-  #     - *restore_bundle_cache
-  #     - *bundle_path
-  #     - run: bundle exec brakeman --ensure-latest
-  #     - *store_test_results
-  #     - *persist_to_workspace
 
   rubocop:
     <<: *defaults
     steps:
-      - *attach_workspace
-      # - *restore_checkout_cache
-      # - *restore_bundle_cache
-      - *bundle_path
-      # - *restore_rubocop_cache
       - run: mkdir -p ~/webpagewatcher/tmp/test-results/rubocop
       - run: bundle exec rubocop -R -r $(bundle show rubocop-junit-formatter)/lib/rubocop/formatter/junit_formatter.rb --format RuboCop::Formatter::JUnitFormatter --out ~/webpagewatcher/tmp/test-results/rubocop/rubocop.xml
-      # - *save_rubocop_cache
-      - *store_test_results
-      - *persist_to_workspace
 
   bundler-audit:
     <<: *defaults
     steps:
-      - *attach_workspace
-      # - *restore_checkout_cache
-      # - *restore_bundle_cache
-      - *bundle_path
       - run: bundle exec bundler-audit check --update
-      - *store_test_results
-      - *persist_to_workspace
 
 workflows:
   version: 2
@@ -201,18 +50,9 @@ workflows:
       - bundle-install:
           requires:
             - git-checkout
-      - rspec:
-          requires:
-            - bundle-install
       - rubocop:
           requires:
             - bundle-install
-      # - slim-lint:
-      #     requires:
-      #       - bundle-install
-      # - brakeman:
-      #     requires:
-      #       - bundle-install
       - bundler-audit:
           requires:
             - bundle-install
