@@ -6,19 +6,19 @@ defaults: &defaults
 shared_job_steps:
   - &restore_checkout_cache
     restore_cache:
-      key: webpagewatcher-repo-v0.1-{{ .Environment.CIRCLE_SHA1 }}
+      key: webpagewatcher-repo-v1-{{ .Environment.CIRCLE_SHA1 }}
   - &save_checkout_cache
     save_cache:
-      key: webpagewatcher-repo-v0.1-{{ .Environment.CIRCLE_SHA1 }}
+      key: webpagewatcher-repo-v1-{{ .Environment.CIRCLE_SHA1 }}
       paths:
         - ~/webpagewatcher
         - ~/.ssh
   - &restore_bundle_cache
     restore_cache:
-      key: webpagewatcher-bundle-v0.1-{{ checksum "Gemfile.lock" }}
+      key: webpagewatcher-bundle-v1-{{ checksum "Gemfile.lock" }}
   - &save_bundle_cache
     save_cache:
-      key: webpagewatcher-bundle-v0.1-{{ checksum "Gemfile.lock" }}
+      key: webpagewatcher-bundle-v1-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/webpagewatcher/vendor/bundle
   - &bundle_path
@@ -28,10 +28,10 @@ shared_job_steps:
       path: ~/webpagewatcher/tmp/test-results
   - &restore_rubocop_cache
     restore_cache:
-      key: webpagewatcher-rubocop-v0.1-{{ checksum "Gemfile.lock" }}
+      key: webpagewatcher-rubocop-v1-{{ checksum "Gemfile.lock" }}
   - &save_rubocop_cache
     save_cache:
-      key: webpagewatcher-rubocop-v0.1-{{ checksum "Gemfile.lock" }}
+      key: webpagewatcher-rubocop-v1-{{ checksum "Gemfile.lock" }}
       paths:
         - ~/webpagewatcher/tmp/rubocop_cache
   - &attach_workspace
