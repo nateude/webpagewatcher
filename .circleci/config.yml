@@ -77,7 +77,13 @@ jobs:
   bundler-audit:
     <<: *defaults
     steps:
+      - *attach_workspace
+      - *restore_checkout_cache
+      - *restore_bundle_cache
+      - *bundle_path
       - run: bundle exec bundler-audit check --update
+      - *store_test_results
+      - *persist_to_workspace
 
 workflows:
   version: 2
