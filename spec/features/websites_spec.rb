@@ -5,6 +5,7 @@ feature 'Websites homepage' do
     generate_sample_data
     visit websites_path
   end
+
   scenario 'has accessible page' do
     page_should_exist
   end
@@ -22,6 +23,7 @@ feature 'Website subpage' do
     generate_sample_data
     visit website_path(1)
   end
+
   scenario 'has website settings' do
     should_see 'ID 1'
     should_see 'Name Example Website'
@@ -52,6 +54,7 @@ feature 'New website' do
   before do
     visit new_website_path
   end
+
   scenario 'has a header' do
     should_see 'Add a New Website'
   end

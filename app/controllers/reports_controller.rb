@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
 
   def index
     @reports = Report.all
-    update_all(@reports)
+    run_reports(@reports)
   end
 
   def new
@@ -12,10 +12,11 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
-    if @report.status_code < 200
-      report_update(@report)
-      flash[:success] = 'Report Updated'
-    end
+
+    return unless @report.status_code < 200
+
+    report_update(@report)
+    flash[:success] = 'Report Updated'
   end
 
   def update

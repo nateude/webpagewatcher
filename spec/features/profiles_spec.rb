@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 feature 'Profiles' do
-  before :each do
+  before do
     generate_sample_data
   end
 
   describe 'index' do
-    before :each do
+    before do
       visit profiles_path
     end
+
     it 'has accessible page' do
       page_should_exist
     end
@@ -25,9 +26,10 @@ feature 'Profiles' do
   end
 
   describe 'subpage' do
-    before :each do
+    before do
       visit profile_path(1)
     end
+
     it 'has profile settings' do
       should_see 'ID 1'
       should_see 'Name EW - Homepage'
@@ -45,7 +47,7 @@ end
 
 feature 'New Profile' do
   describe 'Form' do
-    before :each do
+    before do
       website_data
       visit new_profile_path
     end
@@ -71,12 +73,6 @@ feature 'New Profile' do
       fill_in 'Url', with: 'http://www.examplewebsite.com'
       click_on 'Add New Profile'
       should_see "Website can't be blank"
-    end
-    scenario 'form has errors when url is empty' do
-      fill_in 'Name', with: 'Example Profile'
-      select 'Example Website', from: 'Website'
-      click_on 'Add New Profile'
-      should_see "Url can't be blank"
     end
   end
 end

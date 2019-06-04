@@ -47,7 +47,7 @@ module ReportsHelper
     wpt_api_call('results', params)
   end
 
-  def update_all(reports)
+  def run_reports(reports)
     msgs = ''
     reports.each do |report|
       if report.status_code < 200
