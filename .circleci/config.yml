@@ -3,16 +3,70 @@ defaults: &defaults
   docker:
     - image: circleci/ruby:2.6.2
 
+shared_job_steps:
+  - &restore_checkout_cache
+    restore_cache:
+      key: webpagewatcher-repo-v1-{{ .Environment.CIRCLE_SHA1 }}
+  - &save_checkout_cache
+    save_cache:
+      key: webpagewatcher-repo-v1-{{ .Environment.CIRCLE_SHA1 }}
+      paths:
+        - ~/webpagewatcher
+        - ~/.ssh
+  - &restore_bundle_cache
+    restore_cache:
+      key: webpagewatcher-bundle-v1-{{ checksum "Gemfile.lock" }}
+  - &save_bundle_cache
+    save_cache:
+      key: webpagewatcher-bundle-v1-{{ checksum "Gemfile.lock" }}
+      paths:
+        - ~/webpagewatcher/vendor/bundle
+  - &bundle_path
+    run: bundle --path vendor/bundle
+  - &store_test_results
+    store_test_results:
+      path: ~/webpagewatcher/tmp/test-results
+  - &restore_rubocop_cache
+    restore_cache:
+      key: webpagewatcher-rubocop-v1-{{ checksum "Gemfile.lock" }}
+  - &save_rubocop_cache
+    save_cache:
+      key: webpagewatcher-rubocop-v1-{{ checksum "Gemfile.lock" }}
+      paths:
+        - ~/webpagewatcher/tmp/rubocop_cache
+  - &attach_workspace
+    attach_workspace:
+      at: ~/webpagewatcher
+  - &persist_to_workspace
+    persist_to_workspace:
+      root: ~/webpagewatcher
+      paths:
+        - vendor/bundle
+        - tmp/test-results
+        - tmp/capybara
+        - coverage
+
 version: 2
 jobs:
   git-checkout:
     <<: *defaults
     steps:
+      - *attach_workspace
+      - *restore_checkout_cache
       - checkout
       - run: mkdir -p ~/webpagewatcher/tmp/test-results
+      - *save_checkout_cache
+      - *persist_to_workspace
 
   bundle-install:
     <<: *defaults
+    steps:
+      - *attach_workspace
+      - *restore_checkout_cache
+      - *restore_bundle_cache
+      - *bundle_path
+      - *save_bundle_cache
+      - *persist_to_workspace
 
   rubocop:
     <<: *defaults
@@ -27,22 +81,6 @@ jobs:
 
 workflows:
   version: 2
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *" # UTC timezone, https://crontab.guru
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - git-checkout
-      - bundle-install:
-          requires:
-            - git-checkout
-      - bundler-audit:
-          requires:
-            - bundle-install
 
   ci-workflow:
     jobs:
@@ -50,9 +88,18 @@ workflows:
       - bundle-install:
           requires:
             - git-checkout
-      - rubocop:
-          requires:
-            - bundle-install
+      # - rspec:
+      #     requires:
+      #       - bundle-install
+      # - rubocop:
+      #     requires:
+      #       - bundle-install
+      # - slim-lint:
+      #     requires:
+      #       - bundle-install
+      # - brakeman:
+      #     requires:
+      #       - bundle-install
       - bundler-audit:
           requires:
             - bundle-install
