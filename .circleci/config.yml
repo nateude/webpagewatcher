@@ -68,6 +68,17 @@ jobs:
       - *save_bundle_cache
       - *persist_to_workspace
 
+  brakeman:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - *restore_checkout_cache
+      - *restore_bundle_cache
+      - *bundle_path
+      - run: bundle exec brakeman --ensure-latest
+      - *store_test_results
+      - *persist_to_workspace
+
   rubocop:
     <<: *defaults
     steps:
@@ -103,9 +114,9 @@ workflows:
       # - slim-lint:
       #     requires:
       #       - bundle-install
-      # - brakeman:
-      #     requires:
-      #       - bundle-install
-      # - bundler-audit:
-      #     requires:
-      #       - bundle-install
+      - brakeman:
+          requires:
+            - bundle-install
+      - bundler-audit:
+          requires:
+            - bundle-install
