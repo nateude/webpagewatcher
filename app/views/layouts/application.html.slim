@@ -1,0 +1,29 @@
+doctype html
+
+html.no-js lang="en" vocab="http://schema.org/" typeof="WebPage" prefix="og: http://ogp.me/ns#"
+  | <!--<![endif]-->
+
+  head
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    link rel="shortcut icon" href=image_url('favicon.ico')
+    = csrf_meta_tag
+
+    title
+      ' #{content_for?(:page_title) ? content_for(:page_title) + ' | ' : ''}
+      ' WebPageWatcher
+    meta name="description" content=(content_for?(:page_description) ? content_for(:page_description) : 'My eyes never close')
+
+    link href='https://fonts.googleapis.com/css?family=Caveat|Montserrat:100,400,400i,500,700' rel='stylesheet' type='text/css'
+    = stylesheet_link_tag 'application', media: 'all'
+
+  body
+    = render 'layouts/partials/header'
+    = render 'layouts/partials/flash'
+
+    .page-wrapper
+      = yield
+
+    = render 'layouts/partials/footer'
+
+    = javascript_include_tag 'application'
+    = javascript_include_tag content_for(:override_js) if content_for?(:override_js)

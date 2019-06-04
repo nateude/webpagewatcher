@@ -1,0 +1,3 @@
+- if flash[:notice]
+  .container.flash-messages
+    .alert class="alert-#{flash[:status]}" == flash[:notice]
