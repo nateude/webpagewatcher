@@ -4,7 +4,7 @@ gem 'bootstrap-sass'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'puma'
-gem 'rails', '5.2'
+gem 'rails'
 gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'
@@ -18,14 +18,16 @@ group :development, :test do
 end
 
 group :development do
-  gem 'guard'
+  gem 'brakeman'
+  gem 'bundler-audit'
   gem 'guard-rspec'
+  gem 'guard'
   gem 'listen'
   gem 'nyan-cat-formatter'
   gem 'pry'
   gem 'rubocop'
-  gem 'spring'
   gem 'spring-watcher-listen'
+  gem 'spring'
   gem 'web-console'
 end
 
