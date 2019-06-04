@@ -4,18 +4,18 @@ defaults: &defaults
     - image: circleci/ruby:2.6.2
 
 shared_job_steps:
-  - &restore_checkout_cache
-    restore_cache:
-      key: webpagewatcher-repo-v1-{{ .Environment.CIRCLE_SHA1 }}
+  # - &restore_checkout_cache
+  #   restore_cache:
+  #     key: webpagewatcher-repo-v1-{{ .Environment.CIRCLE_SHA1 }}
   - &save_checkout_cache
     save_cache:
       key: webpagewatcher-repo-v1-{{ .Environment.CIRCLE_SHA1 }}
       paths:
         - ~/webpagewatcher
         - ~/.ssh
-  - &restore_bundle_cache
-    restore_cache:
-      key: webpagewatcher-bundle-v1-{{ checksum "Gemfile.lock" }}
+  # - &restore_bundle_cache
+  #   restore_cache:
+  #     key: webpagewatcher-bundle-v1-{{ checksum "Gemfile.lock" }}
   - &save_bundle_cache
     save_cache:
       key: webpagewatcher-bundle-v1-{{ checksum "Gemfile.lock" }}
@@ -26,14 +26,14 @@ shared_job_steps:
   - &store_test_results
     store_test_results:
       path: ~/webpagewatcher/tmp/test-results
-  - &restore_rubocop_cache
-    restore_cache:
-      key: webpagewatcher-rubocop-v1-{{ checksum "Gemfile.lock" }}
-  - &save_rubocop_cache
-    save_cache:
-      key: webpagewatcher-rubocop-v1-{{ checksum "Gemfile.lock" }}
-      paths:
-        - ~/webpagewatcher/tmp/rubocop_cache
+  # - &restore_rubocop_cache
+  #   restore_cache:
+  #     key: webpagewatcher-rubocop-v1-{{ checksum "Gemfile.lock" }}
+  # - &save_rubocop_cache
+  #   save_cache:
+  #     key: webpagewatcher-rubocop-v1-{{ checksum "Gemfile.lock" }}
+  #     paths:
+  #       - ~/webpagewatcher/tmp/rubocop_cache
   - &attach_workspace
     attach_workspace:
       at: ~/webpagewatcher
@@ -69,10 +69,9 @@ jobs:
       - *persist_to_workspace
 
   rspec:
-    resource_class: small
     working_directory: ~/webpagewatcher
     docker:
-      - image: circleciomf/ruby_2_6_2-java_8-node_6_6-browsers
+      - image: circleci/ruby:2.6.2
         environment:
           DISPLAY: ":99"
           CHROME_BIN: "/usr/bin/google-chrome"
