@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'bootstrap-sass'
 gem 'jbuilder'
 gem 'jquery-rails'
+gem 'pg'
 gem 'puma'
 gem 'rails'
 gem 'sass-rails'
@@ -19,7 +20,6 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'rubocop'
   gem 'simplecov'
-  gem 'sqlite3'
 end
 
 group :development do
@@ -40,7 +40,6 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
