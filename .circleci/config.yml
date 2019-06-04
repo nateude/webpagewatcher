@@ -107,14 +107,11 @@ jobs:
   rspec:
     working_directory: ~/webpagewatcher
     docker:
-      - image: circleciomf/ruby_2_6_2-java_8-node_6_6-browsers
-        environment:
-          DISPLAY: ":99"
-          CHROME_BIN: "/usr/bin/google-chrome"
+      - image: circleci/ruby:2.6.2
       - image: redis:3.2.5
       - image: circleci/postgres:9.6
     environment:
-      SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
+      # SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
       CI: true
       CIRCLECI: true
       RAILS_ENV: test
@@ -134,11 +131,11 @@ jobs:
       - run: mkdir -p ~/webpagewatcher/tmp/test-results/rspec
       - run: mkdir -p ~/webpagewatcher/tmp/capybara
       - run: mkdir -p ~/webpagewatcher/coverage
-      - run:
-          name: Set chromedriver version
-          command: |
-            SYSTEM_CHROMEDRIVER_VERSION=$(/usr/local/bin/chromedriver --version | sed 's|.*ChromeDriver \([0-9]*\.[0-9]*\).*|\1|')
-            chromedriver-update $SYSTEM_CHROMEDRIVER_VERSION
+      # - run:
+      #     name: Set chromedriver version
+      #     command: |
+      #       SYSTEM_CHROMEDRIVER_VERSION=$(/usr/local/bin/chromedriver --version | sed 's|.*ChromeDriver \([0-9]*\.[0-9]*\).*|\1|')
+      #       chromedriver-update $SYSTEM_CHROMEDRIVER_VERSION
       - run:
           name: Run rspec in parallel
           command: |
