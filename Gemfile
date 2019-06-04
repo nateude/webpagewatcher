@@ -20,14 +20,14 @@ end
 group :development do
   gem 'brakeman'
   gem 'bundler-audit'
-  gem 'guard-rspec'
   gem 'guard'
+  gem 'guard-rspec'
   gem 'listen'
   gem 'nyan-cat-formatter'
   gem 'pry'
   gem 'rubocop'
-  gem 'spring-watcher-listen'
   gem 'spring'
+  gem 'spring-watcher-listen'
   gem 'web-console'
 end
 
