@@ -2,7 +2,7 @@ defaults: &defaults
   resource_class: small
   working_directory: ~/webpagewatcher
   docker:
-    - image: circleciomf/ruby_2_6_2-java_8-node_6_6-browsers
+    - image: circleci/ruby:2.6.2
 
 shared_job_steps:
   - &restore_checkout_cache
