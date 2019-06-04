@@ -82,8 +82,16 @@ jobs:
   rubocop:
     <<: *defaults
     steps:
+      - *attach_workspace
+      - *restore_checkout_cache
+      - *restore_bundle_cache
+      - *bundle_path
+      - *restore_rubocop_cache
       - run: mkdir -p ~/webpagewatcher/tmp/test-results/rubocop
-      - run: bundle exec rubocop -R -r $(bundle show rubocop-junit-formatter)/lib/rubocop/formatter/junit_formatter.rb --format RuboCop::Formatter::JUnitFormatter --out ~/webpagewatcher/tmp/test-results/rubocop/rubocop.xml
+      - run: bundle exec rubocop --require rubocop-rails --rails -r $(bundle show rubocop-junit-formatter)/lib/rubocop/formatter/junit_formatter.rb --format RuboCop::Formatter::JUnitFormatter --out ~/webpagewatcher/tmp/test-results/rubocop/rubocop.xml
+      - *save_rubocop_cache
+      - *store_test_results
+      - *persist_to_workspace
 
   bundler-audit:
     <<: *defaults
@@ -108,9 +116,9 @@ workflows:
       # - rspec:
       #     requires:
       #       - bundle-install
-      # - rubocop:
-      #     requires:
-      #       - bundle-install
+      - rubocop:
+          requires:
+            - bundle-install
       # - slim-lint:
       #     requires:
       #       - bundle-install

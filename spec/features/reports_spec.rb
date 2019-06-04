@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 feature 'Reports' do
-  before :each do
+  before do
     generate_sample_data
   end
 
   describe 'index' do
-    before :each do
+    before do
       visit reports_path
     end
+
     it 'has accessible page' do
       page_should_exist
     end
@@ -25,9 +26,10 @@ feature 'Reports' do
   end
 
   describe 'subpage' do
-    before :each do
+    before do
       visit report_path(1)
     end
+
     it 'has settings' do
       should_see 'ID 1'
       should_see 'Status_code 200'
@@ -40,7 +42,7 @@ end
 
 feature 'New Report' do
   describe 'Form' do
-    before :each do
+    before do
       website_data
       profile_data
       visit new_report_path

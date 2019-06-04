@@ -47,7 +47,7 @@ module ReportsHelper
     wpt_api_call('results', params)
   end
 
-  def update_all(reports)
+  def run_reports(reports)
     msgs = ''
     reports.each do |report|
       if report.status_code < 200
@@ -68,7 +68,7 @@ module ReportsHelper
     report.update(pramas)
   end
 
-  def report_json_data
-    JSON.parse(@report.data) if @report.data && JSON.json?(@report.data)
+  def report_json_data(data)
+    JSON.parse(data) if data && JSON.json?(data)
   end
 end

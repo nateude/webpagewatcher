@@ -1,8 +1,18 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.5
+  CacheRootDirectory: 'tmp/rubocop_cache/'
+  MaxFilesInCache: 50000
   Exclude:
     - 'db/seeds/*'
+    - 'vendor/**/*'
+    - 'db/schema.rb'
 
 Rails:
   Enabled: true
@@ -13,12 +23,17 @@ Documentation:
 LineLength:
   Enabled: false
 
-Lint/PercentStringArray:
-  Exclude:
-    - 'config/initializers/secure_headers.rb'
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
 
 Metrics/BlockLength:
   Max: 372
+  Exclude:
+    - 'spec/*/*'
+    - 'spec/*/*/*'
 
 Metrics/AbcSize:
   Max: 400
@@ -38,31 +53,48 @@ Metrics/PerceivedComplexity:
 Metrics/ModuleLength:
   Max: 600
 
-Performance/Casecmp:
-  Enabled: false
-
 Style/SignalException:
   EnforcedStyle: semantic
 
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/MultilineArrayBraceLayout:
+Layout/MultilineArrayBraceLayout:
   Enabled: false
 
-Style/MultilineHashBraceLayout:
+Layout/MultilineHashBraceLayout:
   Enabled: false
 
-Style/MultilineMethodCallBraceLayout:
+Layout/MultilineMethodCallBraceLayout:
   Enabled: false
 
-Style/MultilineMethodDefinitionBraceLayout:
+Layout/MultilineMethodDefinitionBraceLayout:
   Enabled: false
 
 Style/NumericLiteralPrefix:
   Enabled: false
 
-Style/VariableNumber:
+Naming/VariableNumber:
   Enabled: false
 
-inherit_from: .rubocop_todo.yml
+Style/MixinUsage:
+  Exclude:
+    - 'bin/setup'
+    - 'bin/update'
+    - 'spec/rails_helper.rb'
+
+Rails/FilePath:
+  Exclude:
+    - 'spec/rails_helper.rb'
+
+RSpec/FilePath:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+Capybara/FeatureMethods:
+  Enabled: false

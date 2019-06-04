@@ -74,10 +74,6 @@ RSpec.configure do |config|
     expect(page.status_code).to eq(200)
   end
 
-  def page_should_be(path)
-    expect(page.current_path).to eql path
-  end
-
   def within_table_row(position)
     row = find_all('table tr')[position]
     within(row) do
