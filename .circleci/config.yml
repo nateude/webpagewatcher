@@ -52,7 +52,7 @@ jobs:
     <<: *defaults
     steps:
       - *attach_workspace
-      - *restore_checkout_cache
+      # - *restore_checkout_cache
       - checkout
       - run: mkdir -p ~/webpagewatcher/tmp/test-results
       - *save_checkout_cache
@@ -62,8 +62,8 @@ jobs:
     <<: *defaults
     steps:
       - *attach_workspace
-      - *restore_checkout_cache
-      - *restore_bundle_cache
+      # - *restore_checkout_cache
+      # - *restore_bundle_cache
       - *bundle_path
       - *save_bundle_cache
       - *persist_to_workspace
@@ -91,8 +91,8 @@ jobs:
     parallelism: 3
     steps:
       - *attach_workspace
-      - *restore_checkout_cache
-      - *restore_bundle_cache
+      # - *restore_checkout_cache
+      # - *restore_bundle_cache
       - *bundle_path
       - run: sudo apt install -y postgresql-client || true
       - run: bundle exec rails db:reset --trace
@@ -156,10 +156,10 @@ jobs:
     <<: *defaults
     steps:
       - *attach_workspace
-      - *restore_checkout_cache
-      - *restore_bundle_cache
+      # - *restore_checkout_cache
+      # - *restore_bundle_cache
       - *bundle_path
-      - *restore_rubocop_cache
+      # - *restore_rubocop_cache
       - run: mkdir -p ~/webpagewatcher/tmp/test-results/rubocop
       - run: bundle exec rubocop -R -r $(bundle show rubocop-junit-formatter)/lib/rubocop/formatter/junit_formatter.rb --format RuboCop::Formatter::JUnitFormatter --out ~/webpagewatcher/tmp/test-results/rubocop/rubocop.xml
       - *save_rubocop_cache
@@ -170,8 +170,8 @@ jobs:
     <<: *defaults
     steps:
       - *attach_workspace
-      - *restore_checkout_cache
-      - *restore_bundle_cache
+      # - *restore_checkout_cache
+      # - *restore_bundle_cache
       - *bundle_path
       - run: bundle exec bundler-audit check --update
       - *store_test_results
