@@ -16,7 +16,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop-junit-formatter'
   gem 'rubocop-rspec'
-  gem 'rubocop-rails'
   gem 'simplecov'
   gem 'sqlite3'
 end
@@ -24,13 +23,14 @@ end
 group :development do
   gem 'brakeman'
   gem 'bundler-audit'
-  gem 'guard'
   gem 'guard-rspec'
+  gem 'guard'
   gem 'listen'
   gem 'nyan-cat-formatter'
   gem 'pry'
-  gem 'spring'
+  gem 'rubocop'
   gem 'spring-watcher-listen'
+  gem 'spring'
   gem 'web-console'
 end
 
