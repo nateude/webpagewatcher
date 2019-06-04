@@ -106,6 +106,6 @@ workflows:
       # - brakeman:
       #     requires:
       #       - bundle-install
-      - bundler-audit:
-          requires:
-            - bundle-install
+      # - bundler-audit:
+      #     requires:
+      #       - bundle-install
