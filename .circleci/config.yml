@@ -161,7 +161,7 @@ jobs:
       # - *restore_rubocop_cache
       - run: mkdir -p ~/webpagewatcher/tmp/test-results/rubocop
       - run: bundle exec rubocop -R -r $(bundle show rubocop-junit-formatter)/lib/rubocop/formatter/junit_formatter.rb --format RuboCop::Formatter::JUnitFormatter --out ~/webpagewatcher/tmp/test-results/rubocop/rubocop.xml
-      - *save_rubocop_cache
+      # - *save_rubocop_cache
       - *store_test_results
       - *persist_to_workspace
 
