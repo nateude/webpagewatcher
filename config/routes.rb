@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Static Page Routes
   root 'dashboard#index'
 
-  get  '/home',     to: 'dashboard#index'
+  get  '/home', to: 'dashboard#index'
 
   resources :websites
   resources :profiles
