@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   get  '/home',     to: 'dashboard#index'
-  # get  '/help',     to: 'static_pages#help'
 
   resources :websites
   resources :profiles
