@@ -1,0 +1,46 @@
+.container
+  .row
+    .col.md-2of3
+      h1 Profile: #{@profile.name}
+
+      h2 Details
+      .table.table-hover
+        .thead
+          .tr
+            .th Key
+            .th Value
+
+        .tbody
+          .tr
+            .td ID
+            .td = @profile.id
+          .tr
+            .td Name
+            .td = @profile.name
+          .tr
+            .td Website
+            .td = @profile.website.name
+          .tr
+            .td WPT Settings
+            .td = @profile.wpt_settings
+          .tr
+            .td WPT Code
+            .td = @profile.wpt_code
+          .tr
+            .td Time Interval
+            .td = @profile.interval
+
+      h2 Associated Reports
+      .table.table-hover
+        .thead
+          .tr
+            .th ID
+            .th Status
+            .th WPT ID
+
+        .tbody
+          - @profile.report.each do |report|
+            a.tr href=report_path(report.id)
+              .td = report.id
+              .td = report.status
+              .td = report.wpt_id

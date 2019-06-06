@@ -1,0 +1,23 @@
+.container
+  .row
+    .col.md-2of3
+      h1 Profiles
+      a.pull-right href=new_profile_path Add New Profile
+
+      .table.table-hover
+        .thead
+          .tr
+            .th ID
+            .th Name
+            .th Website
+            .th URL
+            .th Reports
+
+        .tbody
+          - @profiles.each do |profile|
+            a.tr href=profile_path(profile.id)
+              .td = profile.id
+              .td = profile.name
+              .td = profile.website.name
+              .td = profile.url
+              .td = profile.report.count

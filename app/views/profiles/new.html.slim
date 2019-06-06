@@ -1,0 +1,21 @@
+.container
+  .row
+    .col.md-2of3
+      h1 Add New Profiles
+
+      = form_for(@profile, html: {novalidate: true}) do |f|
+
+        .field-wrap
+          = f.label :name
+          = f.text_field :name , class: 'form-control'
+
+        .field-wrap
+          = f.label :website_id
+          = f.collection_select(:website_id, Website.all, :id, :name, {:prompt => ' -- Select a Website -- '}, {:class=>'form-control'})
+
+        .field-wrap
+          = f.label :url
+          = f.text_field :url , class: 'form-control'
+
+        .field-wrap
+          = f.submit 'Add New Profile', class: 'btn btn-primary'
