@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   # Static Page Routes
-  root 'static_pages#home'
+  root 'dashboard#index'
 
-  get  '/home',     to: 'static_pages#home'
-  get  '/help',     to: 'static_pages#help'
+  get  '/home',     to: 'dashboard#index'
+  # get  '/help',     to: 'static_pages#help'
 
   resources :websites
   resources :profiles
