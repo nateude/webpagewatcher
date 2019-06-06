@@ -1,0 +1,16 @@
+.container
+  .row
+    .col.md-2of3
+      h1 Add New Reports
+
+      = form_for(@report) do |f|
+        .field-wrap
+          = f.label :website_id
+          = f.collection_select(:website_id, Website.all, :id, :name, {:prompt => ' -- Select a Website -- '}, {:class=>'form-control'})
+
+        .field-wrap
+          = f.label :profile_id
+          = f.collection_select(:profile_id, Profile.all, :id, :name, {:prompt => ' -- Select a Profile -- '}, {:class=>'form-control'})
+
+        .field-wrap
+          = f.submit "Start Report", class: "btn btn-primary"

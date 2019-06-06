@@ -1,0 +1,83 @@
+.container
+  .row
+    .col.md-2of3
+      h1 Report: #{@report.wpt_id}
+
+      .table.table-hover
+        .thead
+          .tr
+              .th Key
+              .th Value
+
+        .tbody
+          .tr
+            .td ID
+            .td = @report.id
+          .tr
+            .td Status
+            .td = @report.status
+          .tr
+            .td Status_code
+            .td = @report.status_code
+          .tr
+            .td Website
+            .td: a href=website_path(@report.website.id) = @report.website.name
+          .tr
+            .td Profile
+            .td: a href=profile_path(@report.profile.id) = @report.profile.name
+          .tr
+            .td WPT ID
+            .td = @report.wpt_id
+          .tr
+            .td WPT Test Init
+            .td: a href="http://www.webpagetest.org/runtest.php?f=json&amp;test=#{@report.profile.url}&amp;test=#{WebPageTestConfig.api_key}" target="_blank" rel="noopener" http://www.webpagetest.org/runtest.php?f=json&amp;test=#{@report.profile.url}&amp;test=#{WebPageTestConfig.api_key}
+          .tr
+            .td WPT Test Status
+            .td: a href="http://www.webpagetest.org/testStatus.php?f=json&amp;test=#{@report.wpt_id}" target="_blank" rel="noopener" http://www.webpagetest.org/testStatus.php?f=json&amp;test=#{@report.wpt_id}
+          .tr
+            .td WPT JSON Respose
+            .td: a href="http://www.webpagetest.org/results.php?f=json&amp;test=#{@report.wpt_id}" target="_blank" rel="noopener" http://www.webpagetest.org/results.php?f=json&amp;test=#{@report.wpt_id}
+          .tr
+            .td Stored JSON Respose
+            .td: a href=report_json_path View Raw JSON Data
+
+      - rjd = report_json_data(@report.data)
+      - if !rjd.nil?
+          h2 Results Overview
+          .table.table-hover
+            .thead
+              .tr
+                  .th View
+                  .th loadTime
+                  .th TTFB
+                  .th bytesOut
+                  .th bytesOutDoc
+                  .th bytesIn
+                  .th bytesInDoc
+                  .th connections
+                  .th requestsFull
+                  .th requestsDoc
+                  .th render
+                  .th fullyLoaded
+                  .th domElements
+
+            .tbody
+              - runs = rjd['data']['runs']
+              - runs.each do |run|
+                - views = rjd['data']['runs'][run[0]]
+                - views.each do |view|
+                  .tr
+                    .td = run[0]
+                    .td = view[0]
+                    .td = view[1]['loadTime']
+                    .td = view[1]['TTFB']
+                    .td = view[1]['bytesOut']
+                    .td = view[1]['bytesOutDoc']
+                    .td = view[1]['bytesIn']
+                    .td = view[1]['bytesInDoc']
+                    .td = view[1]['connections']
+                    .td = view[1]['requestsFull']
+                    .td = view[1]['requestsDoc']
+                    .td = view[1]['render']
+                    .td = view[1]['fullyLoaded']
+                    .td = view[1]['domElements']

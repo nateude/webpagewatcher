@@ -1,0 +1,76 @@
+@mixin calc-grid-column($index, $limit, $class, $type)  {
+  @if ($type == width) and ($index > 0) and ($limit > 0) and ($index < $limit) {
+    $width: percentage(100 / $limit * $index / 100);
+    @if(index($current-list, $width) == null) {
+      $current-list: append($current-list, $width) !global;
+      .#{$class}-#{$index}of#{$limit} {
+        width: $width;
+      }
+    }
+  }
+  @if ($type == push) and ($index > 0) and ($limit > 0) and ($index < $limit) {
+    $width: percentage(100 / $limit * $index / 100);
+    @if(index($current-list, $width) == null) {
+      $current-list: append($current-list, $width) !global;
+      .#{$class}-push-#{$index}of#{$limit} {
+        left: $width;
+      }
+    }
+  }
+  @if ($type == pull) and ($index > 0) and ($limit > 0) and ($index < $limit) {
+    $width: percentage(100 / $limit * $index / 100);
+    @if(index($current-list, $width) == null) {
+      $current-list: append($current-list, $width) !global;
+      .#{$class}-pull-#{$index}of#{$limit} {
+        right: $width;
+      }
+    }
+  }
+  @if ($type == offset) and ($index > 0) and ($limit > 0) and ($index < $limit) {
+    $width: percentage(100 / $limit * $index / 100);
+    @if(index($current-list, $width) == null) {
+      $current-list: append($current-list, $width) !global;
+      .#{$class}-offset-#{$index}of#{$limit} {
+        margin-left: $width;
+      }
+    }
+  }
+
+}
+
+@mixin loop-grid-columns($columns, $class, $type) {
+  .#{$class}-1of1 {
+    width: 100%;
+  }
+  @for $i from 0 through $columns {
+    @for $j from 0 through $columns {
+      $current-list: (0,) !global;
+      @include calc-grid-column($i, $j, $class, $type);
+    }
+  }
+}
+
+@mixin loop-spaced($size, $count) {
+  .#{$size}-no-spaced {
+    margin-bottom: 0;
+  }
+  .#{$size}-spaced {
+    margin-bottom: $spacing;
+  }
+  @for $i from 2 through $count {
+    .#{$size}-spaced-#{$i}x {
+      margin-bottom: $spacing * $i;
+    }
+  }
+}
+
+@mixin build-grid($size) {
+  @include loop-grid-columns($columns, $size, width);
+  @include loop-grid-columns($columns, $size, push);
+  @include loop-grid-columns($columns, $size, pull);
+  @include loop-grid-columns($columns, $size, offset);
+  .#{$size}-eq-height {
+    display: flex;
+  }
+  @include loop-spaced($size, $spaced-count);
+}

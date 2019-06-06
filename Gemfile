@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'bootstrap-sass'
 gem 'hierarchical_config'
 gem 'jbuilder'
 gem 'jquery-rails'
+gem 'logstash-logger'
 gem 'pg'
 gem 'puma'
 gem 'rails'
-gem 'sass-rails'
-gem 'turbolinks'
+gem 'sassc-rails'
+gem 'slim-rails'
 gem 'uglifier'
 
 group :development, :test do
@@ -21,6 +21,7 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'rubocop'
   gem 'simplecov'
+  gem 'slim_lint'
 end
 
 group :development do

@@ -1,0 +1,121 @@
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+div {
+  display: block;
+}
+
+section {
+  min-height: 100px;
+  width: 100%;
+}
+
+@import "globals/grid_mixins";
+
+.container {
+  @extend .clearfix;
+  margin: 0 auto;
+  width: auto;
+  padding-left: $spacing;
+  padding-right: $spacing;
+  @media (min-width: $screen-sm-min) {
+    //width: 540px;
+  }
+  @media (min-width: $screen-md-min) {
+    max-width:1200px;
+  }
+}
+
+.page-wrapper {
+  .container:first-child {
+    padding-top: $spacing * 2;
+  }
+}
+
+.row {
+  @extend .clearfix;
+  margin-left: $spacing * -1;
+  margin-right: $spacing * -1;
+  position: relative;
+  min-height: 1px;
+  &.spaced {
+    margin-bottom: $spacing;
+  }
+}
+.col {
+  padding: 0 $spacing;
+  float: left;
+  width: 100%;
+  flex: 0 0 auto;
+  &.center {
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+  }
+  &[class*=-pull-], &[class*=-push-] {
+    position: relative;
+  }
+  &.no-padding {
+    padding: 0;
+  }
+  &.full-height {
+    position: relative;
+    min-height: 100vh;
+  }
+  &.pull-right {
+    float: right;
+  }
+}
+.flex-height {
+  position: relative;
+  .full-height {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    @media only screen and (min-width: $screen-md-min) {
+      position: absolute;
+    }
+  }
+  .half-height {
+    height: 50%;
+  }
+}
+@include build-grid(xs);
+
+@media only screen and (min-width: $screen-sm-min) {
+  @include build-grid(sm);
+}
+
+@media only screen and (min-width: $screen-md-min) {
+  @include build-grid(md);
+}
+
+@media only screen and (min-width: $screen-lg-min) {
+  @include build-grid(lg);
+}
+@media only screen and (min-width: $screen-xl-min) {
+  @include build-grid(xl);
+}
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}

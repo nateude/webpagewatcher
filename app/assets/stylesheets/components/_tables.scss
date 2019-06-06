@@ -1,0 +1,103 @@
+.table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 20px;
+  display: table;
+  word-break: break-all;
+
+  &.table-fixed {
+    table-layout: fixed;
+  }
+}
+
+.thead, .tbody {
+  display:table-row-group;
+}
+
+.table .tr {
+  width: 100%;
+  display: table-row;
+  &.full-width {
+    width: 100%;
+  }
+}
+
+.table .th,
+.table .td {
+  display: table-cell;
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid $graydk-lt;
+
+  &.lg-cell {
+    width: 200px;
+  }
+  &.md-cell {
+    width: 100px;
+  }
+  &.sm-cell {
+    width: 50px;
+  }
+  &.icon-cell {
+    width: 31px;
+  }
+  &.xs-cell {
+    width: 25px;
+  }
+}
+
+.table .th {
+  font-weight: $bold;
+  font-size: .9em;
+  background-color: $graydk-lt;
+}
+
+.table .thead .th {
+  vertical-align: bottom;
+}
+
+.table .tbody + .tbody {
+  border-top: 2px solid $graydk-lt;
+}
+
+.table-striped .tbody > .tr:nth-child(odd) > .td,
+.table-striped .tbody > .tr:nth-child(odd) > .th {
+  background-color: #f9f9f9;
+}
+
+.tr.highlight > .td {
+  background-color: $graydk-lt;
+}
+.tr.error {
+    a {
+      color: $brand-warning;
+    }
+   &:hover, & > .td {
+    border-top: 1px solid $brand-warning;
+    background-color: rgba($brand-warning, 0.1);
+  }
+}
+
+.tbody a.tr:hover > .td {
+  background-color: $primary-lt;
+}
+
+.table-hover .tbody .tr:hover > .td {
+  background-color: $graydk-lt;
+}
+
+.table a.tr {
+  color: $graydk;
+}
+.table a.tr.error {
+  color: $red;
+}
+
+.archive-table {
+
+}

@@ -1,0 +1,24 @@
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline;
+  }
+  &.top-nav {
+    a {
+      padding: $base-spacing $base-spacing * 0.5;
+      color: white;
+      background-color: transparent;
+      &:hover {
+        background: $graydk;
+        color: white;
+      }
+    }
+  }
+}
