@@ -1,0 +1,17 @@
+.container
+  .row
+    .col.md-2of3
+      h1 Add New Website
+
+      = form_for(@website, html: {novalidate: true}) do |f|
+
+        .field-wrap
+          = f.label :name
+          = f.text_field :name, required: true, class: 'form-control'
+
+        .field-wrap
+          = f.label :url
+          = f.text_field :url, required: true, class: 'form-control'
+
+        .field-wrap
+          = f.submit 'Add New Site', class: 'btn btn-primary'

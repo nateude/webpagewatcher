@@ -1,0 +1,23 @@
+.container
+  .row
+    .col.md-2of3
+      h1 Websties
+      a.pull-right href=new_website_path Add New Website
+
+      .table.table-hover
+        .thead
+          .tr
+            .th ID
+            .th Name
+            .th URL
+            .th Profiles
+            .th Reports
+
+        .tbody
+          - @websites.each do |website|
+            a.tr href=website_path(website.id)
+              .td = website.id
+              .td = website.name
+              .td = website.url
+              .td = website.profile.count
+              .td xx

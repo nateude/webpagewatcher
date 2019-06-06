@@ -1,0 +1,89 @@
+button {
+  border: none;
+}
+
+.btn {
+  cursor: pointer;
+  font-family: $button;
+  font-size: 1.5em;
+  transition: all 0.1s ease-in-out;
+  background-color: $primary;
+  color: white;
+  display: inline-block;
+  margin: 0;
+  padding: $base-spacing * 0.75;
+  font-weight: $bold;
+  outline: none;
+  font-size: 1em;
+  line-height: 1em;
+  border: 1px solid $primary-dk;
+  border-bottom: 2px solid $primary-dk;
+
+  &:hover {
+    color: $white;
+    text-decoration: none;
+    background-color: $primary-dk;
+  }
+
+  .fa, .far, .fas {
+    margin-right: $base-spacing * 0.75;
+  }
+
+  &.btn-secondary {
+    background-color: white;
+    color: $blue;
+    border: 1px solid $blue;
+    border-bottom: 2px solid $primary-dk;
+    &:hover {
+      background-color: $primary-dk;
+      color: white;
+    }
+  }
+
+  &.btn-link {
+    background-color: transparent;
+    color: $blue;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    font-weight: normal;
+    border: none;
+    &:hover {
+      color: $blue-dk;
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  &.btn-full {
+    width: 100%;
+    padding: $base-spacing * 0.75;
+  }
+
+  &.table-action {
+    color: rgba($graydk, 0.3);
+  }
+
+  &.action-success:hover {
+    color: $brand-success;
+  }
+
+  &.action-warning:hover {
+    color: $brand-warning;
+  }
+}
+.btn-group {
+  margin-top: $base-spacing;
+
+  .btn + .btn {
+    margin-left: $base-spacing;
+  }
+  &.vertical {
+    .btn + .btn {
+      margin-left: 0;
+      margin-top: $base-spacing;
+    }
+  }
+}
