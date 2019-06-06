@@ -1,0 +1,27 @@
+.container
+  .row
+    .col.md-2of3
+      h1 Reports
+      a.pull-right href=new_report_path Add New Report
+
+      .table.table-hover
+        .thead
+          .tr
+            .th ID
+            .th Status
+            .th Status Code
+            .th Website
+            .th Profile
+            .th WPT ID
+
+        .tbody
+          - @reports.each do |report|
+            - website = Website.find(report.website_id)
+            - profile = Profile.find(report.profile_id)
+            a.tr href=report_path(report.id)
+              .td = report.id
+              .td = report.status_code
+              .td = report.status
+              .td = website.name
+              .td = profile.name
+              .td = report.wpt_id
