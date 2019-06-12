@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 describe Profile do
-
-  let (:website_attrs) { {name: 'sample', url: 'http://www.sample.com/'} }
-  let (:website) { Website.create(website_attrs) }
-  let (:profile_attrs) { {name: 'sample', website_id: website.id, wpt_settings: 'empty', wpt_code: 'empty', interval: '100', url: 'http://www.sample.com'} }
+  let(:website_attrs) { { name: 'sample', url: 'http://www.sample.com/' } }
+  let(:website) { Website.create(website_attrs) }
+  let(:profile_attrs) { { name: 'sample', website_id: website.id, wpt_settings: 'empty', wpt_code: 'empty', interval: '100', url: 'http://www.sample.com' } }
 
   it 'is valid with name, website id, settings, code, interval and url' do
     profile = described_class.new(profile_attrs)

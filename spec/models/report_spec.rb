@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Report do
-  let (:website) { Website.create(name: 'sample', url: 'http://www.sample.com/') }
-  let (:profile) { Profile.create(name: 'sample', website_id: website.id, wpt_settings: 'empty', wpt_code: 'empty', interval: '100', url: 'http://www.sample.com') }
+  let(:website) { Website.create(name: 'sample', url: 'http://www.sample.com/') }
+  let(:profile) { Profile.create(name: 'sample', website_id: website.id, wpt_settings: 'empty', wpt_code: 'empty', interval: '100', url: 'http://www.sample.com') }
 
   it 'is valid with website_id, profile_id, wpt_id, status, data, status_code' do
     report = described_class.new(website_id: website.id, profile_id: profile.id, wpt_id: '1', status: '100', data: 'null', status_code: '1')
