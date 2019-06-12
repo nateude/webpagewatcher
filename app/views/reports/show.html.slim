@@ -29,18 +29,42 @@
             .td WPT ID
             .td = @report.wpt_id
           .tr
-            .td WPT Test Init
-            .td: a href="http://www.webpagetest.org/runtest.php?f=json&test=#{@report.profile.url}&test=#{WebPageTestConfig.api_key}" target="_blank" rel="noopener" http://www.webpagetest.org/runtest.php?f=json&test=#{@report.profile.url}&test=#{WebPageTestConfig.api_key}
-          .tr
-            .td WPT Test Status
-            .td: a href="http://www.webpagetest.org/testStatus.php?f=json&test=#{@report.wpt_id}" target="_blank" rel="noopener" http://www.webpagetest.org/testStatus.php?f=json&test=#{@report.wpt_id}
-          .tr
-            .td WPT JSON Respose
-            .td: a href="http://www.webpagetest.org/results.php?f=json&test=#{@report.wpt_id}" target="_blank" rel="noopener" http://www.webpagetest.org/results.php?f=json&test=#{@report.wpt_id}
-          .tr
-            .td Stored JSON Respose
-            .td: a href=report_json_path View Raw JSON Data
+            .td Data Stored
+            .td = !@report.data.nil?
 
-.container.hidden
-  pre.raw-response
-    code == pretty_print_json(@report.data)
+- if @report.data
+  .container
+    .table
+      .thead
+        .tr
+          .th load_time
+          .th ttfb
+          .th bytes_out
+          .th bytes_out_doc
+          .th bytes_in
+          .th bytes_in_doc
+          .th connections
+          .th requests_full
+          .th requests_doc
+          .th render
+          .th fully_loaded
+          .th dom_ements
+      .tbody
+        .tr
+          .td = @report.load_time
+          .td = @report.ttfb
+          .td = @report.bytes_out
+          .td = @report.bytes_out_doc
+          .td = @report.bytes_in
+          .td = @report.bytes_in_doc
+          .td = @report.connections
+          .td = @report.requests_full
+          .td = @report.requests_doc
+          .td = @report.render
+          .td = @report.fully_loaded
+          .td = @report.dom_ements
+
+
+  .container.hidden
+    pre.raw-response
+      code == pretty_print_json(@report.data)

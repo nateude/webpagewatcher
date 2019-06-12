@@ -12,7 +12,7 @@ class ReportsController < ApplicationController
   def show
     @report = Report.find(params[:id])
     CheckTestStatus.new(report: @report).update unless @report.status_code == 200
-    GetTestResults.new(report: @report).update if @report.data.nil?
+    GetTestResults.new(report: @report).update if @report.data.nil? && @report.status_code == 200
   end
 
   def update; end

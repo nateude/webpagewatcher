@@ -39,18 +39,10 @@ class InitTest
   end
 
   def status_code
-    if wpt_response['statusCode'] == 200
-      102
-    else
-      wpt_response['statusCode']
-    end
+    wpt_response['statusCode'] == 200 ? 102 : wpt_response['statusCode']
   end
 
   def status
-    if wpt_response['statusCode'] == 200
-      'Test Initiated'
-    else
-      wpt_response['statusCode']
-    end
+    wpt_response['statusCode'] == 200 ? 'Test Initiated' : wpt_response['statusCode']
   end
 end
