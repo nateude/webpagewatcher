@@ -3,6 +3,14 @@
     .col.md-2of3
       h1 Profile: #{@profile.name}
 
+      form class="new_report" id="new_report" action="/reports" accept-charset="UTF-8" method="post"
+        input name="utf8" type="hidden" value="✓"
+        input type="hidden" name="authenticity_token" value=form_authenticity_token
+        input type="hidden" name="report[website_id]" value=@profile.website_id
+        input type="hidden" name="report[profile_id]" value=@profile.id
+
+        input.btn-primary type="submit" value="Run Report"
+
       h2 Details
       .table.table-hover
         .thead
@@ -30,7 +38,7 @@
             .td Time Interval
             .td = @profile.interval
 
-      h2 Associated Reports
+      h2 Reports
       .table.table-hover
         .thead
           .tr

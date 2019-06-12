@@ -41,43 +41,6 @@
             .td Stored JSON Respose
             .td: a href=report_json_path View Raw JSON Data
 
-      - rjd = report_json_data(@report.data)
-      - if !rjd.nil?
-          h2 Results Overview
-          .table.table-hover
-            .thead
-              .tr
-                  .th View
-                  .th loadTime
-                  .th TTFB
-                  .th bytesOut
-                  .th bytesOutDoc
-                  .th bytesIn
-                  .th bytesInDoc
-                  .th connections
-                  .th requestsFull
-                  .th requestsDoc
-                  .th render
-                  .th fullyLoaded
-                  .th domElements
-
-            .tbody
-              - runs = rjd['data']['runs']
-              - runs.each do |run|
-                - views = rjd['data']['runs'][run[0]]
-                - views.each do |view|
-                  .tr
-                    .td = run[0]
-                    .td = view[0]
-                    .td = view[1]['loadTime']
-                    .td = view[1]['TTFB']
-                    .td = view[1]['bytesOut']
-                    .td = view[1]['bytesOutDoc']
-                    .td = view[1]['bytesIn']
-                    .td = view[1]['bytesInDoc']
-                    .td = view[1]['connections']
-                    .td = view[1]['requestsFull']
-                    .td = view[1]['requestsDoc']
-                    .td = view[1]['render']
-                    .td = view[1]['fullyLoaded']
-                    .td = view[1]['domElements']
+.container.hidden
+  pre.raw-response
+    code == pretty_print_json(@report.data)

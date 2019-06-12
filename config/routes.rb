@@ -5,8 +5,13 @@ Rails.application.routes.draw do
   get  '/home', to: 'dashboard#index'
 
   resources :websites
-  resources :profiles
+  resources :profiles do
+    collection do
+      # get '/:id/init', to: 'webpagetest_api#init', as: :run_test
+    end
+  end
   resources :reports
+
 
   get 'reports/:id/json', to: 'reports#json', defaults: { format: 'json' }, as: :report_json
 
