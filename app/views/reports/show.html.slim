@@ -30,13 +30,13 @@
             .td = @report.wpt_id
           .tr
             .td WPT Test Init
-            .td: a href="http://www.webpagetest.org/runtest.php?f=json&amp;test=#{@report.profile.url}&amp;test=#{WebPageTestConfig.api_key}" target="_blank" rel="noopener" http://www.webpagetest.org/runtest.php?f=json&amp;test=#{@report.profile.url}&amp;test=#{WebPageTestConfig.api_key}
+            .td: a href="http://www.webpagetest.org/runtest.php?f=json&test=#{@report.profile.url}&test=#{WebPageTestConfig.api_key}" target="_blank" rel="noopener" http://www.webpagetest.org/runtest.php?f=json&test=#{@report.profile.url}&test=#{WebPageTestConfig.api_key}
           .tr
             .td WPT Test Status
-            .td: a href="http://www.webpagetest.org/testStatus.php?f=json&amp;test=#{@report.wpt_id}" target="_blank" rel="noopener" http://www.webpagetest.org/testStatus.php?f=json&amp;test=#{@report.wpt_id}
+            .td: a href="http://www.webpagetest.org/testStatus.php?f=json&test=#{@report.wpt_id}" target="_blank" rel="noopener" http://www.webpagetest.org/testStatus.php?f=json&test=#{@report.wpt_id}
           .tr
             .td WPT JSON Respose
-            .td: a href="http://www.webpagetest.org/results.php?f=json&amp;test=#{@report.wpt_id}" target="_blank" rel="noopener" http://www.webpagetest.org/results.php?f=json&amp;test=#{@report.wpt_id}
+            .td: a href="http://www.webpagetest.org/results.php?f=json&test=#{@report.wpt_id}" target="_blank" rel="noopener" http://www.webpagetest.org/results.php?f=json&test=#{@report.wpt_id}
           .tr
             .td Stored JSON Respose
             .td: a href=report_json_path View Raw JSON Data
