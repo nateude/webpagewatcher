@@ -1,5 +1,4 @@
 class GetTestResults
-
   attr_reader :report
 
   def initialize(report:)

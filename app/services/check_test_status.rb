@@ -1,5 +1,4 @@
 class CheckTestStatus
-
   attr_reader :report
 
   def initialize(report:)

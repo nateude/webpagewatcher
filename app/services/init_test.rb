@@ -1,5 +1,4 @@
 class InitTest
-
   attr_reader :url
 
   def initialize(url:)
