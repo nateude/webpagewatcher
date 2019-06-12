@@ -54,7 +54,7 @@
         .th dom_ements
 
     .tbody
-      - @profile.report.each do |report|
+      - @profile.report.order(:updated_at).reverse.each do |report|
         a.tr href=report_path(report.id)
           .td = report.id
           .td = report.status_code
