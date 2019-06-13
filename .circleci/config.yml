@@ -149,13 +149,13 @@ jobs:
                               --out ~/webpagewatcher/tmp/test-results/rspec/rspec.xml \
                               ${TESTFILES}
             echo $?
-      - run:
-          name: Run specs that failed
-          command: |
-            bundle exec rspec --only-failures \
-                              --format progress \
-                              --format RspecJunitFormatter \
-                              --out ~/frontend/tmp/test-results/rspec/rspec.xml
+      # - run:
+      #     name: Run specs that failed
+      #     command: |
+      #       bundle exec rspec --only-failures \
+      #                         --format progress \
+      #                         --format RspecJunitFormatter \
+      #                         --out ~/frontend/tmp/test-results/rspec/rspec.xml
           when: always
       - store_test_results:
           path: ~/webpagewatcher/tmp/test-results/rspec
