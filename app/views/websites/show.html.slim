@@ -1,10 +1,10 @@
 .container
+  h1.heading-1 Website: #{@website.name}
   .row
     .col.md-2of3
-      h1 Website: #{@website.name}
 
       .spaced-2x
-        h2 Details
+        h2.heading-2 Details
         .table.table-hover
           .thead
             .tr
@@ -22,25 +22,63 @@
               .td URL
               .td = @website.url
 
-  .container
-    h2 Associated Profiles
-    .table.table-hover
-      .thead
-        .tr
-          .th ID
-          .th Name
-          .th WPT Settings
-          .th WPT Code
-          .th Time Interval (HRS)
+      .spaced-2x
+        h2.heading-2 Associated Profiles
+        .table.table-hover
+          .thead
+            .tr
+              .th ID
+              .th Name
+              .th WPT Settings
+              .th WPT Code
+              .th Time Interval (HRS)
 
-      tbody
-        - @website.profile.each do |profile|
-          a.tr href=profile_path(profile.id)
-            .td = profile.id
-            .td = profile.name
-            .td = profile.wpt_settings
-            .td = profile.wpt_code
-            .td = profile.interval
+          tbody
+            - @website.profile.each do |profile|
+              a.tr href=profile_path(profile.id)
+                .td = profile.id
+                .td = profile.name
+                .td = profile.wpt_settings
+                .td = profile.wpt_code
+                .td = profile.interval
+
+    .col.md-1of3
+      .card.form-card.spaced-2x
+        .card-header
+          h2.heading-2 Add Profile
+        .card-body
+          .form-wrapper
+            = form_for(@profile, html: {novalidate: true}) do |f|
+
+              =f.hidden_field :website_id, value: @website.id
+
+              .field-wrap
+                = f.label :name
+                = f.text_field :name , class: 'form-control'
+
+              .field-wrap
+                = f.label :url
+                = f.text_field :url , class: 'form-control'
+
+              .field-wrap
+                = f.submit 'Add', class: 'btn btn-primary'
+
+      .card.form-card
+        .card-header
+          h2.heading-2 Run Report
+        .card-body
+          .form-wrapper
+            = form_for(@report, html: {novalidate: true}) do |f|
+
+              =f.hidden_field :website_id, value: @website.id
+
+              .field-wrap
+                = f.label :website_id
+                = f.collection_select(:profile_id, Profile.where(website: @website).all, :id, :name, {:prompt => ' -- Select a Profile -- '}, {:class=>'form-control'})
+
+              .field-wrap
+                = f.submit 'Run', class: 'btn btn-primary'
+
 
   .container
     h2 Most Recent Associated Reports

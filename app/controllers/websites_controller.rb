@@ -1,10 +1,15 @@
 class WebsitesController < ApplicationController
+  include ApplicationHelper
+
   def index
     @websites = Website.all
+    @website = Website.new
   end
 
   def show
     @website = Website.find(params[:id])
+    @profile = Profile.new
+    @report = Report.new
   end
 
   def new

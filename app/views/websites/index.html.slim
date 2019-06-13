@@ -1,9 +1,8 @@
 .container
+  h1.heading-1 Websties
+
   .row
     .col.md-2of3
-      h1 Websties
-      a.pull-right href=new_website_path Add New Website
-
       .table.table-hover
         .thead
           .tr
@@ -21,3 +20,19 @@
               .td = website.url
               .td = website.profile.count
               .td = website.report.count
+
+    .col.md-1of3
+      .card.form-card
+        .card-header
+          h2.heading-2 Add Website
+        .card-body
+          .form-wrapper
+            = form_for(@website, html: {novalidate: true}) do |f|
+              .field-wrap
+                = f.label :name
+                = f.text_field :name, required: true, class: 'form-control'
+              .field-wrap
+                = f.label :url
+                = f.text_field :url, required: true, class: 'form-control'
+              .field-wrap
+                = f.submit 'Add', class: 'btn btn-primary'

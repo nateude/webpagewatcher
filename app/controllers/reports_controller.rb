@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  include ApplicationHelper
   include ReportsHelper
 
   def index
