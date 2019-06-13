@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   include ApplicationHelper
-  
+
   def index
     @profiles = Profile.all
   end
