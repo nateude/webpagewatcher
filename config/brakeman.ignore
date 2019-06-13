@@ -1,0 +1,37 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "348264c27ffcf2162e2732f8871a92f90a928ddf38f9cc19c7d598104f46050f",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/reports/show.html.slim",
+      "line": 70,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "pretty_print_json(Report.find(params[:id]).data)",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "ReportsController",
+          "method": "show",
+          "line": 16,
+          "file": "app/controllers/reports_controller.rb",
+          "rendered": {
+            "name": "reports/show",
+            "file": "app/views/reports/show.html.slim"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "reports/show"
+      },
+      "user_input": "Report.find(params[:id]).data",
+      "confidence": "Weak",
+      "note": ""
+    }
+  ],
+  "updated": "2019-06-13 09:02:16 -0500",
+  "brakeman_version": "4.5.1"
+}

@@ -2,17 +2,20 @@
   .row
     .col.md-2of3
       h1 Reports
-      a.pull-right href=new_report_path Add New Report
+      a.pull-right href=new_report_path Run Report
 
       .table.table-hover
         .thead
           .tr
             .th ID
             .th Status
-            .th Status Code
             .th Website
             .th Profile
-            .th WPT ID
+            .th load_time
+            .th ttfb
+            .th connections
+            .th render
+            .th fully_loaded
 
         .tbody
           - @reports.each do |report|
@@ -21,7 +24,10 @@
             a.tr href=report_path(report.id)
               .td = report.id
               .td = report.status_code
-              .td = report.status
               .td = website.name
               .td = profile.name
-              .td = report.wpt_id
+              .td = report.load_time
+              .td = report.ttfb
+              .td = report.connections
+              .td = report.render
+              .td = report.fully_loaded

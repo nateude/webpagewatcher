@@ -29,18 +29,39 @@
           .tr
             .td Time Interval
             .td = @profile.interval
+    .col.md-1of3
+      form class="new_report" id="new_report" action="/reports" accept-charset="UTF-8" method="post"
+        input name="utf8" type="hidden" value="✓"
+        input type="hidden" name="authenticity_token" value=form_authenticity_token
+        input type="hidden" name="report[website_id]" value=@profile.website_id
+        input type="hidden" name="report[profile_id]" value=@profile.id
 
-      h2 Associated Reports
-      .table.table-hover
-        .thead
-          .tr
-            .th ID
-            .th Status
-            .th WPT ID
+        input.btn-primary type="submit" value="Run Report"
 
-        .tbody
-          - @profile.report.each do |report|
-            a.tr href=report_path(report.id)
-              .td = report.id
-              .td = report.status
-              .td = report.wpt_id
+.container
+  h2 Reports
+  .table.table-hover
+    .thead
+      .tr
+        .th ID
+        .th Status
+        .th load_time
+        .th ttfb
+        .th connections
+        .th requests_full
+        .th render
+        .th fully_loaded
+        .th dom_ements
+
+    .tbody
+      - @profile.report.order(:updated_at).reverse.each do |report|
+        a.tr href=report_path(report.id)
+          .td = report.id
+          .td = report.status_code
+          .td = report.load_time
+          .td = report.ttfb
+          .td = report.connections
+          .td = report.requests_full
+          .td = report.render
+          .td = report.fully_loaded
+          .td = report.dom_ements
