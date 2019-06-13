@@ -10,7 +10,6 @@ class GetTestResults
   end
 
   def update
-    binding.pry
     first_view = wpt_response['data']['runs']['1']['firstView']
     @report.update!(
       data: wpt_response['data'],
