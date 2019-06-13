@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  include ApplicationHelper
+  
   def index
     @profiles = Profile.all
   end
@@ -17,6 +19,7 @@ class ProfilesController < ApplicationController
       flash[:success] = 'New profile created: ' + @profile.name
       redirect_to profiles_path
     else
+      handle_errors(@profile)
       render 'new'
     end
   end
