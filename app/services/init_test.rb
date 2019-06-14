@@ -1,12 +1,8 @@
 class InitTest
-  attr_reader :url
+  attr_reader :run
 
   def initialize(url:)
     @url = url
-  end
-
-  def config
-    WebPageTestConfig
   end
 
   def run
@@ -15,6 +11,12 @@ class InitTest
       status: status,
       status_code: status_code
     }
+  end
+
+  private
+
+  def config
+    WebPageTestConfig
   end
 
   def query_params
