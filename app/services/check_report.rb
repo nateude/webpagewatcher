@@ -1,5 +1,4 @@
 class CheckReport
-
   def initialize(report:)
     @report = report
   end
@@ -14,12 +13,12 @@ class CheckReport
     @check_test_status ||= GetTestStatus.new(wpt_id: @report.wpt_id).call
   end
 
-  def get_test_results
-    @get_test_results ||= GetTestResults.new(wpt_id: @report.wpt_id).call
+  def test_results
+    @test_results ||= GetTestResults.new(wpt_id: @report.wpt_id).call
   end
 
   def complete_status_codes
-    [200,400,404]
+    [200, 400, 404]
   end
 
   def test_complete?(status_code)
@@ -37,18 +36,14 @@ class CheckReport
       data: @report.data
     }
 
-    if test_complete?(params[:status_code]) && data?(params[:data])
-      return false
-    end
+    return false if test_complete?(params[:status_code]) && data?(params[:data])
 
     unless test_complete?(params[:status_code])
       params[:status_code] = check_test_status[:status_code]
       params[:status] = check_test_status[:status]
     end
 
-    if test_complete?(params[:status_code]) && !data?(params[:data])
-      params = params.merge(get_test_results)
-    end
+    params = params.merge(test_results) if test_complete?(params[:status_code]) && !data?(params[:data])
 
     params
   end

@@ -1,5 +1,4 @@
 class GetTestStatus
-
   def initialize(wpt_id:)
     @wpt_id = wpt_id
   end
