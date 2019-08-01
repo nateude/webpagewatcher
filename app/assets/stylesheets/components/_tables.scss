@@ -82,6 +82,15 @@
     background-color: rgba($brand-warning, 0.1);
   }
 }
+.tr.pending {
+    a {
+      color: $brand-info;
+    }
+   &:hover, & > .td {
+    border-top: 1px solid $brand-info;
+    background-color: rgba($brand-info, 0.1);
+  }
+}
 
 .tbody a.tr:hover > .td {
   background-color: $primary-lt;

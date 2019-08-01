@@ -59,7 +59,8 @@ $brand-info:            $blue !default;
 $brand-warning:         $red !default;
 $brand-danger:          $red !default;
 
-.error { color: $red; }
+.error { color: $brand-warning; }
+.info { color: $brand-info; }
 
 .red { color: $red; }
 .red-bg { background-color: $red; }

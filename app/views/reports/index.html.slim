@@ -2,12 +2,11 @@
   .row
     .col.md-2of3
       h1 Reports
-      a.pull-right href=new_report_path Run Report
 
-      .table.table-hover
+      .table.table-hover.spaced-2x
         .thead
           .tr
-            .th ID
+            .th Modified
             .th Status
             .th Website
             .th Profile
@@ -18,16 +17,65 @@
             .th fully_loaded
 
         .tbody
-          - @reports.each do |report|
-            - website = Website.find(report.website_id)
-            - profile = Profile.find(report.profile_id)
+          - @reports.complete.last(10).each do |report|
             a.tr href=report_path(report.id)
-              .td = report.id
+              .td = format_date(report.updated_at)
               .td = report.status_code
-              .td = website.name
-              .td = profile.name
+              .td = report.website.name
+              .td = report.profile.name
               .td = report.load_time
               .td = report.ttfb
               .td = report.connections
               .td = report.render
               .td = report.fully_loaded
+
+      - unless @reports.errored.empty?
+        h2 Reports with Errors
+        .table.table-hover
+          .thead
+            .tr
+              .th Modified
+              .th Status
+              .th Website
+              .th Profile
+              .th load_time
+              .th ttfb
+              .th connections
+              .th render
+              .th fully_loaded
+
+          .tbody
+            - @reports.errored.each do |report|
+              a.tr.error href=report_path(report.id)
+                .td = format_date(report.updated_at)
+                .td = report.status_code
+                .td = report.website.name
+                .td = report.profile.name
+                .td = report.load_time
+                .td = report.ttfb
+                .td = report.connections
+                .td = report.render
+                .td = report.fully_loaded
+
+    .col.md-1of3
+      .btn-group.spaced-2x
+        a.btn href=new_report_path Start Report
+        - unless @reports.pending.empty?
+          a.btn href=update_all_reports_path Update Reports
+
+      - unless @reports.pending.empty?
+        h2 Pending Reports
+        .table.table-hover
+          .thead
+            .tr
+              .th Started
+              .th Status
+              .th Website
+              .th Profile
+          .tbody
+            - @reports.pending.each do |report|
+              a.tr.pending href=report_path(report.id)
+                .td = format_date(report.created_at)
+                .td = report.status_code
+                .td = report.website.name
+                .td = report.profile.name
