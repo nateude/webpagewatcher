@@ -46,19 +46,14 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (9.0.0)
     ast (2.4.0)
-<<<<<<< HEAD
     better_errors (2.5.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
-    bindex (0.7.0)
+    bindex (0.8.1)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    brakeman (4.5.1)
-=======
-    bindex (0.8.1)
     brakeman (4.6.1)
->>>>>>> 2136ac6efb4b770427a55af9f8873e5918119e2c
     builder (3.2.3)
     bundler-audit (0.6.1)
       bundler (>= 1.2.0, < 3)
