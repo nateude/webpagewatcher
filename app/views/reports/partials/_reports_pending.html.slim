@@ -1,0 +1,13 @@
+.table.table-hover
+  .thead
+    .tr
+      .th Started
+      .th Status Code
+      .th Status
+
+  .tbody
+    - reports.each do |report|
+      a.tr.info href=report_path(report.id)
+        .td = format_date(report.created_at)
+        .td = report.status_code
+        .td = report.status

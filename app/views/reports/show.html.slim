@@ -65,6 +65,7 @@
           .td = @report.dom_ements
 
 
-  .container.hidden
+  .container
+    h2 Raw JSON Response
     pre.raw-response
       code == pretty_print_json(@report.data)

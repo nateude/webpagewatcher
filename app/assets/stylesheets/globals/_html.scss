@@ -130,13 +130,17 @@ ol,ul {
   }
 }
 
+pre {
+  background: rgba($grey-ltr, 0.02);
+  border: 1px solid $grey-lt;
+  padding: $base-spacing
+}
+
 code {
   overflow: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
   padding: 3px 5px;
-  background: rgba($grey-dk, 0.2);
-  border: 1px solid $grey-dk;
   border-radius: 2px;
   font-family: monospace;
 }
