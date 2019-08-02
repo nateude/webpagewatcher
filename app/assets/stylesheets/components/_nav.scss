@@ -16,8 +16,14 @@ nav {
       color: white;
       background-color: transparent;
       &:hover {
-        background: $graydk;
+        background: $black;
         color: white;
+      }
+
+      &.btn {
+        border: 1px solid $black;
+        padding: 10px;
+        font-weight: $normal;
       }
     }
   }

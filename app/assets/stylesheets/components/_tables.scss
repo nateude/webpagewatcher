@@ -32,7 +32,7 @@
   line-height: 20px;
   text-align: left;
   vertical-align: top;
-  border-top: 1px solid $graydk-lt;
+  border-top: 1px solid $black-lt;
 
   &.lg-cell {
     width: 200px;
@@ -54,7 +54,7 @@
 .table .th {
   font-weight: $bold;
   font-size: .9em;
-  background-color: $graydk-lt;
+  background-color: $black-lt;
 }
 
 .table .thead .th {
@@ -62,7 +62,7 @@
 }
 
 .table .tbody + .tbody {
-  border-top: 2px solid $graydk-lt;
+  border-top: 2px solid $black-lt;
 }
 
 .table-striped .tbody > .tr:nth-child(odd) > .td,
@@ -71,7 +71,7 @@
 }
 
 .tr.highlight > .td {
-  background-color: $graydk-lt;
+  background-color: $black-lt;
 }
 .tr.error {
     a {
@@ -97,11 +97,11 @@
 }
 
 .table-hover .tbody .tr:hover > .td {
-  background-color: $graydk-lt;
+  background-color: $black-lt;
 }
 
 .table a.tr {
-  color: $graydk;
+  color: $black;
 }
 .table a.tr.error {
   color: $red;

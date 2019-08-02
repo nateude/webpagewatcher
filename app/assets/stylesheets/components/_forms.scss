@@ -68,22 +68,22 @@ label, .label-like {
 input, select, textarea {
   width: 100%;
   background-color: $white;
-  border: 1px solid $gray-dk;
+  border: 1px solid $grey-dk;
   padding: 5px 10px;
-  color: $graydk;
+  color: $black;
   height: 40px;
   border-radius: 0;
 
   &.error {
-    border: 1px solid $orange;
+    border: 1px solid $brand-danger;
   }
 
   &:focus {
-    border: 1px solid $bluelt;
+    border: 1px solid $brand-info;
   }
 
   &:disabled {
-    background-color: $graydk-lt;
+    background-color: $black-lt;
     opacity: 0.25;
     & + label {
       opacity: 0.25;
@@ -98,21 +98,21 @@ input, select, textarea {
   }
 
   &::placeholder {
-    color: $gray-dk;
+    color: $grey-dk;
     opacity: 1;
   }
 
   &:-ms-input-placeholder {
-      color: $gray-dk;
+      color: $grey-dk;
   }
 
   &::-ms-input-placeholder {
-      color: $gray-dk;
+      color: $grey-dk;
   }
 }
 
 input:read-only {
-  background-color:  $gray-dk;
+  background-color:  $grey-dk;
 }
 
 input[type="submit"] {
@@ -136,7 +136,7 @@ textarea {
     position: absolute;
     right: 8px;
     top: 28px;
-    color: $gray-dk;
+    color: $grey-dk;
   }
 }
 
@@ -146,7 +146,7 @@ textarea {
     width: auto;
     height: auto;
     &:focus {
-      border: 1px solid $bluelt;
+      border: 1px solid $brand-info;
     }
   }
 

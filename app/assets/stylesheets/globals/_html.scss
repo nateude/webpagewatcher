@@ -2,9 +2,9 @@
 body {
   background-size: cover;
   background-position: center;
-  background-color: $graydk-lt;
+  background-color: $black-lt;
   background-attachment: fixed;
-  color: $graydk;
+  color: $black;
   font-family: $body;
   font-size: $base-size;
   font-weight: $normal;
@@ -70,7 +70,7 @@ strong, .strong {
 
 hr {
   border: none;
-  border-top: 1px solid $gray;
+  border-top: 1px solid $grey;
   margin: $base-spacing 0 $base-spacing;
   &.double {
     margin-bottom: $base-spacing * 4;
@@ -89,7 +89,7 @@ a, .link-like {
   }
 
   &.table-action {
-    color: rgba($graydk, 0.3);
+    color: rgba($black, 0.3);
   }
 
   &.action-success:hover {
@@ -135,14 +135,14 @@ code {
   white-space: pre-wrap;
   word-wrap: break-word;
   padding: 3px 5px;
-  background: rgba($gray-dk, 0.2);
-  border: 1px solid $gray-dk;
+  background: rgba($grey-dk, 0.2);
+  border: 1px solid $grey-dk;
   border-radius: 2px;
   font-family: monospace;
 }
 
 blockquote {
-  border-left: 4px solid $graydk-lt;
+  border-left: 4px solid $black-lt;
   padding-left: $base-spacing;
 }
 

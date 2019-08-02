@@ -4,6 +4,7 @@ class ReportsController < ApplicationController
 
   def index
     @reports = Report.all
+    @report = Report.new
   end
 
   def new
