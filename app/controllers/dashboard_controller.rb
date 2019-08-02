@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
 
     @websites = Website.all
     @website = Website.new
-    
+
     @profiles = Profile.all
     @profile = Profile.new
   end

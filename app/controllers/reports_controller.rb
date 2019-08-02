@@ -47,9 +47,7 @@ class ReportsController < ApplicationController
   def create
     report = Report.new(report_params)
 
-    unless report.website
-      report.website = report.profile.website
-    end
+    report.website = report.profile.website unless report.website
 
     if report.valid?
       wpt = InitTest.new(url: report.profile.url).run
