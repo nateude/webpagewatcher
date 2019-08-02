@@ -1,61 +1,12 @@
 .container
   .row
     .col.md-2of3
-      h1 Reports
-
-      .table.table-hover.spaced-2x
-        .thead
-          .tr
-            .th Modified
-            .th Status
-            .th Website
-            .th Profile
-            .th load_time
-            .th ttfb
-            .th connections
-            .th render
-            .th fully_loaded
-
-        .tbody
-          - @reports.complete.last(10).each do |report|
-            a.tr href=report_path(report.id)
-              .td = format_date(report.updated_at)
-              .td = report.status_code
-              .td = report.website.name
-              .td = report.profile.name
-              .td = report.load_time
-              .td = report.ttfb
-              .td = report.connections
-              .td = report.render
-              .td = report.fully_loaded
+      h1 Completed Reports
+      = render '/reports/partials/reports_table', reports: @reports.complete
 
       - unless @reports.errored.empty?
         h2 Reports with Errors
-        .table.table-hover
-          .thead
-            .tr
-              .th Modified
-              .th Status
-              .th Website
-              .th Profile
-              .th load_time
-              .th ttfb
-              .th connections
-              .th render
-              .th fully_loaded
-
-          .tbody
-            - @reports.errored.each do |report|
-              a.tr.error href=report_path(report.id)
-                .td = format_date(report.updated_at)
-                .td = report.status_code
-                .td = report.website.name
-                .td = report.profile.name
-                .td = report.load_time
-                .td = report.ttfb
-                .td = report.connections
-                .td = report.render
-                .td = report.fully_loaded
+        = render '/reports/partials/reports_table', reports: @reports.errored, row_class: 'error'
 
     .col.md-1of3
       .card
@@ -74,23 +25,7 @@
             .field-wrap.submit-field
               button.btn.btn-primary Start Report
 
-      .btn-group.spaced-2x
-        - unless @reports.pending.empty?
-          a.btn href=update_all_reports_path Update Reports
-
       - unless @reports.pending.empty?
-        h2 Pending Reports
-        .table.table-hover
-          .thead
-            .tr
-              .th Started
-              .th Status
-              .th Website
-              .th Profile
-          .tbody
-            - @reports.pending.each do |report|
-              a.tr.pending href=report_path(report.id)
-                .td = format_date(report.created_at)
-                .td = report.status_code
-                .td = report.website.name
-                .td = report.profile.name
+        h2 Pending Reports'
+        = render '/reports/partials/reports_pending', reports: @reports.pending
+        a.btn href=update_all_reports_path Update Reports

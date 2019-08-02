@@ -1,67 +1,29 @@
 .container
-  .row
+  .row.spaced-2x
     .col.md-2of3
-      h1 Profile: #{@profile.name}
-
-      h2 Details
-      .table.table-hover
-        .thead
-          .tr
-            .th Key
-            .th Value
-
-        .tbody
-          .tr
-            .td ID
-            .td = @profile.id
-          .tr
-            .td Name
-            .td = @profile.name
-          .tr
-            .td Website
-            .td = @profile.website.name
-          .tr
-            .td WPT Settings
-            .td = @profile.wpt_settings
-          .tr
-            .td WPT Code
-            .td = @profile.wpt_code
-          .tr
-            .td Time Interval
-            .td = @profile.interval
-    .col.md-1of3
-      form class="new_report" id="new_report" action="/reports" accept-charset="UTF-8" method="post"
+      h1 Profile: #{@profile.id} | #{@profile.name} | #{@profile.website.name}
+    .col.md-1of3.text-align-right
+      - unless @profile.report.pending.empty?
+        a.btn href=update_all_reports_path({profile: @profile.id}) Update Reports
+      form.inline-form class="new_report" id="new_report" action="/reports" accept-charset="UTF-8" method="post"
         input name="utf8" type="hidden" value="✓"
         input type="hidden" name="authenticity_token" value=form_authenticity_token
         input type="hidden" name="report[website_id]" value=@profile.website_id
         input type="hidden" name="report[profile_id]" value=@profile.id
+        input type="hidden" name="return" value=@profile.id
 
-        input.btn.btn-primary type="submit" value="Run Report"
+        button.btn.btn-primary Run Report
+
+  - unless @profile.report.pending.empty?
+    h2 Pending Reports'
+    = render '/reports/partials/reports_pending', reports: @profile.report.pending
 
 .container
-  h2 Reports
-  .table.table-hover
-    .thead
-      .tr
-        .th ID
-        .th Status
-        .th load_time
-        .th ttfb
-        .th connections
-        .th requests_full
-        .th render
-        .th fully_loaded
-        .th dom_ements
 
-    .tbody
-      - @profile.report.order(:updated_at).reverse.each do |report|
-        a.tr href=report_path(report.id)
-          .td = report.id
-          .td = report.status_code
-          .td = report.load_time
-          .td = report.ttfb
-          .td = report.connections
-          .td = report.requests_full
-          .td = report.render
-          .td = report.fully_loaded
-          .td = report.dom_ements
+  h2 Completed Reports
+  = render '/reports/partials/reports_table', reports: @profile.report.complete
+
+
+  - unless @profile.report.errored.empty?
+    h2 Reports with Errors
+    = render '/reports/partials/reports_table', reports: @profile.report.errored, row_class: 'error'

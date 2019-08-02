@@ -33,7 +33,9 @@ class ReportsController < ApplicationController
     end
 
     flash[:notice] = updated.to_s + ' reports updated'
-    redirect_to(reports_path)
+
+    redirect = params[:profile] ? profile_path(params[:profile]) : reports_path
+    redirect_to(redirect)
   end
 
   def destroy
@@ -50,7 +52,8 @@ class ReportsController < ApplicationController
       report.update!(wpt)
 
       report.save
-      redirect_to report_path(report.id)
+
+      redirect_to profile_path(report.profile.id)
     else
       handle_errors(report)
       render 'new'
