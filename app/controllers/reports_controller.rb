@@ -31,7 +31,7 @@ class ReportsController < ApplicationController
       end
     end
 
-    flash[:notice] = updated.to_s + " reports updated"
+    flash[:notice] = updated.to_s + ' reports updated'
     redirect_to(reports_path)
   end
 

@@ -8,7 +8,6 @@ module ApplicationHelper
     str
   end
 
-
   def format_date(date)
     if date.today?
       date.strftime('%R')
