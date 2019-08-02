@@ -20,6 +20,8 @@ form {
 .field-wrap {
   margin-bottom: $base-spacing;
   position: relative;
+  border: 1px solid $grey-lt;
+  border-bottom: 2px solid $grey-lt;
 
   &:last-child {
     margin-bottom: 0;
@@ -34,6 +36,12 @@ form {
       }
     }
   }
+  label {
+    color: $grey-dk;
+    font-size: .8em;
+    padding: $base-spacing * .5;
+    font-weight: $bold;
+  }
   label.error {
     color: $red;
     font-size: 12px;
@@ -43,6 +51,7 @@ form {
   }
   &.submit-field {
     margin: 50px 0;
+    border: none;
   }
   .form-hint{
     font-size: 0.8em;
@@ -67,23 +76,26 @@ label, .label-like {
 
 input, select, textarea {
   width: 100%;
-  background-color: $white;
-  border: 1px solid $grey-dk;
+  background-color: transparent;
+  color: $primary;
   padding: 5px 10px;
   color: $black;
   height: 40px;
   border-radius: 0;
+  border: none;
+  // appearance: none;
+  // -webkit-appearance: none;
 
   &.error {
     border: 1px solid $brand-danger;
   }
 
   &:focus {
-    border: 1px solid $brand-info;
+    border: none;
   }
 
   &:disabled {
-    background-color: $black-lt;
+    background-color: $grey-lt;
     opacity: 0.25;
     & + label {
       opacity: 0.25;
@@ -121,6 +133,7 @@ input[type="submit"] {
   border: none;
   width: auto;
   text-align: left;
+  @extend .btn
 }
 
 textarea {

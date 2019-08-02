@@ -4,20 +4,21 @@ button {
 
 .btn {
   cursor: pointer;
+  position: relative;
   font-family: $button;
   font-size: 1.5em;
   transition: all 0.1s ease-in-out;
-  background-color: $primary;
-  color: white;
+  background-color: transparent;
+  color: $primary;
   display: inline-block;
   margin: 0;
-  padding: $base-spacing * 0.75;
+  padding: $base-spacing * 0.5 $base-spacing * 0.75;
   font-weight: $bold;
   outline: none;
   font-size: 1em;
   line-height: 1em;
   border: 1px solid $primary-dk;
-  border-bottom: 2px solid $primary-dk;
+  border-bottom: 3px solid $primary-dk;
 
   &:hover {
     color: $white;
@@ -25,8 +26,17 @@ button {
     background-color: $primary-dk;
   }
 
-  .fa, .far, .fas {
-    margin-right: $base-spacing * 0.75;
+  .btn.btn-icon {
+    padding: $base-spacing * 0.75 $base-spacing * 0.75 $base-spacing * 0.75 45px + $base-spacing * 0.75;
+
+    .fa, .far, .fas {
+      width: 45px;
+      position: absolute;
+      padding: $base-spacing * 0.75;
+      left: 0;
+      top: 0;
+      background: $primary-dk;
+    }
   }
 
   &.btn-secondary {

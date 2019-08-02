@@ -6,12 +6,11 @@ $blue:      #154890;
 $green:     #85CB33;
 $grey:      #292929;
 $red:       #D0021B;
+$white:     #ffffff;
 
-// $grey:      #FCFCFC;
-// $black:    #4A4A4A;
-
-$white: #fff;
-// $black: #292929;
+$grey-ltr:       rgba($grey, 0.01);
+$grey-lt:       rgba($grey, 0.02);
+$grey-dk:       darken($grey, 10%);
 
 $black-dk:  darken($black, 10%);
 $black-lt:  rgba($black, 0.10);
