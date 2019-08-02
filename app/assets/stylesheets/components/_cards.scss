@@ -1,7 +1,8 @@
 .card {
   width: 100%;
-  padding: $base-spacing;
-  border: 1px solid $gray-dk;
-  border-bottom: 3px solid $gray-dk;
-  background: white;
+  padding: 0 $base-spacing;
+  // border: 1px solid $grey-lt;
+  border-left: 3px solid $grey-lt;
+  background: transparent;
+  margin-bottom: $base-spacing * 2;
 }

@@ -4,6 +4,7 @@ class ReportsController < ApplicationController
 
   def index
     @reports = Report.all
+    @report = Report.new
   end
 
   def new
@@ -18,6 +19,22 @@ class ReportsController < ApplicationController
   end
 
   def update; end
+
+  def update_all
+    reports = Report.pending
+    updated = 0
+
+    reports.each do |report|
+      data = CheckReport.new(report: report).call
+      if data
+        report.update!(data)
+        updated += 1
+      end
+    end
+
+    flash[:notice] = updated.to_s + ' reports updated'
+    redirect_to(reports_path)
+  end
 
   def destroy
     Report.find(params[:id]).destroy

@@ -32,7 +32,7 @@
   line-height: 20px;
   text-align: left;
   vertical-align: top;
-  border-top: 1px solid $graydk-lt;
+  border-top: 1px solid $grey-lt;
 
   &.lg-cell {
     width: 200px;
@@ -54,7 +54,10 @@
 .table .th {
   font-weight: $bold;
   font-size: .9em;
-  background-color: $graydk-lt;
+  background-color: transparent;
+  color: $grey;
+  border-bottom: 2px solid $grey;
+  border-top: none;
 }
 
 .table .thead .th {
@@ -62,16 +65,16 @@
 }
 
 .table .tbody + .tbody {
-  border-top: 2px solid $graydk-lt;
+  border-top: 2px solid $grey-lt;
 }
 
 .table-striped .tbody > .tr:nth-child(odd) > .td,
 .table-striped .tbody > .tr:nth-child(odd) > .th {
-  background-color: #f9f9f9;
+  background-color: rgba($grey-lt,0.03);
 }
 
 .tr.highlight > .td {
-  background-color: $graydk-lt;
+  background-color: rgba($grey-lt,0.05);
 }
 .tr.error {
     a {
@@ -82,17 +85,26 @@
     background-color: rgba($brand-warning, 0.1);
   }
 }
+.tr.pending {
+    a {
+      color: $brand-info;
+    }
+   &:hover, & > .td {
+    border-top: 1px solid $brand-info;
+    background-color: rgba($brand-info, 0.1);
+  }
+}
 
 .tbody a.tr:hover > .td {
   background-color: $primary-lt;
 }
 
 .table-hover .tbody .tr:hover > .td {
-  background-color: $graydk-lt;
+  background-color: rgba($grey-lt,0.05);
 }
 
 .table a.tr {
-  color: $graydk;
+  color: $black;
 }
 .table a.tr.error {
   color: $red;

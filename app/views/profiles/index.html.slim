@@ -2,7 +2,6 @@
   .row
     .col.md-2of3
       h1 Profiles
-      a.pull-right href=new_profile_path Add New Profile
 
       .table.table-hover
         .thead
@@ -21,3 +20,25 @@
               .td = profile.website.name
               .td = profile.url
               .td = profile.report.count
+
+    .col.md-1of3
+      .card
+        .card-title
+          h2 Add New Profile
+        .card-body
+          = form_for(@profile, html: {novalidate: true}) do |f|
+
+            .field-wrap
+              = f.label :name
+              = f.text_field :name , class: 'form-control'
+
+            .field-wrap
+              = f.label :website_id
+              = f.collection_select(:website_id, Website.all, :id, :name, {:prompt => ' -- Select a Website -- '}, {:class=>'form-control'})
+
+            .field-wrap
+              = f.label :url
+              = f.text_field :url , class: 'form-control'
+
+            .field-wrap.submit-field
+              button.btn.btn-primary Add New Profile

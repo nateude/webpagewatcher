@@ -10,7 +10,11 @@ Rails.application.routes.draw do
       # get '/:id/init', to: 'webpagetest_api#init', as: :run_test
     end
   end
-  resources :reports
+  resources :reports do
+    collection do
+      get '/update', to: 'reports#update_all', as: :update_all
+    end
+  end
 
   get 'reports/:id/json', to: 'reports#json', defaults: { format: 'json' }, as: :report_json
 

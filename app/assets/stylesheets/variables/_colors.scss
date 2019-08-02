@@ -1,49 +1,39 @@
 // https://coolors.co/667761-5a352a-197bbd-125e8a-8c1c13
 // ----
 
-$red:       #D0021B;
-$black:     #292929;
+$black:     #100B00;
 $blue:      #154890;
-$bluelt:    #6699FF;
-$tan:       #CDBFAC;
-$tanlt:     #E1D4C0;
-$tanltr:    #F5EDE3;
-$orange:    #FF6600;
+$green:     #85CB33;
+$grey:      #292929;
+$red:       #D0021B;
+$white:     #ffffff;
 
-$gray:      #FCFCFC;
-$graydk:    #4A4A4A;
+$grey-ltr:       rgba($grey, 0.01);
+$grey-lt:       rgba($grey, 0.02);
+$grey-dk:       darken($grey, 10%);
 
-$white: #fff;
-$black: #292929;
+$black-dk:  darken($black, 10%);
+$black-lt:  rgba($black, 0.10);
 
-$red-lt:        rgba($red, 0.10);
-$red-dk:        darken($red, 10%);
+$blue-dk:   darken($blue, 10%);
+$blue-lt:   rgba($blue, 0.10);
 
-$blue-lt:       rgba($blue, 0.10);
-$blue-dk:       darken($blue, 10%);
+$green-dk:  darken($green, 10%);
+$green-lt:  rgba($green, 0.10);
 
-$black-lt:      rgba($black, 0.10);
-$black-dk:      darken($black, 10%);
+$grey-dk:    darken($grey, 10%);
+$grey-lt:    rgba($grey, 0.10);
 
-$blue-lt:       rgba($blue, 0.10);
-$blue-dk:       darken($blue, 10%);
+$red-dk:    darken($red, 10%);
+$red-lt:    rgba($red, 0.10);
 
-$gray-ltr:       rgba($gray, 0.01);
-$gray-lt:       rgba($gray, 0.02);
-$gray-dk:       darken($gray, 10%);
+$primary:       $green;
+$primary-lt:    rgba($green, 0.1);
+$primary-dk:    darken($green, 10%);
 
-$graydk-ltr:     rgba($graydk, 0.02);
-$graydk-lt:     rgba($graydk, 0.05);
-$graydk-dk:     darken($graydk, 10%);
-
-$primary:       $blue;
-$secondary:     $orange;
-
-$primary-lt:    rgba($primary, 0.10);
-$primary-dk:    darken($primary, 10%);
-
-$secondary-lt:  rgba($secondary, 0.10);
-$secondary-dk:  darken($secondary, 10%);
+$secondary:     $blue;
+$secondary-lt:  rgba($blue, 0.1);
+$secondary-dk:  darken($blue, 10%);
 
 $primary-heading-color: $black;
 $primary-heading-hover-color: $blue;
@@ -53,24 +43,25 @@ $link-hover: $primary-dk;
 
 // ----
 
-$brand-primary:         $blue !default; // #337ab7
-$brand-success:         $blue !default;
+$brand-primary:         $primary !default; // #337ab7
+$brand-success:         $primary !default;
 $brand-info:            $blue !default;
 $brand-warning:         $red !default;
 $brand-danger:          $red !default;
 
-.error { color: $red; }
+.error { color: $brand-warning; }
+.info { color: $brand-info; }
 
 .red { color: $red; }
 .red-bg { background-color: $red; }
 .black { color: $black; }
 .black-bg { background-color: $black; }
 .blue { color: $blue; }
-.blue-bg { background-color: $blue; }
-.bluelt { color: $bluelt; }
-.bluelt-bg { background-color: $bluelt; }
-.gray { color: $gray; }
-.gray-bg { background-color: $gray; }
+.blue { color: $blue; }
+.green-bg { background-color: $green; }
+.green-bg { background-color: $green; }
+.grey { color: $grey; }
+.grey-bg { background-color: $grey; }
 
 .white {
   color: $white;
@@ -149,29 +140,4 @@ $brand-danger:          $red !default;
 }
 .bg-brand-danger {
   background-color: $brand-danger;
-}
-
-.gray {
-  color: $gray;
-}
-.gray-lt {
-  color: $gray-lt;
-}
-.gray-ltr {
-  color: $gray-ltr;
-}
-.gray-dk {
-  color: $gray-dk;
-}
-.graydk {
-  color: $graydk;
-}
-.graydk-lt {
-  color: $graydk-lt;
-}
-.graydk-ltr {
-  color: $graydk-ltr;
-}
-.graydk-dk {
-  color: $graydk-dk;
 }

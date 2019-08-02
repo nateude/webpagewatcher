@@ -7,4 +7,12 @@ module ApplicationHelper
   rescue JSON::ParserError
     str
   end
+
+  def format_date(date)
+    if date.today?
+      date.strftime('%R')
+    else
+      date.strftime('%m/%d')
+    end
+  end
 end

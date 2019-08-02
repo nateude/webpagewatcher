@@ -1,10 +1,10 @@
 header {
-  background: $graydk-dk;
-  color: $gray-lt;
+  background: $grey;
+  color: $grey-lt;
   padding: 0;
 
   a {
-    color: $gray;
+    color: $grey;
     &:hover {
       color:$link-hover;
     }
