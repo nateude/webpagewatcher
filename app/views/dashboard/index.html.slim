@@ -1,15 +1,32 @@
 .container
-  h1 WebPage Watcher
+  h1.heading-1 WebPage Watcher
   p
     ' is a tool designed to allow a user to run and save data from
     a href="http://www.webpagetest.org" WebPageTest.org
-  p
-    ' visit project github page
-    a href="https://github.com/nateude/webpagewatcher" github.com/nateude/webpagewatcher
-    ' for more details.
 
-  h2 Gloabl Configuration
-  ul
-    li
-      strong> WebPageTest API Key:
-      = WebPageTestConfig.api_key || 'Key not set'
+  - unless WebPageTestConfig.api_key
+    p.error.strong Please configure your WebPageTest API key before continuing.
+    p
+      ' visit project github page
+      a href="https://github.com/nateude/webpagewatcher" github.com/nateude/webpagewatcher
+      ' for more details.
+
+  - else
+    .row
+      .col.md-2of3
+
+        - unless @reports.pending.empty?
+          .spaced-2x
+            h2 Pending Reports
+            = render '/reports/partials/reports_pending', reports: @reports.pending
+            a.btn href=update_all_reports_path Update Reports
+
+        h2 Recent Reports
+        = render '/reports/partials/reports_table', reports: @reports.complete.last(5)
+
+      .col.md-1of3
+        .card
+          .card-title
+            h2 Start New Report
+          .card-body
+            = render '/reports/partials/run_report_form', report: @report

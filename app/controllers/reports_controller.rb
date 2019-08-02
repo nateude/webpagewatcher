@@ -32,7 +32,7 @@ class ReportsController < ApplicationController
       end
     end
 
-    flash[:notice] = updated.to_s + ' reports updated'
+    set_flash :success, updated.to_s + ' report(s) updated'
 
     redirect = params[:profile] ? profile_path(params[:profile]) : reports_path
     redirect_to(redirect)
@@ -40,12 +40,16 @@ class ReportsController < ApplicationController
 
   def destroy
     Report.find(params[:id]).destroy
-    flash[:success] = 'Report deleted'
+    set_flash :success, 'Report deleted'
     redirect_to(reports_path)
   end
 
   def create
     report = Report.new(report_params)
+
+    unless report.website
+      report.website = report.profile.website
+    end
 
     if report.valid?
       wpt = InitTest.new(url: report.profile.url).run
@@ -53,6 +57,7 @@ class ReportsController < ApplicationController
 
       report.save
 
+      set_flash :success, 'Report started for ' + report.profile.name
       redirect_to profile_path(report.profile.id)
     else
       handle_errors(report)

@@ -1,0 +1,10 @@
+= form_for(report) do |f|
+  .field-wrap
+    = f.label :profile_id, class: 'hidden'
+    select.form-control name="report[profile_id]" id="report_profile_id"
+      option value="nil" disabled="disabled" selected="selected" -- Select a Profile --
+      - Profile.all.each do |profile|
+        option value=profile.id #{profile.website.name}: #{profile.name}
+
+  .field-wrap.submit-field
+    button.btn.btn-primary Start Report
