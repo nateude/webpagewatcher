@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'chartkick'
 gem 'hierarchical_config'
 gem 'jbuilder'
 gem 'jquery-rails'

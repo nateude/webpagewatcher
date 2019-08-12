@@ -19,6 +19,14 @@
     = render '/reports/partials/reports_pending', reports: @profile.report.pending
 
 .container
+  .row
+    .col.md-1of2
+      h2 TtFB Trends
+      = line_chart @profile.report.complete.last(10).pluck(:updated_at, :ttfb), xtitle: "Date", ytitle: "TtFB"
+    .col.md-1of2
+      h2 Load Time Trends
+      = line_chart @profile.report.complete.last(10).pluck(:updated_at, :load_time), xtitle: "Date", ytitle: "Load Time"
+.container
 
   h2 Completed Reports
   = render '/reports/partials/reports_table', reports: @profile.report.complete

@@ -16,6 +16,9 @@ html.no-js lang="en" vocab="http://schema.org/" typeof="WebPage" prefix="og: htt
     link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,800&display=swap" rel="stylesheet"
     = stylesheet_link_tag 'application', media: 'all'
 
+    = javascript_include_tag 'application'
+    = javascript_include_tag content_for(:override_js) if content_for?(:override_js)
+
   body
     = render 'layouts/partials/header'
     = render 'layouts/partials/flash'
@@ -24,6 +27,3 @@ html.no-js lang="en" vocab="http://schema.org/" typeof="WebPage" prefix="og: htt
       = yield
 
     = render 'layouts/partials/footer'
-
-    = javascript_include_tag 'application'
-    = javascript_include_tag content_for(:override_js) if content_for?(:override_js)
