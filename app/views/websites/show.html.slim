@@ -60,8 +60,8 @@
                 = f.label :url
                 = f.text_field :url , class: 'form-control'
 
-              .field-wrap
-                = f.submit 'Add', class: 'btn btn-primary'
+              .field-wrap.submit-field
+                button.btn.btn-primary for="#new_profile" Add
 
       .card.form-card
         .card-header
@@ -76,8 +76,8 @@
                 = f.label :website_id
                 = f.collection_select(:profile_id, Profile.where(website: @website).all, :id, :name, {:prompt => ' -- Select a Profile -- '}, {:class=>'form-control'})
 
-              .field-wrap
-                = f.submit 'Run', class: 'btn btn-primary'
+              .field-wrap.submit-field
+                button.btn.btn-primary for="#new_report" Run
 
 
   .container
