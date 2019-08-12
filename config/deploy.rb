@@ -4,7 +4,7 @@ lock "~> 3.11.0"
 set :application, "wpw"
 set :repo_url, "git@github.com:nateude/webpagewatcher.git"
 
-set :branch, :master
+set :branch, 'cap-deploy-setup'
 set :deploy_to, "/home/deploy/wpw"
 
 set :pty, true
