@@ -17,10 +17,10 @@ AllCops:
 Rails:
   Enabled: true
 
-Documentation:
+Style/Documentation:
   Enabled: false
 
-LineLength:
+Metrics/LineLength:
   Enabled: false
 
 Rails/HasAndBelongsToMany:
