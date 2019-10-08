@@ -9,7 +9,7 @@ html.no-js lang="en" vocab="http://schema.org/" typeof="WebPage" prefix="og: htt
     = csrf_meta_tag
 
     title
-      ' #{content_for?(:page_title) ? content_for(:page_title) + ' | ' : ''}
+      = content_for?(:page_title) ? content_for(:page_title) + ' | ' : ''
       ' WebPageWatcher
     meta name="description" content=(content_for?(:page_description) ? content_for(:page_description) : 'My eyes never close')
 

@@ -15,7 +15,7 @@
         button.btn.btn-primary Run Report
 
   - unless @profile.report.pending.empty?
-    h2 Pending Reports'
+    h2 Pending Reports
     = render '/reports/partials/reports_pending', reports: @profile.report.pending
 
 .container
