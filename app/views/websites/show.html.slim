@@ -1,7 +1,7 @@
 .container
   h1.heading-1 Website: #{@website.name}
   .row
-    .col.md-2of3
+    .col.md-3of4
 
       .spaced-2x
         h2.heading-2 Details
@@ -42,10 +42,38 @@
                 .td = profile.wpt_code
                 .td = profile.interval
 
-    .col.md-1of3
+
+
+      h2 Most Recent Associated Reports
+      .table.table-hover
+        .thead
+          .tr
+            .th ID
+            .th Status
+            .th Profile Name
+            .th load_time
+            .th ttfb
+            .th connections
+            .th render
+            .th fully_loaded
+
+        tbody
+          - @website.report.order(:updated_at).reverse.take(5).each do |report|
+            a.tr href=report_path(report.id)
+              .td = report.id
+              .td = report.status_code
+              .td = report.profile.name
+              .td = report.load_time
+              .td = report.ttfb
+              .td = report.connections
+              .td = report.render
+              .td = report.fully_loaded
+
+
+    .col.md-1of4
       .card.form-card.spaced-2x
         .card-header
-          h2.heading-2 Add Profile
+          h2 Add Profile
         .card-body
           .form-wrapper
             = form_for(@profile, html: {novalidate: true}) do |f|
@@ -65,7 +93,7 @@
 
       .card.form-card
         .card-header
-          h2.heading-2 Run Report
+          h2 Run Report
         .card-body
           .form-wrapper
             = form_for(@report, html: {novalidate: true}) do |f|
@@ -78,30 +106,3 @@
 
               .field-wrap.submit-field
                 button.btn.btn-primary for="#new_report" Run
-
-
-  .container
-    h2 Most Recent Associated Reports
-    .table.table-hover
-      .thead
-        .tr
-          .th ID
-          .th Status
-          .th Profile Name
-          .th load_time
-          .th ttfb
-          .th connections
-          .th render
-          .th fully_loaded
-
-      tbody
-        - @website.report.order(:updated_at).reverse.take(5).each do |report|
-          a.tr href=report_path(report.id)
-            .td = report.id
-            .td = report.status_code
-            .td = report.profile.name
-            .td = report.load_time
-            .td = report.ttfb
-            .td = report.connections
-            .td = report.render
-            .td = report.fully_loaded

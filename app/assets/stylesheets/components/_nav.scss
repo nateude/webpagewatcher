@@ -8,11 +8,17 @@ nav {
     margin: 0;
     padding: 0;
     list-style: none;
-    display: inline;
+    display: inline-block;
   }
   &.top-nav {
+    ul {
+      border-right: 1px solid $black;
+    }
+    li{
+      border-left: 1px solid $black;
+    }
     a {
-      padding: $base-spacing $base-spacing * 0.5;
+      padding: $base-spacing * 0.25 $base-spacing;
       color: white;
       background-color: transparent;
       &:hover {
