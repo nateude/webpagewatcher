@@ -1,6 +1,6 @@
 .container
   .row
-    .col.md-2of3
+    .col.md-3of4
       h1 Report: #{@report.wpt_id}
 
       .table.table-hover
@@ -32,40 +32,40 @@
             .td Data Stored
             .td = !@report.data.nil?
 
-- if @report.data
-  .container
-    .table
-      .thead
-        .tr
-          .th load_time
-          .th ttfb
-          .th bytes_out
-          .th bytes_out_doc
-          .th bytes_in
-          .th bytes_in_doc
-          .th connections
-          .th requests_full
-          .th requests_doc
-          .th render
-          .th fully_loaded
-          .th dom_ements
-      .tbody
-        .tr
-          .td = @report.load_time
-          .td = @report.ttfb
-          .td = @report.bytes_out
-          .td = @report.bytes_out_doc
-          .td = @report.bytes_in
-          .td = @report.bytes_in_doc
-          .td = @report.connections
-          .td = @report.requests_full
-          .td = @report.requests_doc
-          .td = @report.render
-          .td = @report.fully_loaded
-          .td = @report.dom_ements
+      - if @report.data
+        .spaced-2x
+          .table
+            .thead
+              .tr
+                .th load_time
+                .th ttfb
+                .th bytes_out
+                .th bytes_out_doc
+                .th bytes_in
+                .th bytes_in_doc
+                .th connections
+                .th requests_full
+                .th requests_doc
+                .th render
+                .th fully_loaded
+                .th dom_ements
+            .tbody
+              .tr
+                .td = @report.load_time
+                .td = @report.ttfb
+                .td = @report.bytes_out
+                .td = @report.bytes_out_doc
+                .td = @report.bytes_in
+                .td = @report.bytes_in_doc
+                .td = @report.connections
+                .td = @report.requests_full
+                .td = @report.requests_doc
+                .td = @report.render
+                .td = @report.fully_loaded
+                .td = @report.dom_ements
 
 
-  .container
-    h2 Raw JSON Response
-    pre.raw-response
-      code == pretty_print_json(@report.data)
+        .spaced-2x
+          h2 Raw JSON Response
+          pre.raw-response
+            code == pretty_print_json(@report.data)

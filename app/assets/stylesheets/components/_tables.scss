@@ -100,10 +100,11 @@
 }
 
 .table-hover .tbody .tr:hover > .td {
-  background-color: rgba($grey-lt,0.05);
+  background-color: rgba($grey-lt,0.1);
 }
 
 .table a.tr {
+  position: relative;
   color: $black;
 }
 .table a.tr.error {

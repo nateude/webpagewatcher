@@ -2,6 +2,9 @@ header {
   background: $grey;
   color: $grey-lt;
   padding: 0;
+  border-bottom: 2px solid $black;
+  position: relative;
+  z-index: 1000;
 
   a {
     color: $grey;
@@ -11,10 +14,10 @@ header {
   }
 
   .logo {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: $bold;
     text-transform: uppercase;
-    padding: $base-spacing 0;
+    padding: $base-spacing * 0.25 0;
     color: white;
 
     &:hover {

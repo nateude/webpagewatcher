@@ -13,7 +13,7 @@
 
   - else
     .row
-      .col.md-2of3
+      .col.md-3of4
 
         - unless @reports.pending.empty?
           .spaced-2x
@@ -24,9 +24,9 @@
         h2 Recent Reports
         = render '/reports/partials/reports_table', reports: @reports.complete.last(5)
 
-      .col.md-1of3
+      .col.md-1of4
         .card
-          .card-title
+          .card-header
             h2 Start New Report
           .card-body
             = render '/reports/partials/run_report_form', report: @report

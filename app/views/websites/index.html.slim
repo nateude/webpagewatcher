@@ -2,7 +2,7 @@
   h1.heading-1 Websties
 
   .row
-    .col.md-2of3
+    .col.md-3of4
       .table.table-hover
         .thead
           .tr
@@ -21,10 +21,10 @@
               .td = website.profile.count
               .td = website.report.count
 
-    .col.md-1of3
+    .col.md-1of4
       .card.form-card
         .card-header
-          h2.heading-2 Add Website
+          h2 Add Website
         .card-body
           .form-wrapper
             = form_for(@website, html: {novalidate: true}) do |f|
