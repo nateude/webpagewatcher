@@ -3,27 +3,21 @@
   .row
     .col.md-3of4
 
-      h2.heading-4 Completed Reports
+      - unless @reports.pending.empty?
+        h2 Pending Reports
+        = render '/reports/partials/reports_pending', reports: @reports.pending
+        a.btn href=update_all_reports_path Update Reports
+
+      h2 Completed Reports
       = render '/reports/partials/reports_table', reports: @reports.complete
 
-    .col.md-1of4
-      - unless @reports.pending.empty?
-        .card
-          .card-header
-            h2 Pending Reports
-          .card-body
-            = render '/reports/partials/reports_pending', reports: @reports.pending
-            a.btn href=update_all_reports_path Update Reports
+    - unless @reports.errored.empty?
+      h2 Reports with Errors
+      = render '/reports/partials/reports_table', reports: @reports.errored, row_class: 'error'
 
+    .col.md-1of4
       .card
         .card-header
           h2 Start New Report
         .card-body
           = render '/reports/partials/run_report_form', report: @report
-
-      - unless @reports.errored.empty?
-        .card
-          .card-header
-            h2 Reports with Errors
-          .card-body
-            = render '/reports/partials/reports_table', reports: @reports.errored, row_class: 'error'

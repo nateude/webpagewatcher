@@ -16,7 +16,7 @@ body {
   font-family: $heading;
   font-size: 1em;
   line-height: 1.2em;
-  margin: 0 0 $base-spacing;
+  margin: $base-spacing * 2 0 $base-spacing;
   font-weight: $bold;
 
   a, a & {
@@ -26,8 +26,13 @@ body {
       color: $primary-heading-hover-color;
     }
   }
+  .container .heading:first-child {
+    margin-top: 0;
+  }
 }
-
+h1 {
+  margin-top: 0;
+}
 h1, h2, h3, h4, h5, h6 {
   @extend .heading;
 
