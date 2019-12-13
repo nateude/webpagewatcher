@@ -28,11 +28,14 @@
         .card-header
           h2 Run New Report
         .card-body
-          form.inline-form class="new_report" id="new_report" action="/reports" accept-charset="UTF-8" method="post"
-            input name="utf8" type="hidden" value="✓"
-            input type="hidden" name="authenticity_token" value=form_authenticity_token
-            input type="hidden" name="report[website_id]" value=@profile.website_id
-            input type="hidden" name="report[profile_id]" value=@profile.id
-            input type="hidden" name="return" value=@profile.id
+          - if @profile.report.pending.empty?
+            form.inline-form class="new_report" id="new_report" action="/reports" accept-charset="UTF-8" method="post"
+              input name="utf8" type="hidden" value="✓"
+              input type="hidden" name="authenticity_token" value=form_authenticity_token
+              input type="hidden" name="report[website_id]" value=@profile.website_id
+              input type="hidden" name="report[profile_id]" value=@profile.id
+              input type="hidden" name="return" value=@profile.id
 
-            button.btn.btn-primary Start Report
+              button.btn.btn-primary Start Report
+          - else
+            p Pending reports, please wait.

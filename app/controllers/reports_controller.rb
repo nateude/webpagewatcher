@@ -47,20 +47,16 @@ class ReportsController < ApplicationController
   def create
     report = Report.new(report_params)
 
-    report.website = report.profile.website unless report.website
-
-    if report.valid?
+    if report.valid? & report.profile.report.pending.empty?
       wpt = InitTest.new(url: report.profile.url).run
       report.update!(wpt)
-
-      report.save
-
-      set_flash :success, 'Report started for ' + report.profile.name
-      redirect_to profile_path(report.profile.id)
+    elsif !report.profile.report.pending.empty?
+      set_flash :error, 'Please wait till pending reports have completed'
     else
       handle_errors(report)
-      render 'new'
     end
+
+    redirect_to profile_path(report.profile.id)
   end
 
   def json
