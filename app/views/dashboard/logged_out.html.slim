@@ -1,0 +1,22 @@
+.container
+  h1.heading-1 WebPage Watcher
+
+  .row
+    .col.md-3of4
+      h2 Welcome!
+      p
+        ' WebaPageWatcher is designed to help automate initializing and recording data from
+        a> href="https://www.webpagetest.org/" WegPageTest.org
+        ' via the
+        a href="https://sites.google.com/a/webpagetest.org/docs/" WPT API.
+
+        p
+          ' You will be required to have your own WPT API Key you can get one using the
+          a> href="https://www.webpagetest.org/getkey.php" WPT Request API Key
+          ' form
+
+        p Once you create an account you will be able to setup your own websites and profiles to run tests on and record the data to track trends over time.
+
+    .col.md-1of4.sidebar
+      = render 'shared/sidebars/login'
+      = render 'shared/sidebars/register'

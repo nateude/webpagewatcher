@@ -15,6 +15,14 @@
                 = f.text_field :name, autofocus: true
 
               .field-wrap
+                label for="wpt_key" WPT API Key
+                = f.text_field :wpt_key, autofocus: true
+                .form-hint
+                  p
+                    ' Generate your key from
+                    a href="https://www.webpagetest.org/getkey.php" WPT Request API Key
+
+              .field-wrap
                 = f.label :email
                 = f.email_field :email, autofocus: true, autocomplete: 'email'
 
@@ -30,6 +38,6 @@
                 = f.password_field :password_confirmation, autocomplete: 'new-password'
 
               .field-wrap.submit-field
-                button.btn.btn-primary Sign up
+                button.btn.btn-primary Register Account
 
             = render 'devise/shared/links'

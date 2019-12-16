@@ -1,4 +1,4 @@
-class ReportsController < ApplicationController
+class ReportsController < AuthenticatedController
   include ApplicationHelper
   include ReportsHelper
 
