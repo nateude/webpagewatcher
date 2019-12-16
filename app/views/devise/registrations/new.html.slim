@@ -1,0 +1,35 @@
+.container
+  h1 Register your Account
+  .row
+    .col.md-2of4
+      .card.form-card
+        .card-header
+          h2 Sign Up For an Account
+        .card-body
+          .form-wrapper
+            = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+              = render 'devise/shared/error_messages', resource: resource
+
+              .field-wrap
+                = f.label :name
+                = f.text_field :name, autofocus: true
+
+              .field-wrap
+                = f.label :email
+                = f.email_field :email, autofocus: true, autocomplete: 'email'
+
+              .field-wrap
+                = f.label :password
+                = f.password_field :password, autocomplete: 'new-password'
+                - if @minimum_password_length
+                  .form-hint
+                    p #{@minimum_password_length} characters minimum
+
+              .field-wrap
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, autocomplete: 'new-password'
+
+              .field-wrap.submit-field
+                button.btn.btn-primary Sign up
+
+            = render 'devise/shared/links'

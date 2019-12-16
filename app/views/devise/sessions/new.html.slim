@@ -1,0 +1,22 @@
+.container
+  .row
+    .col.md-2of4
+      h1 Log In
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field-wrap
+          = f.label :email
+          = f.text_field :email, autofocus: true, autocomplete: 'email'
+
+        .field-wrap
+          = f.label :password
+          = f.password_field :password, autocomplete: 'current-password'
+
+        - if devise_mapping.rememberable?
+          .field-wrap.checkbox-field
+            = f.check_box :remember_me
+            = f.label :remember_me
+
+        .field-wrap.submit-field
+          button.btn.btn-primay Log in
+
+      = render "devise/shared/links"

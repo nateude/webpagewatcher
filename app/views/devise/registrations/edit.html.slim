@@ -1,0 +1,44 @@
+.container
+  h1 Edit resource_name.to_s.humanize
+  .row
+    .col.md-3of4
+      .card.form-card
+        .card-header
+          h2 Edit account options
+        .card-body
+          .form-wrapper
+            = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+              = render 'devise/shared/error_messages', resource: resource
+
+              .field-wrap
+                = f.label :email
+                = f.email_field :email, autofocus: true, autocomplete: 'email'
+
+              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+
+              .field-wrap
+                = f.label :password
+                = f.password_field :password, autocomplete: 'new-password'
+                .form-hint
+                  p leave blank if you don't want to change it
+                - if @minimum_password_length
+                  p #{@minimum_password_length} characters minimum
+
+
+              .field-wrap
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, autocomplete: 'new-password'
+
+              .field-wrap
+                = f.label :current_password <i>(we need your current password to confirm your changes)</i>
+                = f.password_field :current_password, autocomplete: 'current-password'
+
+              .field-wrap.submit-field
+                button.btn.btn-primary Update Account
+
+    .col.md-1of4
+      .card.form-card
+        .card-header
+          h2 Cancel my account
+        .card-body
+          = button_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-primary'

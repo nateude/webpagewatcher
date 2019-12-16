@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'chartkick'
+gem 'devise'
 gem 'hierarchical_config'
 gem 'jbuilder'
 gem 'jquery-rails'
@@ -10,8 +11,8 @@ gem 'puma'
 gem 'rails'
 gem 'sassc-rails'
 gem 'slim-rails'
-gem 'uglifier'
 gem 'sprockets', '3.7.2'
+gem 'uglifier'
 
 group :development, :test do
   gem 'byebug'

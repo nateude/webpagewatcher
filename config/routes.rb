@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # Static Page Routes
   root 'dashboard#index'
 
   get  '/home', to: 'dashboard#index'
@@ -18,5 +17,5 @@ Rails.application.routes.draw do
 
   get 'reports/:id/json', to: 'reports#json', defaults: { format: 'json' }, as: :report_json
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :user, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
 end

@@ -19,6 +19,14 @@ form {
   &.inline-form {
     display: inline-block;
   }
+
+  .errors {
+    border: 1px solid $red;
+    background: rgba($red, 0.2);
+    margin: $base-spacing 0;
+    padding: $base-spacing * 0.5  $base-spacing;
+    color: $grey-dk;
+  }
 }
 
 .field-wrap {
@@ -59,7 +67,11 @@ form {
   .form-hint{
     font-size: 0.8em;
     line-height: 1.3em;
-    margin: 5px 0;
+    margin: 5px 10px 0;
+
+    p {
+      margin-bottom: 5px;
+    }
   }
   .markdown-hint {
     position: absolute;
@@ -157,6 +169,7 @@ textarea {
 }
 
 .checkbox-field {
+  border: none;
   input[type="checkbox"] {
     display: inline-block;
     width: auto;
@@ -167,6 +180,7 @@ textarea {
   }
 
   label {
+    padding: 0;
     margin-left: $base-spacing;
     display: inline-block;
   }
