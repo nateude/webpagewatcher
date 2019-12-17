@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_200914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "profiles", id: :serial, force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.string "name"
     t.integer "website_id"
     t.string "wpt_settings"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_200914) do
     t.string "url"
   end
 
-  create_table "reports", id: :serial, force: :cascade do |t|
+  create_table "reports", force: :cascade do |t|
     t.integer "website_id"
     t.integer "profile_id"
     t.string "wpt_id"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_200914) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "websites", id: :serial, force: :cascade do |t|
+  create_table "websites", force: :cascade do |t|
     t.string "url"
     t.string "name"
     t.datetime "created_at", null: false

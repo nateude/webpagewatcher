@@ -21,7 +21,7 @@ class InitTest
     {
       f: 'json',
       url: @url,
-      k: config.api_key
+      k: current_user.wpt_key
     }.to_query
   end
 

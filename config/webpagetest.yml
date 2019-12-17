@@ -1,5 +1,5 @@
 defaults:
-  api_key:    <%= ENV['WPT_API_KEY'] %>
+  # api_key:    <%= ENV['WPT_API_KEY'] %>
   base_url:   'http://www.webpagetest.org/'
   run:        'http://www.webpagetest.org/runtest.php?'
   status:     'http://www.webpagetest.org/testStatus.php?'
