@@ -20,7 +20,7 @@ Rails:
 Style/Documentation:
   Enabled: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Enabled: false
 
 Rails/HasAndBelongsToMany:
