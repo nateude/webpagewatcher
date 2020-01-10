@@ -12,3 +12,7 @@ header
             a href=reports_path Reports
           li
             a href=destroy_user_session_path Log Out
+          li
+            a href=edit_user_registration_path(current_user.id) title="User Profile"
+              span.fa.fa-user
+              span.hidden User Profile

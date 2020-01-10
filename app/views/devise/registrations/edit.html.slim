@@ -1,5 +1,5 @@
 .container
-  h1 Edit resource_name.to_s.humanize
+  h1 Edit Your Profile
   .row
     .col.md-3of4
       h2 Edit account options
@@ -38,7 +38,7 @@
 
           .field-wrap
             label for="current_password" Confirm Current Password to confirm Idenity
-            = f.password_field :current_password, autocomplete: 'current-password'
+            = f.password_field :current_password, autocomplete: 'current-password', required: true
 
           .field-wrap.submit-field
             button.btn.btn-primary Update Account

@@ -1,6 +1,7 @@
 class InitTest
-  def initialize(url:)
+  def initialize(url:, wpt_key:)
     @url = url
+    @wpt_key = wpt_key
   end
 
   def run
@@ -21,7 +22,7 @@ class InitTest
     {
       f: 'json',
       url: @url,
-      k: current_user.wpt_key
+      k: @wpt_key
     }.to_query
   end
 

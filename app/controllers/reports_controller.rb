@@ -48,7 +48,7 @@ class ReportsController < AuthenticatedController
     report = Report.new(report_params)
 
     if report.valid? & report.profile.report.pending.empty?
-      wpt = InitTest.new(url: report.profile.url).run
+      wpt = InitTest.new(url: report.profile.url, wpt_key: current_user.wpt_key).run
       report.update!(wpt)
     elsif !report.profile.report.pending.empty?
       set_flash :error, 'Please wait till pending reports have completed'

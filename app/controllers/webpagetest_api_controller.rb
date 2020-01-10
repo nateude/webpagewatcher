@@ -1,5 +1,5 @@
 class WebpagetestApiController < AuthenticatedController
   def init
-    @test = InitTest.new(profile: Profile.find(params[:id])).run
+    @test = InitTest.new(url: report.profile.url, current_user.wpt_key).run
   end
 end
