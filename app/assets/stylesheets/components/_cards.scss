@@ -2,7 +2,16 @@
   width: 100%;
   padding: 0 $base-spacing;
   // border: 1px solid $grey-lt;
-  border-left: 3px solid $grey-lt;
   background: transparent;
   margin-bottom: $base-spacing * 2;
+}
+
+.card-header {}
+.card-body {}
+.card-footer {
+  padding: $base-spacing 0 0;
+}
+
+.sidebar .card {
+  border-left: 3px solid $grey-lt;
 }

@@ -1,20 +1,16 @@
 .container
-  h1.heading-1 WebPage Watcher
-  p
-    ' is a tool designed to allow a user to run and save data from
-    a href="http://www.webpagetest.org" WebPageTest.org
+  h1.heading-1 Welcome #{current_user.name}
 
-  - unless WebPageTestConfig.api_key
-    p.error.strong Please configure your WebPageTest API key before continuing.
-    p
-      ' visit project github page
-      a href="https://github.com/nateude/webpagewatcher" github.com/nateude/webpagewatcher
-      ' for more details.
+  .row
+    - unless current_user.wpt_key
+      .col.md-2of4
+        h2.error Configure WebPageTest API key
+        p Before continuing please configure your WebPageTest API key.
 
-  - else
-    .row
+        a.btn.btn-primary href=edit_user_registration_path Edit my Profile
+
+    - else
       .col.md-3of4
-
         - unless @reports.pending.empty?
           .spaced-2x
             h2 Pending Reports
@@ -24,7 +20,7 @@
         h2 Recent Reports
         = render '/reports/partials/reports_table', reports: @reports.complete.last(5)
 
-      .col.md-1of4
+      .col.md-1of4.sidebar
         .card
           .card-header
             h2 Start New Report

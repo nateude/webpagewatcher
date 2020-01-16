@@ -1,4 +1,4 @@
-class ProfilesController < ApplicationController
+class ProfilesController < AuthenticatedController
   include ApplicationHelper
 
   def index

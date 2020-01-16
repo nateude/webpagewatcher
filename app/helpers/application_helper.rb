@@ -1,6 +1,7 @@
 module ApplicationHelper
   include FlashHelper
   include ContentHelper
+  include LogInHelper
 
   def pretty_print_json(str)
     JSON.pretty_generate(JSON.parse(str.to_s))

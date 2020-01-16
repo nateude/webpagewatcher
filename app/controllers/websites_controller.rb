@@ -1,4 +1,4 @@
-class WebsitesController < ApplicationController
+class WebsitesController < AuthenticatedController
   include ApplicationHelper
 
   def index
