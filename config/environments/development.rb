@@ -38,7 +38,8 @@ Rails.application.configure do
   # config.action_mailer.default_url_options = { host: 'localhost:3000, pup-ups.test' }
   config.action_mailer.default_url_options = { host: 'webpagewatcher.test', protocol: 'http' }
 
-  config.action_mailer.preview_path ||= defined?(Rails.root) ? Rails.root.join('/test/mailers/previews') : nil
+  config.action_mailer.preview_path ||= defined?(Rails.root) ? Rails.root.join('test/mailers/previews') : nil
+  # config.action_mailer.preview_path ||= defined?(Rails.root) ? "#{Rails.root}/test/mailers/previews" : nil
   config.autoload_paths += [config.action_mailer.preview_path]
 
   # Print deprecation notices to the Rails logger.
