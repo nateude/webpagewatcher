@@ -1,4 +1,4 @@
-lass CustomDeviseMailerPreview < ActionMailer::Preview
+class CustomDeviseMailerPreview < ActionMailer::Preview
   def confirmation_instructions
     CustomDeviseMailer.confirmation_instructions(User.first, 'faketoken', {})
   end
