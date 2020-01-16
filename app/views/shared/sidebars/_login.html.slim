@@ -2,6 +2,7 @@
   .card-header
     h2 Log In
   .card-body
+
     .form-wrapper
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .field-wrap
@@ -21,4 +22,6 @@
           button.btn.btn-primay Log in
 
   .card-footer
-    a href=new_password_path(resource_name) Forgot your password?
+    ul.bulletless
+      li: a href=new_password_path(resource_name) Reset your password.
+      li: a href=new_registration_path(resource_name) Register a new account.
