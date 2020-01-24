@@ -2,12 +2,15 @@ class WebsitesController < AuthenticatedController
   include ApplicationHelper
 
   def index
-    @websites = Website.all
+    @websites = current_user.website.all
     @website = Website.new
   end
 
   def show
     @website = Website.find(params[:id])
+
+    redirect_to index unless @website.user == current_user
+
     @profile = Profile.new
     @report = Report.new
   end
@@ -22,6 +25,7 @@ class WebsitesController < AuthenticatedController
       set_flash :success, 'Website Created: ' + @website.name
       redirect_to websites_path
     else
+      handle_errors(@website)
       render 'new'
     end
   end
@@ -29,6 +33,6 @@ class WebsitesController < AuthenticatedController
   private
 
   def website_params
-    params.require(:website).permit(:name, :url)
+    params.require(:website).permit(:name, :url, :user_id)
   end
 end

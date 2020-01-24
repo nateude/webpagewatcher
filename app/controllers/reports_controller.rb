@@ -67,6 +67,6 @@ class ReportsController < AuthenticatedController
   private
 
   def report_params
-    params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status, :status_code)
+    params.require(:report).permit(:profile_id, :wpt_id, :status, :status_code)
   end
 end
