@@ -26,7 +26,6 @@ class ReportsController < AuthenticatedController
   end
 
   def update
-    binding.pry
     report = Report.find(params[:id])
     data = CheckReport.new(report: report).call
     report.update!(data) if data
