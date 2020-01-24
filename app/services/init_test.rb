@@ -19,17 +19,22 @@ class InitTest
   end
 
   def query_params
-    {
+    query_params = {
       f: 'json',
       url: @url,
       k: @wpt_key
-    }.to_query
+    }
+
+    query_params[:pingback] = Rails.application.routes.url_helpers.pingback_reports_url if config.pingback
+
+    binding.pry
+    query_params
   end
 
   def wpt_init_test
     require 'net/http'
     require 'json'
-    uri = URI(config.run + query_params)
+    uri = URI(config.run + query_params.to_query)
     response = Net::HTTP.get(uri)
     JSON.parse(response)
   end

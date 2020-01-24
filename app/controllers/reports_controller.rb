@@ -18,7 +18,22 @@ class ReportsController < AuthenticatedController
     @report.update!(data) if data
   end
 
-  def update; end
+  def pingback
+    report = Report.find_by(wpt_id: params[:id])
+    data = CheckReport.new(report: report).call
+    report.update!(data) if data
+    render json: { status: true, id: report.id, update: report.updated_at }
+  end
+
+  def update
+    binding.pry
+    report = Report.find(params[:id])
+    data = CheckReport.new(report: report).call
+    report.update!(data) if data
+
+    set_flash :success, updated.to_s + ' report(s) updated'
+    redirect_to action: show, id: params[:id]
+  end
 
   def update_all
     reports = Report.pending
