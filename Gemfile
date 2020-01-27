@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'chartkick'
 gem 'devise'
+gem 'figaro'
 gem 'hierarchical_config'
 gem 'jbuilder'
 gem 'jquery-rails'
@@ -32,6 +33,11 @@ group :development do
   gem 'binding_of_caller'
   gem 'brakeman'
   gem 'bundler-audit'
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm'
+  gem 'capistrano'
+  gem 'capistrano3-puma'
   gem 'guard-rspec'
   gem 'guard'
   gem 'listen'
