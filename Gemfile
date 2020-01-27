@@ -31,15 +31,19 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rails-console', require: false
+  gem 'capistrano-rails-logs-tail'
+  gem 'capistrano-rake', require: false
+  gem 'capistrano-rvm'
+  gem 'capistrano3-puma'
+
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'brakeman'
   gem 'bundler-audit'
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-rvm'
-  gem 'capistrano'
-  gem 'capistrano3-puma'
   gem 'guard-rspec'
   gem 'guard'
   gem 'listen'
