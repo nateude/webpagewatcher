@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'bcrypt_pbkdf'
 gem 'chartkick'
 gem 'devise'
+gem 'ed25519'
 gem 'figaro'
 gem 'hierarchical_config'
 gem 'jbuilder'

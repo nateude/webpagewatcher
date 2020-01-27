@@ -62,6 +62,7 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.0)
     bcrypt (3.1.13)
+    bcrypt_pbkdf (1.0.1)
     better_errors (2.5.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -113,6 +114,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.3)
     docile (1.3.2)
+    ed25519 (1.2.4)
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.11.3)
@@ -332,6 +334,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt_pbkdf
   better_errors
   binding_of_caller
   brakeman
@@ -345,6 +348,7 @@ DEPENDENCIES
   capybara
   chartkick
   devise
+  ed25519
   figaro
   guard
   guard-rspec
