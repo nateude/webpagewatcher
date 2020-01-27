@@ -1,5 +1,6 @@
 class Report < ApplicationRecord
   belongs_to :profile
+  has_one :user, through: :profile
 
   validates :profile_id, presence: true
   # validates :wpt_id, presence: true
