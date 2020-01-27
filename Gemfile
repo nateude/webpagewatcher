@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'bcrypt_pbkdf'
 gem 'chartkick'
 gem 'devise'
-gem 'ed25519'
+gem 'faraday'
 gem 'figaro'
 gem 'hierarchical_config'
 gem 'jbuilder'
@@ -12,9 +11,9 @@ gem 'logstash-logger'
 gem 'pg'
 gem 'puma'
 gem 'rails'
+gem 'sass-rails'
 gem 'sassc-rails'
 gem 'slim-rails'
-gem 'sprockets', '3.7.2'
 gem 'uglifier'
 
 group :development, :test do
@@ -40,6 +39,8 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano3-puma'
 
+  gem 'bcrypt_pbkdf'
+  gem 'ed25519'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'brakeman'

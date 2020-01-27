@@ -125,6 +125,8 @@ GEM
     ed25519 (1.2.4)
     erubi (1.9.0)
     execjs (2.7.0)
+    faraday (1.0.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.11.3)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -175,6 +177,7 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.13.0)
+    multipart-post (2.1.1)
     nenv (0.3.0)
     net-scp (2.0.0)
       net-ssh (>= 2.6.5, < 6.0.0)
@@ -277,6 +280,8 @@ GEM
     rubocop-rspec (1.37.1)
       rubocop (>= 0.68.1)
     ruby-progressbar (1.10.1)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.2.1)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -362,6 +367,7 @@ DEPENDENCIES
   chartkick
   devise
   ed25519
+  faraday
   figaro
   guard
   guard-rspec
@@ -382,13 +388,13 @@ DEPENDENCIES
   rubocop-junit-formatter
   rubocop-rails
   rubocop-rspec
+  sass-rails
   sassc-rails
   simplecov
   slim-rails
   slim_lint
   spring
   spring-watcher-listen
-  sprockets (= 3.7.2)
   uglifier
   web-console
 
