@@ -11,8 +11,6 @@ Rails.application.configure do
   config.assets.js_compressor = :uglifier
 
   config.assets.compile = false
-  config.serve_static_assets = true
-  config.public_file_server.enabled = true
 
   config.active_storage.service = :local
 
