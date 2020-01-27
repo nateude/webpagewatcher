@@ -14,6 +14,7 @@ Rails.application.configure do
   config.assets.compress = true
   config.assets.digest = true
 
+  config.serve_static_assets = true
   config.serve_static_files = true
   config.active_storage.service = :local
 
