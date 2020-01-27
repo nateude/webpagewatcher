@@ -14,6 +14,7 @@ Rails.application.configure do
   config.assets.compress = true
   config.assets.digest = true
 
+  config.serve_static_files = true
   config.active_storage.service = :local
 
   config.log_level = :debug
@@ -21,7 +22,7 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   config.action_mailer.delivery_method = :ses
-  config.action_mailer.default_url_options = { host: 'https://webpagewatcher.nateude.com' }
+  config.action_mailer.default_url_options = { host: 'http://webpagewatcher.nateude.com' }
 
   config.i18n.fallbacks = true
 
