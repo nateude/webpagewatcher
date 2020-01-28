@@ -26,3 +26,13 @@ set :puma_workers, 0
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
+
+namespace :puma do
+  Rake::Task[:restart].clear_actions
+
+  desc "Overwritten puma:restart task"
+  task :restart do
+    invoke 'puma:stop'
+    invoke 'puma:start'
+  end
+end
