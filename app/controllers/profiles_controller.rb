@@ -7,6 +7,7 @@ class ProfilesController < AuthenticatedController
   end
 
   def show
+    binding.pry
     @profile = Profile.find(params[:id])
 
     redirect_to index unless @profile.user == current_user

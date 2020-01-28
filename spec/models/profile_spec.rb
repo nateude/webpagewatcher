@@ -7,6 +7,7 @@ describe Profile do
 
   it 'is valid with name, website id, settings, code, interval and url' do
     profile = described_class.new(profile_attrs)
+    binding.pry
     expect(profile).to be_valid
   end
 

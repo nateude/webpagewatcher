@@ -6,10 +6,19 @@ def generate_sample_data
   report_data(2)
 end
 
+def user_data
+  User.create(
+    email: 'user@webpagewatcher.com',
+    name: 'user',
+    password: 'password'
+  )
+end
+
 def website_data
   Website.create(
     name: 'Example Website',
-    url: 'http://www.examplewebsite.com/'
+    url: 'http://www.examplewebsite.com/',
+    user_id: 1
   )
 end
 
@@ -34,7 +43,6 @@ end
 
 def report_data(profile_id)
   Report.create(
-    website_id: '1',
     profile_id: profile_id,
     wpt_id: '12345',
     status: 'Test Complete',
@@ -42,7 +50,6 @@ def report_data(profile_id)
     status_code: '200'
   )
   Report.create(
-    website_id: '1',
     profile_id: profile_id,
     wpt_id: '23456',
     status: 'Test Complete',
