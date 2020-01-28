@@ -30,7 +30,7 @@ set :puma_preload_app, false
 namespace :puma do
   Rake::Task[:restart].clear_actions
 
-  desc "Overwritten puma:restart task"
+  desc 'Overwritten puma:restart task'
   task :restart do
     invoke 'puma:stop'
     invoke 'puma:start'
