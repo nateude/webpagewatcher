@@ -6,16 +6,12 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  config.public_file_server.enabled = true
-  config.serve_static_assets = true
-  config.assets.compile = true
-  config.assets.compress = true
-  config.assets.digest = true
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   config.assets.js_compressor = :uglifier
 
-  config.serve_static_assets = true
-  config.serve_static_files = true
+  config.assets.compile = false
+
   config.active_storage.service = :local
 
   config.log_level = :debug
@@ -23,7 +19,7 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   config.action_mailer.delivery_method = :ses
-  config.action_mailer.default_url_options = { host: 'http://webpagewatcher.nateude.com' }
+  config.action_mailer.default_url_options = { host: 'https://webpagewatcher.nateude.com' }
 
   config.i18n.fallbacks = true
 
