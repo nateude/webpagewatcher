@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'chartkick'
 gem 'devise'
+gem 'faraday'
+gem 'figaro'
 gem 'hierarchical_config'
 gem 'jbuilder'
 gem 'jquery-rails'
@@ -9,9 +11,9 @@ gem 'logstash-logger'
 gem 'pg'
 gem 'puma'
 gem 'rails'
+gem 'sass-rails'
 gem 'sassc-rails'
 gem 'slim-rails'
-gem 'sprockets', '3.7.2'
 gem 'uglifier'
 
 group :development, :test do
@@ -28,6 +30,17 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rails-console', require: false
+  gem 'capistrano-rails-logs-tail'
+  gem 'capistrano-rake', require: false
+  gem 'capistrano-rvm'
+  gem 'capistrano3-puma'
+
+  gem 'bcrypt_pbkdf'
+  gem 'ed25519'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'brakeman'
