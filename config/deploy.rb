@@ -3,7 +3,7 @@ lock '~> 3.11.2'
 
 set :application, 'webpagewatcher'
 set :repo_url, 'git@github.com:nateude/webpagewatcher.git' # Edit this to match your repository
-set :branch, 'deploy-init'
+set :branch, 'master'
 set :deploy_to, '/home/deploy/webpagewatcher'
 set :pty, true
 set :linked_files, %w[config/database.yml config/application.yml]
