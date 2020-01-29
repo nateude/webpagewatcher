@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :reports do
     collection do
       get '/update', to: 'reports#update_all', as: :update_all
+      get '/pingback', to: 'reports#pingback', as: :pingback
     end
   end
 
