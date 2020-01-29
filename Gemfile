@@ -16,8 +16,6 @@ gem 'sassc-rails'
 gem 'slim-rails'
 gem 'uglifier'
 
-
-
 group :development, :test, :staging do
   gem 'better_errors'
   gem 'binding_of_caller'
