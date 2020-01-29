@@ -22,8 +22,11 @@ require 'capistrano/rails/assets' # for asset handling add
 require 'capistrano/rails/migrations' # for running migrations
 require 'capistrano/puma'
 require 'capistrano/puma/nginx'
-
 install_plugin Capistrano::Puma
+require 'capistrano/rails/console'
+require 'capistrano/rails/logs'
+require 'capistrano/rake'
+require 'capistrano/console'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
