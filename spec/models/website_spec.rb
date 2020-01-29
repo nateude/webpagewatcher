@@ -30,7 +30,7 @@ describe Website do
   end
 
   it 'is invalid with a duplicate url' do
-    one = described_class.create(website_params)
+    described_class.create(website_params)
     website = described_class.new(website_params)
     website.valid?
     expect(website.errors[:url]).to include('has already been taken')
