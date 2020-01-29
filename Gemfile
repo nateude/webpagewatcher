@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'aws-ses'
 gem 'chartkick'
 gem 'devise'
 gem 'faraday'
