@@ -27,7 +27,6 @@ class InitTest
 
     query_params[:pingback] = Rails.application.routes.url_helpers.pingback_reports_url if config.pingback
 
-    binding.pry
     query_params
   end
 
