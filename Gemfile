@@ -16,9 +16,15 @@ gem 'sassc-rails'
 gem 'slim-rails'
 gem 'uglifier'
 
-group :development, :test do
+group :development, :test, :staging do
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'byebug'
   gem 'capybara'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'pry'
+  gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'rspec-rails'
   gem 'rubocop-junit-formatter'
@@ -41,25 +47,15 @@ group :development do
 
   gem 'bcrypt_pbkdf'
   gem 'ed25519'
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'brakeman'
   gem 'bundler-audit'
   gem 'guard-rspec'
   gem 'guard'
   gem 'listen'
   gem 'nyan-cat-formatter'
-  gem 'pry'
   gem 'spring-watcher-listen'
   gem 'spring'
   gem 'web-console'
-end
-
-group :test do
-  gem 'rails-controller-testing'
-end
-
-group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

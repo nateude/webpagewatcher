@@ -21,7 +21,7 @@
             .td = @report.status_code
           .tr
             .td Website
-            .td: a href=website_path(@report.website.id) = @report.website.name
+            .td: a href=website_path(@report.profile.website.id) = @report.profile.website.name
           .tr
             .td Profile
             .td: a href=profile_path(@report.profile.id) = @report.profile.name
