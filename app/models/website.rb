@@ -5,8 +5,8 @@ class Website < ApplicationRecord
   has_many :report, through: :profile
 
   validates :user, presence: true
-  validates :name, presence: true, uniqueness: true
-  # validates :url, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :url, presence: true, uniqueness: true
 
   def user_sites
     Websites.where(user: current_user)
