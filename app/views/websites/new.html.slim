@@ -4,6 +4,7 @@
       h1 Add New Website
 
       = form_for(@website, html: {novalidate: true}) do |f|
+        = f.hidden_field :user_id, value: current_user.id
 
         .field-wrap
           = f.label :name

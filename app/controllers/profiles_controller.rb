@@ -2,12 +2,14 @@ class ProfilesController < AuthenticatedController
   include ApplicationHelper
 
   def index
-    @profiles = Profile.all
+    @profiles = current_user.profile.all
     @profile = Profile.new
   end
 
   def show
     @profile = Profile.find(params[:id])
+
+    redirect_to index unless @profile.user == current_user
   end
 
   def new

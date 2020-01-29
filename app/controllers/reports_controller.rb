@@ -3,7 +3,7 @@ class ReportsController < AuthenticatedController
   include ReportsHelper
 
   def index
-    @reports = Report.all
+    @reports = current_user.report.all
     @report = Report.new
   end
 
@@ -13,6 +13,8 @@ class ReportsController < AuthenticatedController
 
   def show
     @report = Report.find(params[:id])
+
+    redirect_to index unless @report.user == current_user
 
     data = CheckReport.new(report: @report).call
     @report.update!(data) if data
@@ -35,7 +37,7 @@ class ReportsController < AuthenticatedController
   end
 
   def update_all
-    reports = Report.pending
+    reports = current_user.report.pending
     updated = 0
 
     reports.each do |report|
@@ -81,6 +83,6 @@ class ReportsController < AuthenticatedController
   private
 
   def report_params
-    params.require(:report).permit(:website_id, :profile_id, :wpt_id, :status, :status_code)
+    params.require(:report).permit(:profile_id, :wpt_id, :status, :status_code)
   end
 end

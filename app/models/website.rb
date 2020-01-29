@@ -1,7 +1,14 @@
 class Website < ApplicationRecord
-  has_many :profile, dependent: :restrict_with_exception
-  has_many :report, dependent: :restrict_with_exception
+  belongs_to :user
 
-  validates :name, presence: true, uniqueness: true
+  has_many :profile, dependent: :restrict_with_exception
+  has_many :report, through: :profile
+
+  validates :user, presence: true
+  validates :name, presence: true
   validates :url, presence: true, uniqueness: true
+
+  def user_sites
+    Websites.where(user: current_user)
+  end
 end
