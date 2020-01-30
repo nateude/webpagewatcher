@@ -15,9 +15,10 @@
             .th Sign In Count
             .th Last Sign In At
             .th Admin
+            .th Reports Run
 
         .tbody
-          - User.all.each do |user|
+          - User.all.order(:id).each do |user|
             .tr
               .td = user.id
               .td = user.name
@@ -27,3 +28,4 @@
               .td = user.sign_in_count ? user.sign_in_count : " "
               .td = user.last_sign_in_at ? format_date(user.last_sign_in_at) : " "
               .td = (user.admin ? 'true' : 'false')
+              .td = user.report.count
