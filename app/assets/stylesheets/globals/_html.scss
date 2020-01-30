@@ -16,7 +16,7 @@ body {
   font-family: $heading;
   font-size: 1em;
   line-height: 1.2em;
-  margin: $base-spacing * 2 0 $base-spacing;
+  margin: 0 0 $base-spacing;
   font-weight: $bold;
 
   a, a & {
@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-p, ul, ol {
+p, ul, ol, img {
   & + .heading-1,
   & + .heading-2 {
     margin-top: $base-spacing * 2;

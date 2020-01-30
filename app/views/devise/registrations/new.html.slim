@@ -1,10 +1,10 @@
 .container
-  h1 Register your Account
   .row
     .col.md-2of4
       .card.form-card
         .card-header
-          h2 Sign Up For an Account
+          h1.heading-1 Register your Account
+          p To sign up for an account fill out and submit the form below. then check your email for a confimation with a link to click to confirm your email.
         .card-body
           .form-wrapper
             = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
@@ -14,13 +14,13 @@
                 = f.label :name
                 = f.text_field :name, autofocus: true
 
-              .field-wrap
-                label for="wpt_key" WPT API Key
-                = f.text_field :wpt_key, autofocus: true
-                .form-hint
-                  p
-                    ' Generate your key from
-                    a href="https://www.webpagetest.org/getkey.php" WPT Request API Key
+              / .field-wrap
+              /   label for="wpt_key" WPT API Key
+              /   = f.text_field :wpt_key, autofocus: true
+              /   .form-hint
+              /     p
+              /       ' Generate your key from
+              /       a href="https://www.webpagetest.org/getkey.php" WPT Request API Key
 
               .field-wrap
                 = f.label :email

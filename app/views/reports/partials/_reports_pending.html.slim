@@ -2,6 +2,8 @@
   .thead
     .tr
       .th Started
+      .th Website
+      .th Profile
       .th Status Code
       .th Status
 
@@ -9,5 +11,7 @@
     - reports.each do |report|
       a.tr.info href=report_path(report.id)
         .td = format_date(report.created_at)
+        .td = report.profile.website.name
+        .td = report.profile.name
         .td = report.status_code
         .td = report.status

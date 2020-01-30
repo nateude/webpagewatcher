@@ -1,26 +1,12 @@
 .alert {
   margin-top: $base-spacing;
   padding: $base-spacing * 0.5  $base-spacing;
-  color: white;
-  background: $grey-dk;
-  color: $grey-dk;
-  background: rgba($grey-dk, 0.2);
+  color: $blue;
+  background: rgba($blue, 0.2);
 
-  &.alert-error {
-    color: $red;
-    background: rgba($red, 0.2);
-  }
+  &.alert-error,
   &.alert-warning {
     color: $red;
     background: rgba($red, 0.2);
-  }
-  &.alert-success {
-    color: $blue;
-    background: rgba($blue, 0.2);
-  }
-  &.alert-info,
-  &.alert-notice {
-    color: $blue;
-    background: rgba($blue, 0.2);
   }
 }

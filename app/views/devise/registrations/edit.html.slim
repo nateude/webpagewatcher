@@ -1,8 +1,7 @@
 .container
-  h1 Edit Your Profile
+  h1.heading-1 Edit Your Profile
   .row
     .col.md-3of4
-      h2 Edit account options
       .form-wrapper
         = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
           = render 'devise/shared/error_messages', resource: resource
