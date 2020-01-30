@@ -1,13 +1,15 @@
 class DashboardController < ApplicationController
   def index
-    if user_signed_in?
-      @reports = Report.all
+    if current_user && current_user.wpt_key.nil?
+      render 'logged_in_no_key'
+    elsif user_signed_in?
+      @reports = current_user.report
       @report = Report.new
 
-      @websites = Website.all
+      @websites = current_user.website.all
       @website = Website.new
 
-      @profiles = Profile.all
+      @profiles = current_user.profile.all
       @profile = Profile.new
 
       render 'logged_in'
