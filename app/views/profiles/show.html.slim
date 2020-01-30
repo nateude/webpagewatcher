@@ -14,7 +14,8 @@
       - unless @profile.report.pending.empty?
         h2 Pending Reports
         = render '/reports/partials/reports_pending', reports: @profile.report.pending
-        a.btn href=update_all_reports_path({profile: @profile.id}) Check for Updates
+        - if enable_manual_update?
+          a.btn href=update_all_reports_path({profile: @profile.id}) Check for Updates
 
       h2 Completed Reports
       = render '/reports/partials/reports_table', reports: @profile.report.complete

@@ -5,7 +5,8 @@
       - unless @reports.pending.empty?
         h2 Pending Reports
         = render '/reports/partials/reports_pending', reports: @reports.pending
-        a.btn href=update_all_reports_path Update Reports
+        - if enable_manual_update?
+          a.btn href=update_all_reports_path Update Reports
 
       h2 Completed Reports
       = render '/reports/partials/reports_table', reports: @reports.complete

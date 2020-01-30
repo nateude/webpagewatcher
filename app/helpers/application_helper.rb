@@ -16,4 +16,8 @@ module ApplicationHelper
       date.strftime('%m/%d')
     end
   end
+
+  def enable_manual_update?
+    WebPageTestConfig.manual_update
+  end
 end
