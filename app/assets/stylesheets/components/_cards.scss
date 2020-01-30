@@ -1,9 +1,17 @@
 .card {
   width: 100%;
   padding: 0 $base-spacing;
-  // border: 1px solid $grey-lt;
   background: transparent;
   margin-bottom: $base-spacing * 2;
+
+  &.bordered {
+    border: 1px solid $grey-lt;
+    padding: $base-spacing;
+
+    &.green {
+      border-color: $green;
+    }
+  }
 }
 
 .card-header {}

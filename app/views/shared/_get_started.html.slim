@@ -1,0 +1,27 @@
+- if current_user.website.empty?
+  .card.bordered.green
+    .card-title
+      h2.heading-3 Get Started
+    .card-body
+      p You will need to setup a website before you can start recording data
+    .card-footer
+      a.btn href=websites_path Create a Website
+
+- elsif current_user.profile.empty?
+  .card.bordered.green
+    .card-title
+      h2.heading-3 Get Started
+    .card-body
+      p Now that you have a websites create a profile.
+    .card-footer
+      a.btn href=profiles_path Create a Profile
+
+- elsif current_user.report.empty?
+  .card.bordered.green
+    .card-title
+      h2.heading-3 Get Started
+    .card-body
+      p
+        ' Use the
+        strong> Start New Report
+        ' box to start recoding data

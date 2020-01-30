@@ -1,48 +1,45 @@
 .container.spaced-2x
   h1.heading-1 Welcome #{current_user.name}
 
+  = render '/shared/get_started'
+
   .row
-    - if current_user.wpt_key
-      .col.md-3of4
-        - unless @reports.pending.empty?
-          .spaced-2x
-            h2 Pending Reports
-            = render '/reports/partials/reports_pending', reports: @reports.pending
-            a.btn href=update_all_reports_path Update Reports
+    .col.md-3of4
+      - unless @reports.pending.empty?
+        .spaced-2x
+          h2 Pending Reports
+          = render '/reports/partials/reports_pending', reports: @reports.pending
+          a.btn href=update_all_reports_path Update Reports
 
-        h2 Recent Reports
-        = render '/reports/partials/reports_table', reports: @reports.complete.last(5)
+      h2 Recent Reports
+      .table.table-hover class=(defined?(table_class) ? table_class : nil)
+        .thead
+          .tr
+            .th Date
+            .th Website
+            .th Profile
+            .th load_time
+            .th ttfb
+            .th render
+            .th fully_loaded
 
-    - else
-      .col.md-3of4
-        h2.error Configure WebPageTest API key
-        p Before continuing please configure your WebPageTest API key.
+        .tbody
+          - @reports.complete.last(5).each do |report|
+            a.tr  class=(defined?(row_class) ? row_class : nil) href=report_path(report.id)
+              .td = format_date(report.updated_at)
+              .td = report.profile.website.name
+              .td = report.profile.name
+              .td = report.load_time
+              .td = report.ttfb
+              .td = report.render
+              .td = report.fully_loaded
 
-        a.btn.btn-primary href=edit_user_registration_path Edit my Profile
 
     .col.md-1of4.sidebar
-      - if current_user.wpt_key
-       .card
-         .card-header
-           h2 Start New Report
-         .card-body
-           = render '/reports/partials/run_report_form', report: @report
-
       .card
         .card-header
-          h2 Basic FAQ
+          h2 Start New Report
         .card-body
-        p Here's a couple of things you should know..
+          = render '/reports/partials/run_report_form', report: @report
 
-        ul.spaced
-        li
-          strong> Websites
-          ' are simple categories intended to help you sort profiles and reports.
-
-        li
-          strong> Profiles
-          ' should be used to create repeated test profiles for specific pages.
-
-        li
-          strong> Reports
-          ' This is the actual data that we pull from WebPageTest
+      = render '/shared/sidebars/faq'

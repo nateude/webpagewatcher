@@ -1,0 +1,12 @@
+.container.spaced-2x
+  h1.heading-1 Welcome #{current_user.name}
+
+  .row
+    .col.md-3of4
+      h2.error Configure WebPageTest API key
+      p Before continuing please configure your WebPageTest API key.
+
+      a.btn.btn-primary href=edit_user_registration_path Edit my Profile
+
+    .col.md-1of4.sidebar
+      = render '/shared/sidebars/faq'
