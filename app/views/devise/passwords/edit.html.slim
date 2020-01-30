@@ -1,0 +1,23 @@
+.container
+  .row
+    .col.md-2of4
+      h1.heading-1 Change your password.
+
+      .form-wrapper
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = render 'devise/shared/error_messages', resource: resource
+          = f.hidden_field :reset_password_token
+
+          .field-wrap
+            label for="password_confirmation" Confirm new password
+            = f.password_field :password, autocomplete: 'new-password'
+            .form-hint
+              - if @minimum_password_length
+                p #{@minimum_password_length} characters minimum
+
+          .field-wrap
+            label for="password_confirmation" Confirm new password
+            = f.password_field :password_confirmation, autocomplete: 'new-password'
+
+          .field-wrap.submit-field
+            button.btn.btn-primary Change my password
