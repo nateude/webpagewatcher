@@ -18,6 +18,7 @@ Rails.application.configure do
 
   config.log_tags = [:request_id]
 
+  routes.default_url_options[:host] = 'https://webpagewatcher.nateude.com'
   config.action_mailer.delivery_method = :ses
   config.action_mailer.default_url_options = { host: 'https://webpagewatcher.nateude.com' }
 
