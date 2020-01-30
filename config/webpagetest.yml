@@ -1,10 +1,11 @@
 defaults:
-  # api_key:    <%= ENV['WPT_API_KEY'] %>
-  base_url:   'http://www.webpagetest.org'
-  run:        'http://www.webpagetest.org/runtest.php?'
-  status:     'http://www.webpagetest.org/testStatus.php?'
-  results:    'http://www.webpagetest.org/results.php?'
-  pingback:   true
+  base_url:           'http://www.webpagetest.org'
+  run:                'http://www.webpagetest.org/runtest.php?'
+  status:             'http://www.webpagetest.org/testStatus.php?'
+  results:            'http://www.webpagetest.org/results.php?'
+  pingback:           true
+  manual_update:      false
 
 development:
   pingback: false
+  manual_update: true

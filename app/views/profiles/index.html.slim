@@ -34,7 +34,7 @@
 
             .field-wrap
               = f.label :website_id
-              = f.collection_select(:website_id, Website.all, :id, :name, {:prompt => ' -- Select a Website -- '}, {:class=>'form-control'})
+              = f.collection_select(:website_id, current_user.website.all, :id, :name, {:prompt => ' -- Select a Website -- '}, {:class=>'form-control'})
 
             .field-wrap
               = f.label :url

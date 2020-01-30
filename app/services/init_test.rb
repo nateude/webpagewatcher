@@ -25,7 +25,7 @@ class InitTest
       k: @wpt_key
     }
 
-    query_params[:pingback] = Rails.application.routes.url_helpers.pingback_reports_url if config.pingback
+    query_params[:pingback] = Rails.application.routes.url_helpers.pingback_url if config.pingback
 
     query_params
   end

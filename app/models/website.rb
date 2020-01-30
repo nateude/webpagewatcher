@@ -6,7 +6,7 @@ class Website < ApplicationRecord
 
   validates :user, presence: true
   validates :name, presence: true
-  validates :url, presence: true, uniqueness: true
+  validates :url, presence: true
 
   def user_sites
     Websites.where(user: current_user)
