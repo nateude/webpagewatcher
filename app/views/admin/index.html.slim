@@ -1,0 +1,29 @@
+.container.spaced-2x
+  h1.heading-1 Admin Panel
+  .row
+    .col.md-3of4
+
+      h2 Users
+      .table.table-hover
+        .thead
+          .tr
+            .th ID
+            .th Name
+            .th Email
+            .th Created At
+            .th Confirmed At
+            .th Sign In Count
+            .th Last Sign In At
+            .th Admin
+
+        .tbody
+          - User.all.each do |user|
+            .tr
+              .td = user.id
+              .td = user.name
+              .td = user.email
+              .td = format_date(user.created_at)
+              .td = user.confirmed_at ? format_date(user.confirmed_at) : " "
+              .td = user.sign_in_count ? user.sign_in_count : " "
+              .td = user.last_sign_in_at ? format_date(user.last_sign_in_at) : " "
+              .td = (user.admin ? 'true' : 'false')

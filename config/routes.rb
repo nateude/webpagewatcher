@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   get '/home',      to: 'dashboard#index'
-  get '/pingback',  to: 'pingback#pingback', as: :pingback
+  get '/pingback',  to: 'pingback#pingback',  as: :pingback
+  get '/admin',     to: 'admin#index',        as: :admin
 
   resources :websites
 

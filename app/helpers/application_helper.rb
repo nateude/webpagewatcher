@@ -10,11 +10,7 @@ module ApplicationHelper
   end
 
   def format_date(date)
-    if date.today?
-      date.strftime('%R')
-    else
-      date.strftime('%m/%d')
-    end
+    date.strftime('%m/%d %R')
   end
 
   def enable_manual_update?
