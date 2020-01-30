@@ -28,11 +28,4 @@ describe Website do
     website.valid?
     expect(website.errors[:user]).to include("can't be blank")
   end
-
-  it 'is invalid with a duplicate url' do
-    described_class.create(website_params)
-    website = described_class.new(website_params)
-    website.valid?
-    expect(website.errors[:url]).to include('has already been taken')
-  end
 end
