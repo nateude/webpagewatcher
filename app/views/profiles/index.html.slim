@@ -1,8 +1,8 @@
 .container
+  h1.heading-1 Profiles
+
   .row
     .col.md-3of4
-      h1 Profiles
-
       .table.table-hover.table-striped.table-hover
         .thead
           .tr
@@ -24,7 +24,14 @@
     .col.md-1of4.sidebar
       .card
         .card-header
-          h2 Add New Profile
+          h2.heading-3 Run All Profiles
+        .card-body
+          p Run tests for all profiles
+          a.btn.btn-primary href=run_all_reports_path Start Tests
+
+      .card
+        .card-header
+          h2.heading-3 Add New Profile
         .card-body
           = form_for(@profile, html: {novalidate: true}) do |f|
 

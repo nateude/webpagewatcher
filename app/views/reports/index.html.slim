@@ -1,23 +1,26 @@
 .container
   h1.heading-1 Reports
+
   .row
     .col.md-3of4
       - unless @reports.pending.empty?
-        h2 Pending Reports
-        = render '/reports/partials/reports_pending', reports: @reports.pending
-        - if enable_manual_update?
-          a.btn href=update_all_reports_path Update Reports
-
-      h2 Completed Reports
-      = render '/reports/partials/reports_table', reports: @reports.complete
+        .spaced-2x
+          h2.heading-2 Pending Reports
+          = render '/reports/partials/reports_pending', reports: @reports.pending
+          - if enable_manual_update?
+            a.btn href=update_all_reports_path Update Reports
+      .spaced-2x
+        h2.heading-2 Completed Reports
+        = render '/reports/partials/reports_table', reports: @reports.complete
 
       - unless @reports.errored.empty?
-        h2 Reports with Errors
-        = render '/reports/partials/reports_table', reports: @reports.errored, row_class: 'error'
+        .spaced-2x
+          h2.heading-2 Reports with Errors
+          = render '/reports/partials/reports_table', reports: @reports.errored, row_class: 'error'
 
     .col.md-1of4.sidebar
       .card
         .card-header
-          h2 Start New Report
+          h2.heading-3 Start New Report
         .card-body
           = render '/reports/partials/run_report_form', report: @report
