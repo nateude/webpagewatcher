@@ -7,11 +7,11 @@
     .col.md-3of4
       - unless @reports.pending.empty?
         .spaced-2x
-          h2 Pending Reports
+          h2.heading-2 Pending Reports
           = render '/reports/partials/reports_pending', reports: @reports.pending
           a.btn href=update_all_reports_path Update Reports
 
-      h2 Recent Reports
+      h2.heading-2 Recent Reports
       .table.table-hover class=(defined?(table_class) ? table_class : nil)
         .thead
           .tr
@@ -38,7 +38,7 @@
     .col.md-1of4.sidebar
       .card
         .card-header
-          h2 Start New Report
+          h2.heading-3 Start New Report
         .card-body
           = render '/reports/partials/run_report_form', report: @report
 

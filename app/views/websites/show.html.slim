@@ -1,5 +1,6 @@
 .container
   h1.heading-1 Website: #{@website.name}
+
   .row
     .col.md-3of4
 
@@ -44,7 +45,7 @@
 
 
 
-      h2 Most Recent Associated Reports
+      h2.heading-2 Most Recent Associated Reports
       .table.table-hover
         .thead
           .tr
@@ -73,7 +74,7 @@
     .col.md-1of4.sidebar
       .card.form-card.spaced-2x
         .card-header
-          h2 Add Profile
+          h2.heading-3 Add Profile
         .card-body
           .form-wrapper
             = form_for(@profile, html: {novalidate: true}) do |f|
@@ -93,7 +94,7 @@
 
       .card.form-card
         .card-header
-          h2 Run Report
+          h2.heading-2 Run Report
         .card-body
           .form-wrapper
             = form_for(@report, html: {novalidate: true}) do |f|

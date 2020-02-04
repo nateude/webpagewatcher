@@ -1,33 +1,33 @@
 .container
+  h1.heading-1 Profile: #{@profile.id} | #{@profile.name} | #{@profile.website.name}
+  
   .row
     .col.md-3of4
-      h1 Profile: #{@profile.id} | #{@profile.name} | #{@profile.website.name}
-
       .row
         .col.md-1of2
-          h2 TtFB Trends
+          h2.heading-2 TtFB Trends
           = line_chart @profile.report.complete.last(10).pluck(:updated_at, :ttfb), xtitle: "Date", ytitle: "TtFB"
         .col.md-1of2
-          h2 Load Time Trends
+          h2.heading-2 Load Time Trends
           = line_chart @profile.report.complete.last(10).pluck(:updated_at, :load_time), xtitle: "Date", ytitle: "Load Time"
 
       - unless @profile.report.pending.empty?
-        h2 Pending Reports
+        h2.heading-2 Pending Reports
         = render '/reports/partials/reports_pending', reports: @profile.report.pending
         - if enable_manual_update?
           a.btn href=update_all_reports_path({profile: @profile.id}) Check for Updates
 
-      h2 Completed Reports
+      h2.heading-2 Completed Reports
       = render '/reports/partials/reports_table', reports: @profile.report.complete
 
       - unless @profile.report.errored.empty?
-        h2 Reports with Errors
+        h2.heading-2 Reports with Errors
         = render '/reports/partials/reports_table', reports: @profile.report.errored, row_class: 'error'
 
     .col.md-1of4.sidebar
       .card.form-card.spaced-2x
         .card-header
-          h2 Run New Report
+          h2.heading-3 Run New Report
         .card-body
           - if @profile.report.pending.empty?
             form.inline-form class="new_report" id="new_report" action="/reports" accept-charset="UTF-8" method="post"

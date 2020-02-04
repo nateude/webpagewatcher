@@ -54,6 +54,20 @@ class ReportsController < AuthenticatedController
     redirect_to(redirect)
   end
 
+  def run_all
+    started = 0
+
+    current_user.profile.each do |profile|
+      report = Report.new(profile: profile)
+      wpt = InitTest.new(url: report.profile.url, wpt_key: current_user.wpt_key).run
+      report.update!(wpt)
+      started += 1
+    end
+
+    set_flash :success, started.to_s + ' report(s) started'
+    redirect_to(reports_path)
+  end
+
   def destroy
     Report.find(params[:id]).destroy
     set_flash :success, 'Report deleted'

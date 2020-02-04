@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :reports do
     collection do
+      get '/run',       to: 'reports#run_all', as: :run_all
       get '/update',    to: 'reports#update_all', as: :update_all
       get '/:id/json',  to: 'reports#json', defaults: { format: 'json' }, as: :report_json
     end

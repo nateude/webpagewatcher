@@ -1,7 +1,7 @@
 .container
   .row
     .col.md-3of4
-      h1 Report: #{@report.wpt_id}
+      h1.heading-1 Report: #{@report.wpt_id}
 
       .table.table-hover
         .thead
@@ -66,6 +66,6 @@
 
 
         .spaced-2x
-          h2 Raw JSON Response
+          h2.heading-2 Raw JSON Response
           pre.raw-response
             code == pretty_print_json(@report.data)
