@@ -14,19 +14,22 @@ AllCops:
     - 'vendor/**/*'
     - 'db/schema.rb'
 
-Rails:
-  Enabled: true
+Capybara/FeatureMethods:
+  Enabled: false
 
-Style/Documentation:
+Layout/MultilineArrayBraceLayout:
+  Enabled: false
+
+Layout/MultilineHashBraceLayout:
+  Enabled: false
+
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+
+Layout/MultilineMethodDefinitionBraceLayout:
   Enabled: false
 
 Layout/LineLength:
-  Enabled: false
-
-Rails/HasAndBelongsToMany:
-  Enabled: false
-
-Rails/HasManyOrHasOneDependent:
   Enabled: false
 
 Metrics/BlockLength:
@@ -53,39 +56,21 @@ Metrics/PerceivedComplexity:
 Metrics/ModuleLength:
   Max: 600
 
-Style/SignalException:
-  EnforcedStyle: semantic
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Layout/MultilineArrayBraceLayout:
-  Enabled: false
-
-Layout/MultilineHashBraceLayout:
-  Enabled: false
-
-Layout/MultilineMethodCallBraceLayout:
-  Enabled: false
-
-Layout/MultilineMethodDefinitionBraceLayout:
-  Enabled: false
-
-Style/NumericLiteralPrefix:
-  Enabled: false
-
 Naming/VariableNumber:
   Enabled: false
-
-Style/MixinUsage:
-  Exclude:
-    - 'bin/setup'
-    - 'bin/update'
-    - 'spec/rails_helper.rb'
 
 Rails/FilePath:
   Exclude:
     - 'spec/rails_helper.rb'
+
+Rails:
+  Enabled: true
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
 
 RSpec/FilePath:
   Enabled: false
@@ -96,5 +81,29 @@ RSpec/MultipleExpectations:
 RSpec/ExampleLength:
   Enabled: false
 
-Capybara/FeatureMethods:
+Style/HashEachMethods:
   Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+Style/NumericLiteralPrefix:
+  Enabled: false
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/MixinUsage:
+  Exclude:
+    - 'bin/setup'
+    - 'bin/update'
+    - 'spec/rails_helper.rb'
