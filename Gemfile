@@ -44,7 +44,7 @@ group :development do
   gem 'capistrano-rails-logs-tail'
   gem 'capistrano-rake', require: false
   gem 'capistrano-rvm'
-  gem 'capistrano3-puma'
+  gem "capistrano3-puma", "4.0.0"
 
   gem 'bcrypt_pbkdf'
   gem 'ed25519'
